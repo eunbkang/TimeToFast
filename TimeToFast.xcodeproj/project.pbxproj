@@ -22,6 +22,8 @@
 		7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626632AC4108700C45ED6 /* FastPlanButton.swift */; };
 		7E4626672AC4127B00C45ED6 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626662AC4127B00C45ED6 /* States.swift */; };
 		7E4626692AC4207A00C45ED6 /* TimeToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */; };
+		7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */; };
+		7E46266D2AC481BB00C45ED6 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266C2AC481BB00C45ED6 /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		7E4626632AC4108700C45ED6 /* FastPlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastPlanButton.swift; sourceTree = "<group>"; };
 		7E4626662AC4127B00C45ED6 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeToggleButton.swift; sourceTree = "<group>"; };
+		7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Extension.swift"; sourceTree = "<group>"; };
+		7E46266C2AC481BB00C45ED6 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 			children = (
 				7E4626562AC1988300C45ED6 /* UIFont+Extension.swift */,
 				7E4626582AC19AFD00C45ED6 /* UIColor+Extension.swift */,
+				7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				7E4626662AC4127B00C45ED6 /* States.swift */,
+				7E46266C2AC481BB00C45ED6 /* Timer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,11 +234,13 @@
 				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
 				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
+				7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */,
 				7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */,
 				7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */,
 				7E4626362AC1656300C45ED6 /* ViewController.swift in Sources */,
 				7E4626502AC1954A00C45ED6 /* BaseViewController.swift in Sources */,
 				7E4626322AC1656300C45ED6 /* AppDelegate.swift in Sources */,
+				7E46266D2AC481BB00C45ED6 /* Timer.swift in Sources */,
 				7E4626342AC1656300C45ED6 /* SceneDelegate.swift in Sources */,
 				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
 				7E4626692AC4207A00C45ED6 /* TimeToggleButton.swift in Sources */,
