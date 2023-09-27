@@ -13,6 +13,14 @@
 		7E46263B2AC1656400C45ED6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E46263A2AC1656400C45ED6 /* Assets.xcassets */; };
 		7E46263E2AC1656400C45ED6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E46263C2AC1656400C45ED6 /* LaunchScreen.storyboard */; };
 		7E46264C2AC16C9D00C45ED6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E46264B2AC16C9D00C45ED6 /* SnapKit */; };
+		7E4626502AC1954A00C45ED6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46264F2AC1954A00C45ED6 /* BaseViewController.swift */; };
+		7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626522AC1962E00C45ED6 /* TimerViewController.swift */; };
+		7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626562AC1988300C45ED6 /* UIFont+Extension.swift */; };
+		7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626582AC19AFD00C45ED6 /* UIColor+Extension.swift */; };
+		7E46265B2AC19B3500C45ED6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46265A2AC19B3500C45ED6 /* Constants.swift */; };
+		7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626612AC40A0B00C45ED6 /* TimerView.swift */; };
+		7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626632AC4108700C45ED6 /* FastPlanButton.swift */; };
+		7E4626672AC4127B00C45ED6 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626662AC4127B00C45ED6 /* States.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +31,14 @@
 		7E46263A2AC1656400C45ED6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E46263D2AC1656400C45ED6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E46263F2AC1656400C45ED6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E46264F2AC1954A00C45ED6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7E4626522AC1962E00C45ED6 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		7E4626562AC1988300C45ED6 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		7E4626582AC19AFD00C45ED6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		7E46265A2AC19B3500C45ED6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7E4626612AC40A0B00C45ED6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		7E4626632AC4108700C45ED6 /* FastPlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastPlanButton.swift; sourceTree = "<group>"; };
+		7E4626662AC4127B00C45ED6 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,9 @@
 		7E4626302AC1656300C45ED6 /* TimeToFast */ = {
 			isa = PBXGroup;
 			children = (
+				7E4626542AC1986E00C45ED6 /* Utility */,
+				7E4626652AC4126600C45ED6 /* Model */,
+				7E46264D2AC1953500C45ED6 /* View */,
 				7E4626312AC1656300C45ED6 /* AppDelegate.swift */,
 				7E4626332AC1656300C45ED6 /* SceneDelegate.swift */,
 				7E4626352AC1656300C45ED6 /* ViewController.swift */,
@@ -64,6 +83,67 @@
 				7E46263F2AC1656400C45ED6 /* Info.plist */,
 			);
 			path = TimeToFast;
+			sourceTree = "<group>";
+		};
+		7E46264D2AC1953500C45ED6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E46265C2AC19D6800C45ED6 /* Component */,
+				7E46264E2AC1953B00C45ED6 /* Base */,
+				7E4626512AC1960F00C45ED6 /* Scene */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7E46264E2AC1953B00C45ED6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7E46264F2AC1954A00C45ED6 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7E4626512AC1960F00C45ED6 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				7E4626522AC1962E00C45ED6 /* TimerViewController.swift */,
+				7E4626612AC40A0B00C45ED6 /* TimerView.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		7E4626542AC1986E00C45ED6 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7E4626552AC1987400C45ED6 /* Extension */,
+				7E46265A2AC19B3500C45ED6 /* Constants.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		7E4626552AC1987400C45ED6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7E4626562AC1988300C45ED6 /* UIFont+Extension.swift */,
+				7E4626582AC19AFD00C45ED6 /* UIColor+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		7E46265C2AC19D6800C45ED6 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				7E4626632AC4108700C45ED6 /* FastPlanButton.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7E4626652AC4126600C45ED6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E4626662AC4127B00C45ED6 /* States.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +222,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
+				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
+				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
+				7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */,
+				7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */,
 				7E4626362AC1656300C45ED6 /* ViewController.swift in Sources */,
+				7E4626502AC1954A00C45ED6 /* BaseViewController.swift in Sources */,
 				7E4626322AC1656300C45ED6 /* AppDelegate.swift in Sources */,
 				7E4626342AC1656300C45ED6 /* SceneDelegate.swift in Sources */,
+				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
+				7E46265B2AC19B3500C45ED6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
