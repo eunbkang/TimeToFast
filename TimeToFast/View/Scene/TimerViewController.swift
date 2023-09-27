@@ -26,5 +26,6 @@ final class TimerViewController: BaseViewController {
         timerView.backgroundLayer.frame = view.bounds
         view.layer.insertSublayer(timerView.backgroundLayer, at: 0)
         
+        timerView.fastState = .idle
     }
 }

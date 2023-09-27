@@ -21,16 +21,14 @@ final class TimerView: UIView {
         return layer
     }()
     
-    let timeToggleButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("REMOVE TIME", for: .normal)
-        button.backgroundColor = .systemGray
+    let timeToggleButton: TimeToggleButton = {
+        let button = TimeToggleButton()
         
         return button
     }()
     
     lazy var planButton: FastPlanButton = {
-        let button = FastPlanButton(fastPlan: .fast1410, fastState: .idle)
+        let button = FastPlanButton()
         
         return button
     }()
@@ -46,7 +44,7 @@ final class TimerView: UIView {
     
     let timeStatusLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .footnote, weight: .bold)
+        label.font = .preferredFont(forTextStyle: .footnote, weight: .semibold)
         label.textColor = .systemGray
         label.text = "REMAINING TIME"
         
@@ -72,13 +70,29 @@ final class TimerView: UIView {
         return stackView
     }()
     
-    let fastControlButton: UIButton = {
+    lazy var fastControlButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Start Fast", for: .normal)
-        button.backgroundColor = .systemGray
+        
+        button.backgroundColor = .black
+        button.setTitleColor(.white, for: .normal)
+        
+        button.layer.cornerRadius = Constants.Corner.button
+        button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
+        
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.25
+        button.layer.shadowRadius = 15
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.masksToBounds = false
         
         return button
     }()
+    
+    var fastState: FastState = .idle {
+        didSet {
+            fastControlButton.setTitle(fastState.fastControl, for: .normal)
+        }
+    }
     
     // MARK: - Initializer
     
@@ -103,7 +117,7 @@ final class TimerView: UIView {
         }
     }
     
-    func configLayoutConstraints() {
+    private func configLayoutConstraints() {
         timeToggleButton.snp.makeConstraints { make in
             make.top.leading.equalTo(self.safeAreaLayoutGuide).inset(Constants.Padding.edge)
         }
@@ -122,6 +136,8 @@ final class TimerView: UIView {
         fastControlButton.snp.makeConstraints { make in
             make.top.equalTo(counterStackView.snp.bottom).offset(32)
             make.centerX.equalTo(counterStackView)
+            make.height.equalTo(36)
+            make.width.equalTo(100)
         }
     }
 }

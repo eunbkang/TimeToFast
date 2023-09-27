@@ -16,8 +16,22 @@ enum Constants {
         static let fast2004 = "20:4"
     }
     
+    enum ShowTime {
+        static let show = "SHOW TIME"
+        static let hide = "REMOVE TIME"
+    }
+    
+    enum FastControl {
+        static let start = "Start Fast"
+        static let end = "End Fast"
+    }
+    
     enum Padding {
         static let edge: CGFloat = 16
+    }
+    
+    enum Corner {
+        static let button: CGFloat = 12
     }
     
     enum Color {
@@ -30,5 +44,6 @@ enum Constants {
         static let darkGreen = UIColor(hex: "83B000")!
         
         static let veryLightGray = UIColor(hex: "F5F5F5")!
+        static let darkGray = UIColor(hex: "787878")!
     }
 }

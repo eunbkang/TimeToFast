@@ -21,7 +21,7 @@ class FastPlanButton: UIButton {
         }
     }
     
-    init(fastPlan: FastPlanType, fastState: FastState) {
+    init(fastPlan: FastPlanType = .fast1410, fastState: FastState = .idle) {
         super.init(frame: .zero)
         
         self.fastPlan = fastPlan
@@ -37,13 +37,11 @@ class FastPlanButton: UIButton {
     func configView() {
         var config = UIButton.Configuration.plain()
         
-        let font = UIFont.preferredFont(forTextStyle: .subheadline, weight: .semibold)
-        
         var titleAttr = AttributedString.init(fastPlan.planButtonTitle)
-        titleAttr.font = font
+        titleAttr.font = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
         config.attributedTitle = titleAttr
                 
-        config.image = UIImage(systemName: "pencil", withConfiguration: UIImage.SymbolConfiguration(font: font))
+        config.image = UIImage(systemName: "pencil", withConfiguration: UIImage.SymbolConfiguration(font: .preferredFont(forTextStyle: .footnote)))
         config.imagePlacement = .trailing
         config.imagePadding = 4
         

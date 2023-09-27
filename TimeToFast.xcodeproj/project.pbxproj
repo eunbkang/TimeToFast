@@ -21,6 +21,7 @@
 		7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626612AC40A0B00C45ED6 /* TimerView.swift */; };
 		7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626632AC4108700C45ED6 /* FastPlanButton.swift */; };
 		7E4626672AC4127B00C45ED6 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626662AC4127B00C45ED6 /* States.swift */; };
+		7E4626692AC4207A00C45ED6 /* TimeToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		7E4626612AC40A0B00C45ED6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		7E4626632AC4108700C45ED6 /* FastPlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastPlanButton.swift; sourceTree = "<group>"; };
 		7E4626662AC4127B00C45ED6 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeToggleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				7E4626632AC4108700C45ED6 /* FastPlanButton.swift */,
+				7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				7E4626322AC1656300C45ED6 /* AppDelegate.swift in Sources */,
 				7E4626342AC1656300C45ED6 /* SceneDelegate.swift in Sources */,
 				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
+				7E4626692AC4207A00C45ED6 /* TimeToggleButton.swift in Sources */,
 				7E46265B2AC19B3500C45ED6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

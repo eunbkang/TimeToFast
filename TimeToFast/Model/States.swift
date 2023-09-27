@@ -35,9 +35,29 @@ enum FastState {
     case idle
     case fasting
     case eating
+    
+    var fastControl: String {
+        switch self {
+        case .idle:
+            return Constants.FastControl.start
+        case .fasting:
+            return Constants.FastControl.end
+        case .eating:
+            return Constants.FastControl.start
+        }
+    }
 }
 
 enum ShowTimeStatus {
     case showing
     case hiding
+    
+    var title: String {
+        switch self {
+        case .showing:
+            return Constants.ShowTime.hide
+        case .hiding:
+            return Constants.ShowTime.show
+        }
+    }
 }
