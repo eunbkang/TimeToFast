@@ -22,6 +22,7 @@ final class TimerViewModel {
             fastState.value = .fasting
             
         case .fasting:
+            stopTimer()
             fastState.value = .idle
             
         case .eating:
@@ -39,6 +40,14 @@ final class TimerViewModel {
                     self?.timer = nil
                 }
             })
+        }
+    }
+    
+    private func stopTimer() {
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+            setTimeCounter(remainingTime: 0)
         }
     }
     
