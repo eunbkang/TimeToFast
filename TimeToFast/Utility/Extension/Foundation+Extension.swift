@@ -8,11 +8,13 @@
 import Foundation
 
 extension CGFloat {
+    
+    static let timerSize = Constants.Size.timer
+    static let timerRadius = Constants.Size.timerRadius
+    
     var degreeToRadian: CGFloat {
         return CGFloat(self) * .pi / 180
     }
-    
-    
 }
 
 extension Date {

@@ -69,7 +69,7 @@ final class TimerView: UIView {
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         
-        button.layer.cornerRadius = Constants.Corner.button
+        button.layer.cornerRadius = Constants.Size.buttonCorner
         button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
         
         button.layer.shadowColor = UIColor.black.cgColor
@@ -81,78 +81,10 @@ final class TimerView: UIView {
         return button
     }()
     
-    lazy var timerView: UIView = {
-        let view = UIView()
+    lazy var circularTimerView: CircularTimerView = {
+        let view = CircularTimerView(fastState: fastState, timerSetting: timerSetting)
         
         return view
-    }()
-    
-    let timerSize = UIScreen.main.bounds.width * 0.78
-    
-    lazy var fastingPath: UIBezierPath = {
-        let path = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: 0.4625 * timerSize,
-            startAngle: timerSetting.fastStartAngle,
-            endAngle: timerSetting.fastEndAngle,
-            clockwise: true
-        )
-        return path
-    }()
-    
-    lazy var fastingTrackLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.path = fastingPath.cgPath
-        layer.strokeColor = Constants.Color.lightPurple.cgColor
-        layer.lineWidth = 0.4625 * timerSize * 0.1
-        layer.lineCap = .square
-        layer.fillColor = UIColor.clear.cgColor
-        
-        return layer
-    }()
-    
-    lazy var fastingProgressLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.path = fastingPath.cgPath
-        layer.strokeColor = Constants.Color.mainPurple.cgColor
-        layer.lineWidth = 0.4625 * timerSize * 0.15
-        layer.lineCap = .round
-        layer.fillColor = UIColor.clear.cgColor
-        
-        return layer
-    }()
-    
-    lazy var eatingPath: UIBezierPath = {
-        let path = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: 0.4625 * timerSize,
-            startAngle: timerSetting.fastEndAngle,
-            endAngle: timerSetting.fastStartAngle,
-            clockwise: true
-        )
-        return path
-    }()
-    
-    lazy var eatingTrackLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.path = eatingPath.cgPath
-        layer.strokeColor = Constants.Color.lightGreen.cgColor
-        layer.lineWidth = 0.4625 * timerSize * 0.1
-        layer.lineCap = .square
-        layer.fillColor = UIColor.clear.cgColor
-        
-        return layer
-    }()
-    
-    lazy var eatingProgressLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.path = eatingPath.cgPath
-        layer.strokeColor = Constants.Color.mainGreen.cgColor
-        layer.lineWidth = 0.4625 * timerSize * 0.15
-        layer.lineCap = .round
-        layer.fillColor = UIColor.clear.cgColor
-        
-        return layer
     }()
     
     var fastState: FastState = .idle {
@@ -161,7 +93,7 @@ final class TimerView: UIView {
         }
     }
     
-    lazy var timerSetting = TimerSetting(fastStartTime: Date())
+    var timerSetting = TimerSetting(fastStartTime: Date() - 60*60*9)
     
     // MARK: - Initializer
     
@@ -188,38 +120,34 @@ final class TimerView: UIView {
         backgroundLayer.fastState = fastState
         timeToggleButton.fastState = fastState
         planButton.fastState = fastState
+        circularTimerView.fastState = fastState
     }
     
     private func configViewHierarchy() {
-        let components = [timeToggleButton, planButton, stateTitleLabel, timerView]
+        let components = [timeToggleButton, planButton, stateTitleLabel, circularTimerView]
         components.forEach { item in
             addSubview(item)
         }
         
-        timerView.layer.addSublayer(fastingTrackLayer)
-        timerView.layer.addSublayer(fastingProgressLayer)
-        timerView.layer.addSublayer(eatingTrackLayer)
-        timerView.layer.addSublayer(eatingProgressLayer)
-        
-        timerView.addSubview(counterStackView)
-        timerView.addSubview(fastControlButton)
+        circularTimerView.addSubview(counterStackView)
+        circularTimerView.addSubview(fastControlButton)
     }
     
     private func configLayoutConstraints() {
         timeToggleButton.snp.makeConstraints { make in
-            make.top.leading.equalTo(self.safeAreaLayoutGuide).inset(Constants.Padding.edge)
+            make.top.leading.equalTo(self.safeAreaLayoutGuide).inset(Constants.Size.edgePadding)
         }
         planButton.snp.makeConstraints { make in
             make.top.equalTo(timeToggleButton)
-            make.trailing.equalToSuperview().inset(Constants.Padding.edge)
+            make.trailing.equalToSuperview().inset(Constants.Size.edgePadding)
         }
         stateTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(timeToggleButton.snp.bottom).offset(36)
             make.centerX.equalToSuperview()
         }
-        timerView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.78)
-            make.height.equalTo(timerView.snp.width)
+        circularTimerView.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(Constants.Size.timer)
+            make.height.equalTo(circularTimerView.snp.width)
             make.top.equalTo(stateTitleLabel.snp.bottom).offset(48)
             make.centerX.equalToSuperview()
         }

@@ -37,12 +37,12 @@ enum Constants {
         static let base = "REMAINING TIME"
     }
     
-    enum Padding {
-        static let edge: CGFloat = 16
-    }
-    
-    enum Corner {
-        static let button: CGFloat = 12
+    enum Size {
+        static let edgePadding: CGFloat = 16
+        static let buttonCorner: CGFloat = 12
+        
+        static let timer: CGFloat = 0.78
+        static let timerRadius: CGFloat = 0.4625
     }
     
     enum Color {

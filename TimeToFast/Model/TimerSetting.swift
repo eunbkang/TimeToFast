@@ -14,21 +14,11 @@ struct TimerSetting {
     }
     
     var fastStartAngle: CGFloat {
-        return dateToAngle(date: fastStartTime)
+        return fastStartTime.dateToAngle()
     }
     
     var fastEndAngle: CGFloat {
-        guard let angle = fastEndTime else { return 0 }
-        return dateToAngle(date: angle)
-    }
-    
-    func dateToAngle(date: Date) -> CGFloat {
-        let hours = CGFloat(date.hours)
-        let minutes = CGFloat(date.minutes)
-        
-        let hourAngle = ((hours - 6) * 360/24).degreeToRadian
-        let minuteAngle = (minutes * 360/(60*24)).degreeToRadian
-        
-        return hourAngle + minuteAngle
+        guard let fastEndTime = fastEndTime else { return 0 }
+        return fastEndTime.dateToAngle()
     }
 }
