@@ -26,6 +26,12 @@ enum Constants {
         static let end = "End Fast"
     }
     
+    enum StateTitle {
+        static let idle = "It's time to fast!"
+        static let fasting = "You're fasting!"
+        static let eating = "You're eating!"
+    }
+    
     enum Padding {
         static let edge: CGFloat = 16
     }

@@ -11,6 +11,7 @@ import SnapKit
 final class TimerViewController: BaseViewController {
     
     private let timerView = TimerView()
+    private let viewModel = TimerViewModel()
     
     override func loadView() {
         view = timerView
@@ -19,7 +20,13 @@ final class TimerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.stateTitle.bind { state in
+            self.timerView.stateTitleLabel.text = state
+        }
         
+        viewModel.timeCounter.bind { time in
+            self.timerView.timeCounterLabel.text = time
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

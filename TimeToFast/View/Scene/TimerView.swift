@@ -37,7 +37,6 @@ final class TimerView: UIView {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .title3, weight: .bold)
         label.textColor = .black
-        label.text = "It's time to fast!"
         
         return label
     }()
@@ -55,7 +54,6 @@ final class TimerView: UIView {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .largeTitle, weight: .heavy)
         label.textColor = .black
-        label.text = "00:00:00"
         
         return label
     }()
