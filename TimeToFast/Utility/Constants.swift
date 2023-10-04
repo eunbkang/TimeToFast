@@ -32,6 +32,11 @@ enum Constants {
         static let eating = "You're eating!"
     }
     
+    enum TimeStatus {
+        static let eating = "FASTING STARTS IN"
+        static let base = "REMAINING TIME"
+    }
+    
     enum Padding {
         static let edge: CGFloat = 16
     }

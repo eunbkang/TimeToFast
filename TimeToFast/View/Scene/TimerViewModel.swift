@@ -8,15 +8,28 @@
 import Foundation
 
 final class TimerViewModel {
-    
     var stateTitle = Observable(Constants.StateTitle.idle)
     var timeCounter = Observable("00:00:00")
-    
     var timerSetting = Observable(TimerSetting(fastStartTime: Date()))
+    var fastState = Observable(FastState.idle)
     
-    var timer: Timer?
+    private var timer: Timer?
     
     func controlTimer() {
+        switch fastState.value {
+        case .idle:
+            startTimer()
+            fastState.value = .fasting
+            
+        case .fasting:
+            fastState.value = .idle
+            
+        case .eating:
+            fastState.value = .idle
+        }
+    }
+    
+    private func startTimer() {
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] timer in
                 let remainingTime = Int(self?.timerSetting.value.fastEndTime?.timeIntervalSince(.now) ?? 0)

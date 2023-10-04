@@ -59,11 +59,11 @@ class TimeToggleButton: UIButton {
         } else {
             switch status {
             case .showing:
-                config.baseForegroundColor = .black
+                config.baseForegroundColor = .white
                 config.background.backgroundColor = .black.withAlphaComponent(0.5)
                 
             case .hiding:
-                config.baseForegroundColor = .white
+                config.baseForegroundColor = .black
                 config.background.backgroundColor = .white.withAlphaComponent(0.5)
             }
         }

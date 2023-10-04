@@ -38,12 +38,30 @@ enum FastState {
     
     var fastControl: String {
         switch self {
-        case .idle:
+        case .idle, .eating:
             return Constants.FastControl.start
         case .fasting:
             return Constants.FastControl.end
+        }
+    }
+    
+    var stateTitle: String {
+        switch self {
+        case .idle:
+            return Constants.StateTitle.idle
+        case .fasting:
+            return Constants.StateTitle.fasting
         case .eating:
-            return Constants.FastControl.start
+            return Constants.StateTitle.eating
+        }
+    }
+    
+    var timeStatus: String {
+        switch self {
+        case .idle, .fasting:
+            return Constants.TimeStatus.base
+        case .eating:
+            return Constants.TimeStatus.eating
         }
     }
 }

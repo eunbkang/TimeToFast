@@ -11,12 +11,8 @@ final class TimerView: UIView {
     
     // MARK: - Properties
     
-    var backgroundLayer: CAGradientLayer = {
-        let layer = CAGradientLayer()
-        layer.colors = [Constants.Color.lightPurple.withAlphaComponent(0.75).cgColor, Constants.Color.lightGreen.withAlphaComponent(0.75).cgColor]
-        layer.locations = [0.25]
-        layer.startPoint = CGPoint(x: 0, y: 0)
-        layer.endPoint = CGPoint(x: 0.5, y: 1.25)
+    var backgroundLayer: BackgroundGradientLayer = {
+        let layer = BackgroundGradientLayer(layer: FastState.idle)
         
         return layer
     }()
@@ -45,7 +41,6 @@ final class TimerView: UIView {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .footnote, weight: .semibold)
         label.textColor = .systemGray
-        label.text = "REMAINING TIME"
         
         return label
     }()
@@ -160,10 +155,9 @@ final class TimerView: UIView {
         return layer
     }()
     
-    
     var fastState: FastState = .idle {
         didSet {
-            fastControlButton.setTitle(fastState.fastControl, for: .normal)
+            configFastingStateToView()
         }
     }
     
@@ -177,6 +171,7 @@ final class TimerView: UIView {
         
         configViewHierarchy()
         configLayoutConstraints()
+        configFastingStateToView()
     }
     
     required init?(coder: NSCoder) {
@@ -184,6 +179,16 @@ final class TimerView: UIView {
     }
     
     // MARK: - Helpers
+    
+    private func configFastingStateToView() {
+        stateTitleLabel.text = fastState.stateTitle
+        timeStatusLabel.text = fastState.timeStatus
+        fastControlButton.setTitle(fastState.fastControl, for: .normal)
+        
+        backgroundLayer.fastState = fastState
+        timeToggleButton.fastState = fastState
+        planButton.fastState = fastState
+    }
     
     private func configViewHierarchy() {
         let components = [timeToggleButton, planButton, stateTitleLabel, timerView]

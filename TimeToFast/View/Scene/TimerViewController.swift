@@ -29,7 +29,6 @@ final class TimerViewController: BaseViewController {
         timerView.backgroundLayer.frame = view.bounds
         view.layer.insertSublayer(timerView.backgroundLayer, at: 0)
         
-        timerView.fastState = .idle
     }
     
     @objc func fastControlButtonTapped() {
@@ -38,6 +37,10 @@ final class TimerViewController: BaseViewController {
     }
     
     private func bindViewComponents() {
+        viewModel.fastState.bind { fastState in
+            self.timerView.fastState = fastState
+        }
+        
         viewModel.stateTitle.bind { state in
             self.timerView.stateTitleLabel.text = state
         }
@@ -47,7 +50,7 @@ final class TimerViewController: BaseViewController {
         }
         
         viewModel.timerSetting.bind { timer in
-            self.timerView.timer = timer
+            self.timerView.timerSetting = timer
         }
     }
 }

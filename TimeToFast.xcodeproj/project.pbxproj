@@ -25,6 +25,7 @@
 		7E4626692AC4207A00C45ED6 /* TimeToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */; };
 		7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */; };
 		7E46266D2AC481BB00C45ED6 /* TimerSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */; };
+		7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeToggleButton.swift; sourceTree = "<group>"; };
 		7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Extension.swift"; sourceTree = "<group>"; };
 		7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetting.swift; sourceTree = "<group>"; };
+		7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradientLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			children = (
 				7E4626632AC4108700C45ED6 /* FastPlanButton.swift */,
 				7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */,
+				7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				7E4626502AC1954A00C45ED6 /* BaseViewController.swift in Sources */,
 				7E4626322AC1656300C45ED6 /* AppDelegate.swift in Sources */,
 				7E46266D2AC481BB00C45ED6 /* TimerSetting.swift in Sources */,
+				7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */,
 				7E4626342AC1656300C45ED6 /* SceneDelegate.swift in Sources */,
 				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
 				7E4626692AC4207A00C45ED6 /* TimeToggleButton.swift in Sources */,
