@@ -7,16 +7,19 @@
 
 import Foundation
 
-struct Timer {
+struct TimerSetting {
     var fastStartTime: Date
-    var fastEndTime: Date
+    var fastEndTime: Date? {
+        return Calendar.current.date(byAdding: .hour, value: 16, to: fastStartTime)
+    }
     
     var fastStartAngle: CGFloat {
         return dateToAngle(date: fastStartTime)
     }
     
     var fastEndAngle: CGFloat {
-        return dateToAngle(date: fastEndTime)
+        guard let angle = fastEndTime else { return 0 }
+        return dateToAngle(date: angle)
     }
     
     func dateToAngle(date: Date) -> CGFloat {

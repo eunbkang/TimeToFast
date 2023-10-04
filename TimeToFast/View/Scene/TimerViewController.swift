@@ -20,13 +20,9 @@ final class TimerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.stateTitle.bind { state in
-            self.timerView.stateTitleLabel.text = state
-        }
+        bindViewComponents()
         
-        viewModel.timeCounter.bind { time in
-            self.timerView.timeCounterLabel.text = time
-        }
+        timerView.fastControlButton.addTarget(self, action: #selector(fastControlButtonTapped), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,5 +30,24 @@ final class TimerViewController: BaseViewController {
         view.layer.insertSublayer(timerView.backgroundLayer, at: 0)
         
         timerView.fastState = .idle
+    }
+    
+    @objc func fastControlButtonTapped() {
+        print(#function)
+        viewModel.controlTimer()
+    }
+    
+    private func bindViewComponents() {
+        viewModel.stateTitle.bind { state in
+            self.timerView.stateTitleLabel.text = state
+        }
+        
+        viewModel.timeCounter.bind { time in
+            self.timerView.timeCounterLabel.text = time
+        }
+        
+        viewModel.timerSetting.bind { timer in
+            self.timerView.timer = timer
+        }
     }
 }

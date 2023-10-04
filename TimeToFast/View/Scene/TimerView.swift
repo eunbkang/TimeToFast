@@ -50,7 +50,7 @@ final class TimerView: UIView {
         return label
     }()
     
-    let timeCounterLabel: UILabel = {
+    var timeCounterLabel: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .largeTitle, weight: .heavy)
         label.textColor = .black
@@ -98,8 +98,8 @@ final class TimerView: UIView {
         let path = UIBezierPath(
             arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
             radius: 0.4625 * timerSize,
-            startAngle: timer.fastStartAngle,
-            endAngle: timer.fastEndAngle,
+            startAngle: timerSetting.fastStartAngle,
+            endAngle: timerSetting.fastEndAngle,
             clockwise: true
         )
         return path
@@ -131,8 +131,8 @@ final class TimerView: UIView {
         let path = UIBezierPath(
             arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
             radius: 0.4625 * timerSize,
-            startAngle: timer.fastEndAngle,
-            endAngle: timer.fastStartAngle,
+            startAngle: timerSetting.fastEndAngle,
+            endAngle: timerSetting.fastStartAngle,
             clockwise: true
         )
         return path
@@ -167,10 +167,7 @@ final class TimerView: UIView {
         }
     }
     
-    var timer = Timer(
-        fastStartTime: Calendar.current.date(from: DateComponents(hour: 20, minute: 0)) ?? Date(),
-        fastEndTime: Calendar.current.date(from: DateComponents(hour: 12, minute: 0)) ?? Date()
-    )
+    lazy var timerSetting = TimerSetting(fastStartTime: Date())
     
     // MARK: - Initializer
     
