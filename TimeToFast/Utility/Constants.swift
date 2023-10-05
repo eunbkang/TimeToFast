@@ -37,6 +37,11 @@ enum Constants {
         static let base = "REMAINING TIME"
     }
     
+    enum SetTimeTitle {
+        static let started = "STARTED"
+        static let goal = "GOAL"
+    }
+    
     enum Size {
         static let edgePadding: CGFloat = 16
         static let buttonCorner: CGFloat = 12

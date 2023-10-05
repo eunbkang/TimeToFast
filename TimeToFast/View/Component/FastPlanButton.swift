@@ -34,7 +34,7 @@ class FastPlanButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configView() {
+    private func configView() {
         var config = UIButton.Configuration.plain()
         
         var titleAttr = AttributedString.init(fastPlan.planButtonTitle)

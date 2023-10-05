@@ -69,7 +69,7 @@ final class TimerView: UIView {
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         
-        button.layer.cornerRadius = Constants.Size.buttonCorner
+        button.layer.cornerRadius = .buttonCornerRadius
         button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
         
         button.layer.shadowColor = UIColor.black.cgColor
@@ -87,13 +87,35 @@ final class TimerView: UIView {
         return view
     }()
     
+    lazy var startedTimeView: SetTimeView = {
+        let view = SetTimeView(viewType: .started, fastState: fastState, timerSetting: timerSetting)
+        
+        return view
+    }()
+    
+    lazy var goalTimeView: SetTimeView = {
+        let view = SetTimeView(viewType: .goal, fastState: fastState, timerSetting: timerSetting)
+        
+        return view
+    }()
+    
+    private lazy var setTimeStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [startedTimeView, goalTimeView])
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 14
+        
+        return stackView
+    }()
+    
     var fastState: FastState = .idle {
         didSet {
             configFastingStateToView()
         }
     }
     
-    var timerSetting = TimerSetting(fastStartTime: Date() - 60*60*9)
+    var timerSetting = TimerSetting(fastStartTime: Date() - 60*60*18)
     
     // MARK: - Initializer
     
@@ -121,10 +143,12 @@ final class TimerView: UIView {
         timeToggleButton.fastState = fastState
         planButton.fastState = fastState
         circularTimerView.fastState = fastState
+        startedTimeView.fastState = fastState
+        goalTimeView.fastState = fastState
     }
     
     private func configViewHierarchy() {
-        let components = [timeToggleButton, planButton, stateTitleLabel, circularTimerView]
+        let components = [timeToggleButton, planButton, stateTitleLabel, circularTimerView, setTimeStackView]
         components.forEach { item in
             addSubview(item)
         }
@@ -161,6 +185,12 @@ final class TimerView: UIView {
             make.centerX.equalTo(counterStackView)
             make.height.equalTo(36)
             make.width.equalTo(100)
+        }
+        setTimeStackView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(Constants.Size.edgePadding)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(circularTimerView.snp.bottom).offset(52)
+            make.height.equalTo(64)
         }
     }
 }

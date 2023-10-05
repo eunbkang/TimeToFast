@@ -11,6 +11,7 @@ extension CGFloat {
     
     static let timerSize = Constants.Size.timer
     static let timerRadius = Constants.Size.timerRadius
+    static let buttonCornerRadius = Constants.Size.buttonCorner
     
     var degreeToRadian: CGFloat {
         return CGFloat(self) * .pi / 180

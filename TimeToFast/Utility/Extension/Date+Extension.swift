@@ -17,4 +17,15 @@ extension Date {
         
         return hourAngle + minuteAngle
     }
+    
+    func dateToSetTimeString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        dateFormatter.doesRelativeDateFormatting = true
+        
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
 }

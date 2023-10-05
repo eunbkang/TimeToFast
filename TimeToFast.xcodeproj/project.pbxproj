@@ -28,6 +28,7 @@
 		7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */; };
 		7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */; };
 		7EC3D4792ACDFB7A00C102FF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4782ACDFB7A00C102FF /* Date+Extension.swift */; };
+		7EC3D47B2ACE6E9600C102FF /* SetTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradientLayer.swift; sourceTree = "<group>"; };
 		7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
 		7EC3D4782ACDFB7A00C102FF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTimeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				7E4626682AC4207A00C45ED6 /* TimeToggleButton.swift */,
 				7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */,
 				7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */,
+				7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				7E4626692AC4207A00C45ED6 /* TimeToggleButton.swift in Sources */,
 				7E46265B2AC19B3500C45ED6 /* Constants.swift in Sources */,
 				7EC3D4792ACDFB7A00C102FF /* Date+Extension.swift in Sources */,
+				7EC3D47B2ACE6E9600C102FF /* SetTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
