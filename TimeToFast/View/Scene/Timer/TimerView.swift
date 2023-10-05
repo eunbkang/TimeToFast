@@ -115,13 +115,16 @@ final class TimerView: UIView {
         }
     }
     
-    var timerSetting = TimerSetting(fastStartTime: Date() - 60*60*18)
+    var timerSetting = TimerSetting(fastStartTime: Date() - 60*60*18) {
+        didSet {
+            configTimerSettingToView()
+        }
+    }
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
         
         configViewHierarchy()
         configLayoutConstraints()
@@ -133,6 +136,12 @@ final class TimerView: UIView {
     }
     
     // MARK: - Helpers
+    
+    private func configTimerSettingToView() {
+        circularTimerView.timerSetting = timerSetting
+        startedTimeView.timerSetting = timerSetting
+        goalTimeView.timerSetting = timerSetting
+    }
     
     private func configFastingStateToView() {
         stateTitleLabel.text = fastState.stateTitle

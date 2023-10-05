@@ -29,6 +29,7 @@
 		7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */; };
 		7EC3D4792ACDFB7A00C102FF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4782ACDFB7A00C102FF /* Date+Extension.swift */; };
 		7EC3D47B2ACE6E9600C102FF /* SetTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */; };
+		7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D47E2ACE8B1400C102FF /* EditStartedTimeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
 		7EC3D4782ACDFB7A00C102FF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTimeView.swift; sourceTree = "<group>"; };
+		7EC3D47E2ACE8B1400C102FF /* EditStartedTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStartedTimeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,9 +123,8 @@
 		7E4626512AC1960F00C45ED6 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				7E4626522AC1962E00C45ED6 /* TimerViewController.swift */,
-				7E4626612AC40A0B00C45ED6 /* TimerView.swift */,
-				7E3D3AB32ACC979500363F2E /* TimerViewModel.swift */,
+				7EC3D47C2ACE8AE800C102FF /* Timer */,
+				7EC3D47D2ACE8AEE00C102FF /* EditStartedTime */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -168,6 +169,24 @@
 				7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7EC3D47C2ACE8AE800C102FF /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				7E4626522AC1962E00C45ED6 /* TimerViewController.swift */,
+				7E4626612AC40A0B00C45ED6 /* TimerView.swift */,
+				7E3D3AB32ACC979500363F2E /* TimerViewModel.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		7EC3D47D2ACE8AEE00C102FF /* EditStartedTime */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D47E2ACE8B1400C102FF /* EditStartedTimeViewController.swift */,
+			);
+			path = EditStartedTime;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +270,7 @@
 				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
 				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
+				7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */,
 				7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */,
 				7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */,
 				7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */,

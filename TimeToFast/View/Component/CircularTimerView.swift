@@ -15,24 +15,16 @@ class CircularTimerView: UIView {
         }
     }
     
-    var timerSetting: TimerSetting
+    var timerSetting: TimerSetting {
+        didSet {
+            configTimerSettingToView()
+        }
+    }
     
     private let timerSize = UIScreen.main.bounds.width * .timerSize
     
-    private lazy var fastingTrackPath: UIBezierPath = {
-        let path = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: .timerRadius * timerSize,
-            startAngle: timerSetting.fastStartAngle,
-            endAngle: timerSetting.fastEndAngle,
-            clockwise: true
-        )
-        return path
-    }()
-    
     private lazy var fastingTrackLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.path = fastingTrackPath.cgPath
         layer.strokeColor = Constants.Color.lightPurple.cgColor
         layer.lineWidth = .timerRadius * timerSize * 0.1
         layer.lineCap = .square
@@ -41,20 +33,8 @@ class CircularTimerView: UIView {
         return layer
     }()
     
-    private lazy var fastingProgressPath: UIBezierPath = {
-        let path = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: .timerRadius * timerSize,
-            startAngle: timerSetting.fastStartAngle,
-            endAngle: Date().dateToAngle(),
-            clockwise: true
-        )
-        return path
-    }()
-    
     private lazy var fastingProgressLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.path = fastingProgressPath.cgPath
         layer.strokeColor = Constants.Color.mainPurple.cgColor
         layer.lineWidth = .timerRadius * timerSize * 0.15
         layer.lineCap = .round
@@ -63,20 +43,8 @@ class CircularTimerView: UIView {
         return layer
     }()
     
-    private lazy var eatingTrackPath: UIBezierPath = {
-        let path = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: .timerRadius * timerSize,
-            startAngle: timerSetting.fastEndAngle,
-            endAngle: timerSetting.fastStartAngle,
-            clockwise: true
-        )
-        return path
-    }()
-    
     private lazy var eatingTrackLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.path = eatingTrackPath.cgPath
         layer.strokeColor = Constants.Color.lightGreen.cgColor
         layer.lineWidth = .timerRadius * timerSize * 0.1
         layer.lineCap = .square
@@ -85,20 +53,8 @@ class CircularTimerView: UIView {
         return layer
     }()
     
-    private lazy var eatingProgressPath: UIBezierPath = {
-        let path = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: .timerRadius * timerSize,
-            startAngle: timerSetting.fastEndAngle,
-            endAngle: timerSetting.fastStartAngle,
-            clockwise: true
-        )
-        return path
-    }()
-    
     private lazy var eatingProgressLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.path = eatingProgressPath.cgPath
         layer.strokeColor = Constants.Color.mainGreen.cgColor
         layer.lineWidth = .timerRadius * timerSize * 0.15
         layer.lineCap = .round
@@ -112,6 +68,7 @@ class CircularTimerView: UIView {
         self.timerSetting = timerSetting
         super.init(frame: .zero)
         
+        configTimerSettingToView()
         configLayer()
     }
     
@@ -140,5 +97,41 @@ class CircularTimerView: UIView {
             fastingProgressLayer.isHidden = false
             eatingProgressLayer.isHidden = false
         }
+    }
+    
+    private func configTimerSettingToView() {
+        let fastingTrackPath2 = UIBezierPath(
+            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
+            radius: .timerRadius * timerSize,
+            startAngle: timerSetting.fastStartAngle,
+            endAngle: timerSetting.fastEndAngle,
+            clockwise: true
+        )
+        let fastingProgressPath2 = UIBezierPath(
+            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
+            radius: .timerRadius * timerSize,
+            startAngle: timerSetting.fastStartAngle,
+            endAngle: Date().dateToAngle(),
+            clockwise: true
+        )
+        let eatingTrackPath2 = UIBezierPath(
+            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
+            radius: .timerRadius * timerSize,
+            startAngle: timerSetting.fastEndAngle,
+            endAngle: timerSetting.fastStartAngle,
+            clockwise: true
+        )
+        let eatingProgressPath2 = UIBezierPath(
+            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
+            radius: .timerRadius * timerSize,
+            startAngle: timerSetting.fastEndAngle,
+            endAngle: timerSetting.fastStartAngle,
+            clockwise: true
+        )
+
+        fastingTrackLayer.path = fastingTrackPath2.cgPath
+        fastingProgressLayer.path = fastingProgressPath2.cgPath
+        eatingTrackLayer.path = eatingTrackPath2.cgPath
+        eatingProgressLayer.path = eatingProgressPath2.cgPath
     }
 }

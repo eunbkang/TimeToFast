@@ -22,7 +22,11 @@ class SetTimeView: UIView {
         }
     }
     
-    var timerSetting: TimerSetting
+    var timerSetting: TimerSetting {
+        didSet {
+            configTimerSettingToView()
+        }
+    }
     
     private lazy var backgroundRectangle: UIView = {
         let view = UIView()
@@ -75,6 +79,7 @@ class SetTimeView: UIView {
         
         configViewHierarchy()
         configLayoutConstraints()
+        configTimerSettingToView()
         configStateToView()
     }
     
@@ -86,6 +91,15 @@ class SetTimeView: UIView {
         backgroundRectangle.backgroundColor = fastState == .idle ? Constants.Color.veryLightGray : .white.withAlphaComponent(0.5)
     }
     
+    private func configTimerSettingToView() {
+        switch viewType {
+        case .started:
+            dateLabel.text = timerSetting.fastStartTime.dateToSetTimeString()
+        case .goal:
+            dateLabel.text = timerSetting.fastEndTime?.dateToSetTimeString()
+        }
+    }
+    
     private func configViewHierarchy() {
         addSubview(backgroundRectangle)
         addSubview(labelStackView)
@@ -93,10 +107,8 @@ class SetTimeView: UIView {
         if viewType == .started {
             addSubview(editImageView)
             titleLabel.text = Constants.SetTimeTitle.started
-            dateLabel.text = timerSetting.fastStartTime.dateToSetTimeString()
         } else {
             titleLabel.text = Constants.SetTimeTitle.goal
-            dateLabel.text = timerSetting.fastEndTime?.dateToSetTimeString()
         }
     }
     
