@@ -17,8 +17,8 @@ final class TimerView: UIView {
         return layer
     }()
     
-    let timeToggleButton: TimeToggleButton = {
-        let button = TimeToggleButton()
+    let timerControlButton: TimerControlButton = {
+        let button = TimerControlButton()
         
         return button
     }()
@@ -57,26 +57,14 @@ final class TimerView: UIView {
         let stackView = UIStackView(arrangedSubviews: [timeStatusLabel, timeCounterLabel])
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.distribution = .fill
-        stackView.spacing = 16
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 8
         
         return stackView
     }()
     
-    lazy var fastControlButton: UIButton = {
-        let button = UIButton()
-        
-        button.backgroundColor = .black
-        button.setTitleColor(.white, for: .normal)
-        
-        button.layer.cornerRadius = .buttonCornerRadius
-        button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
-        
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.20
-        button.layer.shadowRadius = 15
-        button.layer.shadowOffset = CGSize(width: 3, height: 3)
-        button.layer.masksToBounds = false
+    lazy var fastControlButton: FastControlButton = {
+        let button = FastControlButton()
         
         return button
     }()
@@ -115,7 +103,7 @@ final class TimerView: UIView {
         }
     }
     
-    var timerSetting = TimerSetting(fastStartTime: Date() - 60*60*18) {
+    var timerSetting: TimerSetting {
         didSet {
             configTimerSettingToView()
         }
@@ -123,8 +111,9 @@ final class TimerView: UIView {
     
     // MARK: - Initializer
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(timerSetting: TimerSetting) {
+        self.timerSetting = timerSetting
+        super.init(frame: .zero)
         
         configViewHierarchy()
         configLayoutConstraints()
@@ -146,10 +135,10 @@ final class TimerView: UIView {
     private func configFastingStateToView() {
         stateTitleLabel.text = fastState.stateTitle
         timeStatusLabel.text = fastState.timeStatus
-        fastControlButton.setTitle(fastState.fastControl, for: .normal)
         
+        fastControlButton.fastState = fastState
         backgroundLayer.fastState = fastState
-        timeToggleButton.fastState = fastState
+        timerControlButton.fastState = fastState
         planButton.fastState = fastState
         circularTimerView.fastState = fastState
         startedTimeView.fastState = fastState
@@ -157,7 +146,7 @@ final class TimerView: UIView {
     }
     
     private func configViewHierarchy() {
-        let components = [timeToggleButton, planButton, stateTitleLabel, circularTimerView, setTimeStackView]
+        let components = [timerControlButton, planButton, stateTitleLabel, circularTimerView, setTimeStackView]
         components.forEach { item in
             addSubview(item)
         }
@@ -167,15 +156,15 @@ final class TimerView: UIView {
     }
     
     private func configLayoutConstraints() {
-        timeToggleButton.snp.makeConstraints { make in
+        timerControlButton.snp.makeConstraints { make in
             make.top.leading.equalTo(self.safeAreaLayoutGuide).inset(Constants.Size.edgePadding)
         }
         planButton.snp.makeConstraints { make in
-            make.top.equalTo(timeToggleButton)
+            make.top.equalTo(timerControlButton)
             make.trailing.equalToSuperview().inset(Constants.Size.edgePadding)
         }
         stateTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(timeToggleButton.snp.bottom).offset(36)
+            make.top.equalTo(timerControlButton.snp.bottom).offset(36)
             make.centerX.equalToSuperview()
         }
         circularTimerView.snp.makeConstraints { make in
@@ -187,13 +176,13 @@ final class TimerView: UIView {
         
         counterStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-32)
+            make.bottom.equalTo(circularTimerView.snp.centerY).offset(8)
         }
         fastControlButton.snp.makeConstraints { make in
-            make.top.equalTo(counterStackView.snp.bottom).offset(32)
+            make.top.equalTo(counterStackView.snp.bottom).offset(16)
             make.centerX.equalTo(counterStackView)
             make.height.equalTo(36)
-            make.width.equalTo(100)
+            make.width.equalToSuperview().multipliedBy(0.52)
         }
         setTimeStackView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(Constants.Size.edgePadding)

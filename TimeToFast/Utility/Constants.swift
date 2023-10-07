@@ -16,14 +16,17 @@ enum Constants {
         static let fast2004 = "20:4"
     }
     
-    enum ShowTime {
-        static let show = "SHOW TIME"
-        static let hide = "REMOVE TIME"
+    enum TimerControl {
+        static let playing = ""
+        static let stopped = "START TIMER"
+        
+        static let playingImage = "stop.fill"
+        static let stoppedImage = "play.fill"
     }
     
     enum FastControl {
-        static let start = "Start Fast"
-        static let end = "End Fast"
+        static let start = "START FAST EARLY"
+        static let end = "END FAST EARLY"
     }
     
     enum StateTitle {

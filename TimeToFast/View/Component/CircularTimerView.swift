@@ -62,6 +62,14 @@ class CircularTimerView: UIView {
         
         return layer
     }()
+    
+    private lazy var clockImageView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "timerClock")
+        view.contentMode = .scaleAspectFit
+        
+        return view
+    }()
         
     init(fastState: FastState, timerSetting: TimerSetting) {
         self.fastState = fastState
@@ -70,6 +78,7 @@ class CircularTimerView: UIView {
         
         configTimerSettingToView()
         configLayer()
+        configClock()
     }
     
     required init?(coder: NSCoder) {
@@ -133,5 +142,13 @@ class CircularTimerView: UIView {
         fastingProgressLayer.path = fastingProgressPath2.cgPath
         eatingTrackLayer.path = eatingTrackPath2.cgPath
         eatingProgressLayer.path = eatingProgressPath2.cgPath
+    }
+    
+    private func configClock() {
+        addSubview(clockImageView)
+        clockImageView.snp.makeConstraints { make in
+            make.size.equalTo(timerSize * 0.83)
+            make.center.equalToSuperview()
+        }
     }
 }

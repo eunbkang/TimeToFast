@@ -10,7 +10,7 @@ import Foundation
 final class TimerViewModel {
     var stateTitle = Observable(Constants.StateTitle.idle)
     var timeCounter = Observable("00:00:00")
-    var timerSetting = Observable(TimerSetting(fastStartTime: Date()))
+    var timerSetting = Observable(TimerSetting(fastStartTime: Date()-60*60*10))
     var fastState = Observable(FastState.idle)
     
     private var timer: Timer?

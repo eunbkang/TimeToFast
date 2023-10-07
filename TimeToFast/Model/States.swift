@@ -66,16 +66,25 @@ enum FastState {
     }
 }
 
-enum ShowTimeStatus {
-    case showing
-    case hiding
+enum TimerStatus {
+    case playing
+    case stopped
     
     var title: String {
         switch self {
-        case .showing:
-            return Constants.ShowTime.hide
-        case .hiding:
-            return Constants.ShowTime.show
+        case .playing:
+            return Constants.TimerControl.playing
+        case .stopped:
+            return Constants.TimerControl.stopped
+        }
+    }
+    
+    var image: String {
+        switch self {
+        case .playing:
+            return Constants.TimerControl.playingImage
+        case .stopped:
+            return Constants.TimerControl.stoppedImage
         }
     }
 }

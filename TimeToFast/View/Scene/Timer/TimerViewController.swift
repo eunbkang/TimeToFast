@@ -14,7 +14,8 @@ protocol SetStartedTimeDelegate: AnyObject {
 
 final class TimerViewController: BaseViewController, SetStartedTimeDelegate {
     
-    private let timerView = TimerView()
+    private lazy var timerView = TimerView(timerSetting: viewModel.timerSetting.value)
+    
     private let viewModel = TimerViewModel()
     
     override func loadView() {
@@ -34,6 +35,8 @@ final class TimerViewController: BaseViewController, SetStartedTimeDelegate {
     }
     
     override func configViewHierarchy() {
+        timerView.timerControlButton.addTarget(self, action: #selector(timerControlButtonTapped), for: .touchUpInside)
+        
         timerView.fastControlButton.addTarget(self, action: #selector(fastControlButtonTapped), for: .touchUpInside)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(startedTimeViewTapped))
@@ -43,6 +46,10 @@ final class TimerViewController: BaseViewController, SetStartedTimeDelegate {
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(settingButtonTapped))
         navigationItem.leftBarButtonItem = recordButton
         navigationItem.rightBarButtonItem = settingButton
+    }
+    
+    @objc func timerControlButtonTapped() {
+        viewModel.controlTimer()
     }
     
     @objc func recordButtonTapped() {
@@ -62,8 +69,7 @@ final class TimerViewController: BaseViewController, SetStartedTimeDelegate {
     }
     
     @objc func fastControlButtonTapped() {
-        print(#function)
-        viewModel.controlTimer()
+        
     }
     
     private func bindViewComponents() {
