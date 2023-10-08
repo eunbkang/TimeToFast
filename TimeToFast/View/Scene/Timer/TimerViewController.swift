@@ -35,6 +35,8 @@ final class TimerViewController: BaseViewController, SetStartedTimeDelegate {
     }
     
     override func configViewHierarchy() {
+        timerView.planButton.addTarget(self, action: #selector(planButtonTapped), for: .touchUpInside)
+        
         timerView.timerControlButton.addTarget(self, action: #selector(timerControlButtonTapped), for: .touchUpInside)
         
         timerView.fastControlButton.addTarget(self, action: #selector(fastControlButtonTapped), for: .touchUpInside)
@@ -46,6 +48,12 @@ final class TimerViewController: BaseViewController, SetStartedTimeDelegate {
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(settingButtonTapped))
         navigationItem.leftBarButtonItem = recordButton
         navigationItem.rightBarButtonItem = settingButton
+    }
+    
+    @objc func planButtonTapped() {
+        let vc = PlanViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true)
     }
     
     @objc func timerControlButtonTapped() {

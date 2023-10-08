@@ -31,6 +31,13 @@
 		7EC3D47B2ACE6E9600C102FF /* SetTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */; };
 		7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D47E2ACE8B1400C102FF /* EditStartedTimeViewController.swift */; };
 		7EC3D4812AD1C3BF00C102FF /* FastControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4802AD1C3BF00C102FF /* FastControlButton.swift */; };
+		7EC3D4842AD2F9F100C102FF /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4832AD2F9F100C102FF /* PlanViewController.swift */; };
+		7EC3D4862AD3073600C102FF /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4852AD3073600C102FF /* PlanView.swift */; };
+		7EC3D4882AD3074A00C102FF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4872AD3074A00C102FF /* BaseView.swift */; };
+		7EC3D48A2AD30C5600C102FF /* WeeklyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4892AD30C5600C102FF /* WeeklyCollectionViewCell.swift */; };
+		7EC3D48C2AD3105000C102FF /* PlanTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D48B2AD3105000C102FF /* PlanTableHeaderView.swift */; };
+		7EC3D48E2AD3115100C102FF /* EditPlanHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D48D2AD3115100C102FF /* EditPlanHeader.swift */; };
+		7EC3D4902AD3196400C102FF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D48F2AD3196400C102FF /* BaseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +66,13 @@
 		7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTimeView.swift; sourceTree = "<group>"; };
 		7EC3D47E2ACE8B1400C102FF /* EditStartedTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStartedTimeViewController.swift; sourceTree = "<group>"; };
 		7EC3D4802AD1C3BF00C102FF /* FastControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastControlButton.swift; sourceTree = "<group>"; };
+		7EC3D4832AD2F9F100C102FF /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
+		7EC3D4852AD3073600C102FF /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
+		7EC3D4872AD3074A00C102FF /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		7EC3D4892AD30C5600C102FF /* WeeklyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCollectionViewCell.swift; sourceTree = "<group>"; };
+		7EC3D48B2AD3105000C102FF /* PlanTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableHeaderView.swift; sourceTree = "<group>"; };
+		7EC3D48D2AD3115100C102FF /* EditPlanHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlanHeader.swift; sourceTree = "<group>"; };
+		7EC3D48F2AD3196400C102FF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				7E46264F2AC1954A00C45ED6 /* BaseViewController.swift */,
+				7EC3D4872AD3074A00C102FF /* BaseView.swift */,
+				7EC3D48F2AD3196400C102FF /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -127,6 +143,7 @@
 			children = (
 				7EC3D47C2ACE8AE800C102FF /* Timer */,
 				7EC3D47D2ACE8AEE00C102FF /* EditStartedTime */,
+				7EC3D4822AD2F9DC00C102FF /* Plan */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -170,6 +187,7 @@
 			children = (
 				7E4626662AC4127B00C45ED6 /* States.swift */,
 				7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */,
+				7EC3D48D2AD3115100C102FF /* EditPlanHeader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +208,17 @@
 				7EC3D47E2ACE8B1400C102FF /* EditStartedTimeViewController.swift */,
 			);
 			path = EditStartedTime;
+			sourceTree = "<group>";
+		};
+		7EC3D4822AD2F9DC00C102FF /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D4832AD2F9F100C102FF /* PlanViewController.swift */,
+				7EC3D4852AD3073600C102FF /* PlanView.swift */,
+				7EC3D4892AD30C5600C102FF /* WeeklyCollectionViewCell.swift */,
+				7EC3D48B2AD3105000C102FF /* PlanTableHeaderView.swift */,
+			);
+			path = Plan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,11 +299,14 @@
 			files = (
 				7E3D3AB42ACC979500363F2E /* TimerViewModel.swift in Sources */,
 				7E3D3AB62ACC9D0000363F2E /* Observable.swift in Sources */,
+				7EC3D48A2AD30C5600C102FF /* WeeklyCollectionViewCell.swift in Sources */,
 				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
+				7EC3D4902AD3196400C102FF /* BaseTableViewCell.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
 				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
 				7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */,
 				7EC3D4812AD1C3BF00C102FF /* FastControlButton.swift in Sources */,
+				7EC3D4842AD2F9F100C102FF /* PlanViewController.swift in Sources */,
 				7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */,
 				7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */,
 				7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */,
@@ -282,12 +314,16 @@
 				7E4626322AC1656300C45ED6 /* AppDelegate.swift in Sources */,
 				7E46266D2AC481BB00C45ED6 /* TimerSetting.swift in Sources */,
 				7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */,
+				7EC3D4882AD3074A00C102FF /* BaseView.swift in Sources */,
 				7E4626342AC1656300C45ED6 /* SceneDelegate.swift in Sources */,
 				7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */,
 				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
 				7E4626692AC4207A00C45ED6 /* TimerControlButton.swift in Sources */,
 				7E46265B2AC19B3500C45ED6 /* Constants.swift in Sources */,
 				7EC3D4792ACDFB7A00C102FF /* Date+Extension.swift in Sources */,
+				7EC3D48C2AD3105000C102FF /* PlanTableHeaderView.swift in Sources */,
+				7EC3D48E2AD3115100C102FF /* EditPlanHeader.swift in Sources */,
+				7EC3D4862AD3073600C102FF /* PlanView.swift in Sources */,
 				7EC3D47B2ACE6E9600C102FF /* SetTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

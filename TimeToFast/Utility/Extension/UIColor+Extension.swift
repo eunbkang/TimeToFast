@@ -39,4 +39,6 @@ extension UIColor {
         
         self.init(red: red, green: green, blue: blue, alpha: opacity)
     }
+    
+    static let veryLightGray = Constants.Color.veryLightGray
 }

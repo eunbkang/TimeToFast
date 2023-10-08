@@ -48,6 +48,7 @@ enum Constants {
     enum Size {
         static let edgePadding: CGFloat = 16
         static let buttonCorner: CGFloat = 12
+        static let backgroundCorner: CGFloat = 16
         
         static let timer: CGFloat = 0.78
         static let timerRadius: CGFloat = 0.4625
