@@ -9,23 +9,22 @@ import UIKit
 
 class FastPlanButton: UIButton {
     
-    var fastPlan: FastPlanType = .fast1410 {
+    var fastPlan: FastingPlan {
         didSet {
             configView()
         }
     }
     
-    var fastState: FastState = .idle {
+    var fastState: FastState {
         didSet {
             configView()
         }
     }
     
-    init(fastPlan: FastPlanType = .fast1410, fastState: FastState = .idle) {
-        super.init(frame: .zero)
-        
+    init(fastPlan: FastingPlan, fastState: FastState) {
         self.fastPlan = fastPlan
         self.fastState = fastState
+        super.init(frame: .zero)
         
         configView()
     }

@@ -31,7 +31,6 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
     }
     
     @objc func fastPlanViewTapped() {
-        print(#function)
         let vc = ChooseFastingPlanViewController()
         
         navigationController?.pushViewController(vc, animated: true)

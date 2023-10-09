@@ -26,10 +26,10 @@ class WeeklyScheduleView: BaseView {
     
     private var mondayButton = CircularDayButton(day: .mon, status: .selected)
     private var tuesdayButton = CircularDayButton(day: .tue, status: .selected)
-    private var wednesdayButton = CircularDayButton(day: .wed, status: .normal)
+    private var wednesdayButton = CircularDayButton(day: .wed, status: .selected)
     private var thursdayButton = CircularDayButton(day: .thu, status: .selected)
     private var fridayButton = CircularDayButton(day: .fri, status: .selected)
-    private var saturdayButton = CircularDayButton(day: .sat, status: .normal)
+    private var saturdayButton = CircularDayButton(day: .sat, status: .selected)
     private var sundayButton = CircularDayButton(day: .sat, status: .selected)
     
     private lazy var daysButton = [mondayButton, tuesdayButton, wednesdayButton, thursdayButton, fridayButton, saturdayButton, sundayButton]

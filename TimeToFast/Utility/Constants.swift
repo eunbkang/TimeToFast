@@ -66,4 +66,12 @@ enum Constants {
         static let veryLightGray = UIColor(hex: "F5F5F5")!
         static let darkGray = UIColor(hex: "787878")!
     }
+    
+    enum Keys {
+        static let isTimerRunning = "isTimerRunning"
+        static let fastPlanType = "fastPlanType"
+        
+        static let eatingStartHour = "eatingStartHour"
+        static let eatingStartMinute = "eatingStartMinute"
+    }
 }

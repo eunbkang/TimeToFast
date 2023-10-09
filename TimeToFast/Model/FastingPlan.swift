@@ -25,4 +25,8 @@ enum FastingPlan: Int, CaseIterable {
     var detail: String {
         return "Fast for \(self.rawValue) hours | Eat for \(eatingHours) hours"
     }
+    
+    var planButtonTitle: String {
+        return "\(self.rawValue):\(eatingHours) FAST"
+    }
 }

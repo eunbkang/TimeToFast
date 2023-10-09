@@ -37,4 +37,20 @@ extension Date {
         let dateString = dateFormatter.string(from: self)
         return dateString
     }
+    
+    func dateToTimeHour() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "H"
+        
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+    
+    func dateToTimeMinute() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "m"
+        
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
 }

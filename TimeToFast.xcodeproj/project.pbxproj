@@ -48,6 +48,7 @@
 		7EC3D4A12AD4023300C102FF /* PlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A02AD4023300C102FF /* PlanViewModel.swift */; };
 		7EC3D4A32AD40A5F00C102FF /* FastingPlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A22AD40A5F00C102FF /* FastingPlanTableViewCell.swift */; };
 		7EC3D4A62AD410EE00C102FF /* ChooseFastingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A52AD410EE00C102FF /* ChooseFastingPlanViewController.swift */; };
+		7EC3D4A82AD42E8E00C102FF /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		7EC3D4A02AD4023300C102FF /* PlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewModel.swift; sourceTree = "<group>"; };
 		7EC3D4A22AD40A5F00C102FF /* FastingPlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingPlanTableViewCell.swift; sourceTree = "<group>"; };
 		7EC3D4A52AD410EE00C102FF /* ChooseFastingPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFastingPlanViewController.swift; sourceTree = "<group>"; };
+		7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 				7E4626552AC1987400C45ED6 /* Extension */,
 				7E46265A2AC19B3500C45ED6 /* Constants.swift */,
 				7E3D3AB52ACC9D0000363F2E /* Observable.swift */,
+				7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				7EC3D4922AD31B4F00C102FF /* CircularDayButton.swift in Sources */,
 				7E4626342AC1656300C45ED6 /* SceneDelegate.swift in Sources */,
 				7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */,
+				7EC3D4A82AD42E8E00C102FF /* UserDefaultsManager.swift in Sources */,
 				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
 				7E4626692AC4207A00C45ED6 /* TimerControlButton.swift in Sources */,
 				7EC3D4A62AD410EE00C102FF /* ChooseFastingPlanViewController.swift in Sources */,
