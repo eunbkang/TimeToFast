@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-protocol SetStartedTimeDelegate: AnyObject {
+protocol SetTimeDelegate: AnyObject {
     func didReceiveStartedTime(time: Date)
 }
 
-final class TimerViewController: BaseViewController, SetStartedTimeDelegate {
+final class TimerViewController: BaseViewController, SetTimeDelegate {
     
     private lazy var timerView = TimerView(timerSetting: viewModel.timerSetting.value)
     
@@ -70,6 +70,7 @@ final class TimerViewController: BaseViewController, SetStartedTimeDelegate {
     
     @objc func startedTimeViewTapped() {
         let vc = EditStartedTimeViewController()
+        vc.type = .fastingStartedTime
         vc.delegate = self
         
         let nav = UINavigationController(rootViewController: vc)

@@ -7,9 +7,16 @@
 
 import UIKit
 
+enum EditTimeType {
+    case fastingStartedTime
+    case planEatingFromTime
+}
+
 final class EditStartedTimeViewController: BaseViewController {
     
-    weak var delegate: SetStartedTimeDelegate?
+    var type: EditTimeType = .fastingStartedTime
+    
+    weak var delegate: SetTimeDelegate?
     
     private let timePicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -36,7 +43,12 @@ final class EditStartedTimeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Edit Started Time"
+        switch type {
+        case .fastingStartedTime:
+            title = "Edit Started Time"
+        case .planEatingFromTime:
+            title = "Eating From"
+        }
     }
     
     override func configViewHierarchy() {

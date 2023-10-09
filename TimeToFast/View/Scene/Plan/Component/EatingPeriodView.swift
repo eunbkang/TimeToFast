@@ -9,7 +9,11 @@ import UIKit
 
 class EatingPeriodView: BaseView {
     
-    var planSetting: PlanSetting
+    var planSetting: PlanSetting {
+        didSet {
+            configPlanSettingToView()
+        }
+    }
     
     private let headerView: PlanHeaderView = {
         let view = PlanHeaderView(type: .eatingPeriod)
@@ -17,7 +21,7 @@ class EatingPeriodView: BaseView {
         return view
     }()
     
-    private lazy var fromTimeView = EatingPeriodTimeView(type: .from, planSetting: planSetting)
+    lazy var fromTimeView = EatingPeriodTimeView(type: .from, planSetting: planSetting)
     
     private lazy var toTimeView = EatingPeriodTimeView(type: .to, planSetting: planSetting)
     
@@ -38,6 +42,11 @@ class EatingPeriodView: BaseView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configPlanSettingToView() {
+        fromTimeView.planSetting = planSetting
+        toTimeView.planSetting = planSetting
     }
     
     override func configViewHierarchy() {

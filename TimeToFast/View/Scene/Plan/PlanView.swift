@@ -9,7 +9,11 @@ import UIKit
 
 final class PlanView: BaseView {
 
-    var planSetting: PlanSetting
+    var planSetting: PlanSetting {
+        didSet {
+            configPlanSettingToView()
+        }
+    }
     
     let weeklyScheduleView = WeeklyScheduleView()
 
@@ -24,6 +28,11 @@ final class PlanView: BaseView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configPlanSettingToView() {
+        fastingPlanView.planSetting = planSetting
+        eatingPeriodView.planSetting = planSetting
     }
     
     override func configViewHierarchy() {
