@@ -12,7 +12,7 @@ struct EditPlanHeader {
     let title: String
 }
 
-enum EditPlanHeaderType: CaseIterable {
+enum EditPlanHeaderType: Int, CaseIterable {
     case weeklySchedule
     case fastingPlan
     case eatingPeriod

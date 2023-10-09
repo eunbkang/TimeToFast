@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class PlanTableHeaderView: UITableViewHeaderFooterView {
+final class PlanHeaderView: UIView {
     
-    var type: EditPlanHeaderType = .weeklySchedule
+    var type: EditPlanHeaderType
     
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
@@ -28,9 +28,10 @@ final class PlanTableHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        
+    init(type: EditPlanHeaderType) {
+        self.type = type
+        super.init(frame: .zero)
+    
         configViewComponents()
         configLayoutConstraints()
     }
@@ -40,8 +41,8 @@ final class PlanTableHeaderView: UITableViewHeaderFooterView {
     }
     
     private func configViewComponents() {
-        contentView.addSubview(imageView)
-        contentView.addSubview(titleLabel)
+        addSubview(imageView)
+        addSubview(titleLabel)
     }
     
     private func configLayoutConstraints() {

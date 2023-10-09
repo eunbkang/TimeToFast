@@ -9,22 +9,31 @@ import UIKit
 
 final class PlanView: BaseView {
 
-    let planTableView: UITableView = {
-        let tableView = UITableView()
-        
-        tableView.register(PlanTableHeaderView.self, forHeaderFooterViewReuseIdentifier: PlanTableHeaderView.description())
-        tableView.register(WeeklyTableViewCell.self, forCellReuseIdentifier: WeeklyTableViewCell.description())
-        
-        return tableView
-    }()
+    let weeklyScheduleView = WeeklyScheduleView()
+
+    
+//    private let fastingPlanHeaderView: PlanHeaderView = {
+//        let view = PlanHeaderView(type: .fastingPlan)
+//
+//        return view
+//    }()
+//
+//    private let eatingPeriodHeaderView: PlanHeaderView = {
+//        let view = PlanHeaderView(type: .eatingPeriod)
+//
+//        return view
+//    }()
+    
+    
     
     override func configViewHierarchy() {
-        addSubview(planTableView)
+        addSubview(weeklyScheduleView)
     }
     
     override func configLayoutConstraints() {
-        planTableView.snp.makeConstraints { make in
-            make.horizontalEdges.verticalEdges.equalTo(self.safeAreaLayoutGuide)
+        weeklyScheduleView.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
+            make.horizontalEdges.equalToSuperview()
         }
     }
 }
