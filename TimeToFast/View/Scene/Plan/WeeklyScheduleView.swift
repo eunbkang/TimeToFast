@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeeklyScheduleView: UIView {
+class WeeklyScheduleView: BaseView {
     
     private let weeklyHeaderView: PlanHeaderView = {
         let view = PlanHeaderView(type: .weeklySchedule)
@@ -44,24 +44,13 @@ class WeeklyScheduleView: UIView {
         return stackView
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configViewComponents()
-        configLayoutConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configViewComponents() {
+    override func configViewHierarchy() {
         addSubview(weeklyHeaderView)
         addSubview(backgroundRectangle)
         addSubview(daysStackView)
     }
     
-    private func configLayoutConstraints() {
+    override func configLayoutConstraints() {
         
         weeklyHeaderView.snp.makeConstraints { make in
             make.leading.top.equalToSuperview()

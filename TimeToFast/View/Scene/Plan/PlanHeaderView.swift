@@ -1,5 +1,5 @@
 //
-//  PlanTableHeaderView.swift
+//  PlanHeaderView.swift
 //  TimeToFast
 //
 //  Created by Eunbee Kang on 2023/10/09.
