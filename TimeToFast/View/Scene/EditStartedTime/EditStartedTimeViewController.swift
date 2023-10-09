@@ -20,7 +20,6 @@ final class EditStartedTimeViewController: BaseViewController {
     
     var timePicker: UIDatePicker = {
         let picker = UIDatePicker()
-        picker.datePickerMode = .dateAndTime
         picker.minuteInterval = 5
         picker.frame.size = CGSize(width: 0, height: 300)
         picker.preferredDatePickerStyle = .wheels
@@ -46,8 +45,10 @@ final class EditStartedTimeViewController: BaseViewController {
         switch type {
         case .fastingStartedTime:
             title = "Edit Started Time"
+            timePicker.datePickerMode = .dateAndTime
         case .planEatingFromTime:
             title = "Eating From"
+            timePicker.datePickerMode = .time
         }
     }
     

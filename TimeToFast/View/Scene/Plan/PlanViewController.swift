@@ -24,6 +24,7 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
         navigationItem.backButtonTitle = ""
         
         bindViewComponents()
+        viewModel.getStoredSetting()
     }
     
     @objc func dismissButtonTapped() {
@@ -39,10 +40,18 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
     @objc func eatingFromTimeViewTapped() {
         let vc = EditStartedTimeViewController()
         vc.type = .planEatingFromTime
+        vc.timePicker.date = viewModel.planSetting.value.eatingStartTime
         vc.delegate = self
         
         let nav = UINavigationController(rootViewController: vc)
         present(nav, animated: true)
+    }
+    
+    @objc func saveButtonTapped() {
+        viewModel.savePlan()
+        dismiss(animated: true)
+        
+        // TODO: - reflect changes to TimerView
     }
     
     override func configViewHierarchy() {
@@ -54,6 +63,8 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
         
         let dismissButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissButtonTapped))
         navigationItem.leftBarButtonItem = dismissButton
+        
+        planView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     
     private func bindViewComponents() {
