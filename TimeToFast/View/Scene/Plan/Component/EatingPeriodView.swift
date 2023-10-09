@@ -9,7 +9,7 @@ import UIKit
 
 class EatingPeriodView: BaseView {
     
-    var planSetting = PlanSetting(eatingStartTime: Date()-60*60*4)
+    var planSetting: PlanSetting
     
     private let headerView: PlanHeaderView = {
         let view = PlanHeaderView(type: .eatingPeriod)
@@ -30,6 +30,15 @@ class EatingPeriodView: BaseView {
         
         return stackView
     }()
+    
+    init(planSetting: PlanSetting) {
+        self.planSetting = planSetting
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func configViewHierarchy() {
         addSubview(headerView)

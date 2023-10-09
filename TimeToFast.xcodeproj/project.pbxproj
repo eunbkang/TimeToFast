@@ -44,6 +44,7 @@
 		7EC3D4982AD3CA2000C102FF /* EatingPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4972AD3CA2000C102FF /* EatingPeriodView.swift */; };
 		7EC3D49B2AD3CC0B00C102FF /* EatingPeriodTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D49A2AD3CC0B00C102FF /* EatingPeriodTimeView.swift */; };
 		7EC3D49D2AD3D38E00C102FF /* PlanSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */; };
+		7EC3D49F2AD3DD6300C102FF /* FastingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		7EC3D4972AD3CA2000C102FF /* EatingPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatingPeriodView.swift; sourceTree = "<group>"; };
 		7EC3D49A2AD3CC0B00C102FF /* EatingPeriodTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatingPeriodTimeView.swift; sourceTree = "<group>"; };
 		7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanSetting.swift; sourceTree = "<group>"; };
+		7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingPlan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 				7EC3D48D2AD3115100C102FF /* EditPlanHeader.swift */,
 				7EC3D4932AD31BFF00C102FF /* Days.swift */,
 				7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */,
+				7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				7E46266D2AC481BB00C45ED6 /* TimerSetting.swift in Sources */,
 				7EC3D4942AD31BFF00C102FF /* Days.swift in Sources */,
 				7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */,
+				7EC3D49F2AD3DD6300C102FF /* FastingPlan.swift in Sources */,
 				7EC3D4882AD3074A00C102FF /* BaseView.swift in Sources */,
 				7EC3D49B2AD3CC0B00C102FF /* EatingPeriodTimeView.swift in Sources */,
 				7EC3D4922AD31B4F00C102FF /* CircularDayButton.swift in Sources */,

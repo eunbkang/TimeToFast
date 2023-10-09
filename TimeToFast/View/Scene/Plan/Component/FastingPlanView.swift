@@ -9,6 +9,12 @@ import UIKit
 
 class FastingPlanView: BaseView {
     
+    var planSetting: PlanSetting {
+        didSet {
+            configPlanToView()
+        }
+    }
+    
     private let headerView: PlanHeaderView = {
         let view = PlanHeaderView(type: .fastingPlan)
         
@@ -28,7 +34,6 @@ class FastingPlanView: BaseView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "14:10"
         label.font = .systemFont(ofSize: 24, weight: .black)
         label.textColor = .black
         
@@ -37,7 +42,6 @@ class FastingPlanView: BaseView {
     
     private let detailLabel: UILabel = {
         let label = UILabel()
-        label.text = "Fast for 14 hours | Eat for 10 hours"
         label.font = .systemFont(ofSize: 13)
         label.textColor = .black
         
@@ -53,6 +57,22 @@ class FastingPlanView: BaseView {
         
         return view
     }()
+    
+    init(planSetting: PlanSetting) {
+        self.planSetting = planSetting
+        super.init(frame: .zero)
+        
+        configPlanToView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configPlanToView() {
+        titleLabel.text = planSetting.plan.title
+        detailLabel.text = planSetting.plan.detail
+    }
     
     override func configViewHierarchy() {
         addSubview(headerView)
@@ -76,5 +96,4 @@ class FastingPlanView: BaseView {
             make.centerY.equalToSuperview()
         }
     }
-    
 }

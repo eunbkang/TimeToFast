@@ -8,6 +8,8 @@
 import Foundation
 
 struct PlanSetting {
+    var plan: FastingPlan
+    
     var eatingStartTime: Date
     var eatingEndTime: Date? {
         return Calendar.current.date(byAdding: .hour, value: 8, to: eatingStartTime)

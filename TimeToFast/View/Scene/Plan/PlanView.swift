@@ -9,11 +9,22 @@ import UIKit
 
 final class PlanView: BaseView {
 
+    var planSetting: PlanSetting
+    
     let weeklyScheduleView = WeeklyScheduleView()
 
-    let fastingPlanView = FastingPlanView()
+    lazy var fastingPlanView = FastingPlanView(planSetting: planSetting)
     
-    let eatingPeriodView = EatingPeriodView()
+    lazy var eatingPeriodView = EatingPeriodView(planSetting: planSetting)
+    
+    init(planSetting: PlanSetting) {
+        self.planSetting = planSetting
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func configViewHierarchy() {
         addSubview(weeklyScheduleView)
