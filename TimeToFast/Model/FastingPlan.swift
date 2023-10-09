@@ -29,4 +29,17 @@ enum FastingPlan: Int, CaseIterable {
     var planButtonTitle: String {
         return "\(self.rawValue):\(eatingHours) FAST"
     }
+    
+    var defaultEatingStartTime: Date {
+        var hour: Int {
+            switch self {
+            case .twelve: return 8
+            case .fourteen: return 10
+            case .sixteen: return 12
+            case .eighteen: return 12
+            case .twenty: return 12
+            }
+        }
+        return .setTimeForToday(hour: hour)
+    }
 }

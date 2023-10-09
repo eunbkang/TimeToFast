@@ -10,10 +10,32 @@ import Foundation
 final class TimerViewModel {
     var stateTitle = Observable(Constants.StateTitle.idle)
     var timeCounter = Observable("00:00:00")
-    var timerSetting = Observable(TimerSetting(fastStartTime: Date()-60*60*10))
+    var timerSetting = Observable(TimerSetting(plan: .sixteen, fastStartTime: Date()-60*60*10))
     var fastState = Observable(FastState.idle)
     
     private var timer: Timer?
+    
+    private let userDefaults = UserDefaultsManager.shared
+    
+    func getStoredSetting() {
+        fastState.value = userDefaults.isTimerRunning ? .fasting : .idle
+        
+        switch userDefaults.isPlanSetByUser {
+        case true:
+            timerSetting.value.plan = userDefaults.fastPlanType ?? .sixteen
+            timerSetting.value.fastStartTime = calculateFastStartTime(with: userDefaults.eatingStartTime)
+            
+        case false:
+            timerSetting.value.plan = .sixteen
+            timerSetting.value.fastStartTime = calculateFastStartTime(with: timerSetting.value.plan.defaultEatingStartTime)
+        }
+    }
+    
+    private func calculateFastStartTime(with eatingStartTime: Date) -> Date {
+        let fastingHours = timerSetting.value.plan.rawValue
+        
+        return Calendar.current.date(byAdding: .hour, value: -fastingHours, to: eatingStartTime)!
+    }
     
     func controlTimer() {
         switch fastState.value {
@@ -57,6 +79,5 @@ final class TimerViewModel {
         let second = (remainingTime % 3600) % 60
         
         timeCounter.value = String(format: "%02d:%02d:%02d", hour, minute, second)
-        print(timeCounter.value)
     }
 }

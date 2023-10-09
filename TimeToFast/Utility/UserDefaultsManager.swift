@@ -14,6 +14,15 @@ final class UserDefaultsManager {
     
     let userDefaults = UserDefaults.standard
     
+    var isPlanSetByUser: Bool {
+        get {
+            return userDefaults.bool(forKey: Constants.Keys.isPlanSetByUser)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Constants.Keys.isPlanSetByUser)
+        }
+    }
+    
     var isTimerRunning: Bool {
         get {
             return userDefaults.bool(forKey: Constants.Keys.isTimerRunning)
@@ -35,16 +44,11 @@ final class UserDefaultsManager {
         }
     }
     
-    var eatingStartTime: Date? {
+    var eatingStartTime: Date {
         get {
-            var components = DateComponents()
-            components.hour = eatingStartHour
-            components.minute = eatingStartMinute
-            
-            return Calendar.current.date(from: components)
+            return .setTimeForToday(hour: eatingStartHour, minute: eatingStartMinute)
         }
         set {
-            guard let newValue = newValue else { return }
             guard let hour = Int(newValue.dateToTimeHour()) else { return }
             guard let minute = Int(newValue.dateToTimeMinute()) else { return }
             eatingStartHour = hour

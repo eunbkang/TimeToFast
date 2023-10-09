@@ -14,7 +14,7 @@ protocol SetTimeDelegate: AnyObject {
 
 final class TimerViewController: BaseViewController, SetTimeDelegate {
     
-    private lazy var timerView = TimerView(timerSetting: viewModel.timerSetting.value)
+    private lazy var timerView = TimerView(fastState: viewModel.fastState.value, timerSetting: viewModel.timerSetting.value)
     
     private let viewModel = TimerViewModel()
     
@@ -26,6 +26,7 @@ final class TimerViewController: BaseViewController, SetTimeDelegate {
         super.viewDidLoad()
         
         bindViewComponents()
+        viewModel.getStoredSetting()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +72,7 @@ final class TimerViewController: BaseViewController, SetTimeDelegate {
     @objc func startedTimeViewTapped() {
         let vc = EditStartedTimeViewController()
         vc.type = .fastingStartedTime
+        vc.timePicker.date = viewModel.timerSetting.value.fastStartTime
         vc.delegate = self
         
         let nav = UINavigationController(rootViewController: vc)

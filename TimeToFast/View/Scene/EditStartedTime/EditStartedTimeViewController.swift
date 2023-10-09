@@ -18,9 +18,9 @@ final class EditStartedTimeViewController: BaseViewController {
     
     weak var delegate: SetTimeDelegate?
     
-    private let timePicker: UIDatePicker = {
+    var timePicker: UIDatePicker = {
         let picker = UIDatePicker()
-        picker.datePickerMode = .time
+        picker.datePickerMode = .dateAndTime
         picker.minuteInterval = 5
         picker.frame.size = CGSize(width: 0, height: 300)
         picker.preferredDatePickerStyle = .wheels

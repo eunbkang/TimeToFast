@@ -8,9 +8,11 @@
 import Foundation
 
 struct TimerSetting {
+    var plan: FastingPlan
+    
     var fastStartTime: Date
     var fastEndTime: Date? {
-        return Calendar.current.date(byAdding: .hour, value: 16, to: fastStartTime)
+        return Calendar.current.date(byAdding: .hour, value: plan.rawValue, to: fastStartTime)
     }
     
     var fastStartAngle: CGFloat {

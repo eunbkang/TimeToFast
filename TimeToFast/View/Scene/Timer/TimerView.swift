@@ -24,7 +24,7 @@ final class TimerView: UIView {
     }()
     
     lazy var planButton: FastPlanButton = {
-        let button = FastPlanButton()
+        let button = FastPlanButton(fastPlan: timerSetting.plan, fastState: fastState)
         
         return button
     }()
@@ -97,7 +97,7 @@ final class TimerView: UIView {
         return stackView
     }()
     
-    var fastState: FastState = .idle {
+    var fastState: FastState {
         didSet {
             configFastingStateToView()
         }
@@ -111,7 +111,8 @@ final class TimerView: UIView {
     
     // MARK: - Initializer
     
-    init(timerSetting: TimerSetting) {
+    init(fastState: FastState, timerSetting: TimerSetting) {
+        self.fastState = fastState
         self.timerSetting = timerSetting
         super.init(frame: .zero)
         

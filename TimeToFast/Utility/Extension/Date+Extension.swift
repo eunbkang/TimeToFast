@@ -20,8 +20,8 @@ extension Date {
     
     func dateToSetTimeString() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, h:mm a"
-        dateFormatter.dateStyle = .medium
+//        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         dateFormatter.doesRelativeDateFormatting = true
         
@@ -52,5 +52,15 @@ extension Date {
         
         let dateString = dateFormatter.string(from: self)
         return dateString
+    }
+    
+    static func setTimeForToday(hour: Int = 0, minute: Int = 0) -> Date {
+        let calendar = Calendar.current
+        let todayComponents = calendar.dateComponents([.year, .month, .day], from: Date())
+        let today = calendar.date(from: todayComponents)!
+        let hourReflectedDate = calendar.date(byAdding: .hour, value: hour, to: today)!
+        let calculatedDate = calendar.date(byAdding: .minute, value: minute, to: hourReflectedDate)!
+        
+        return calculatedDate
     }
 }

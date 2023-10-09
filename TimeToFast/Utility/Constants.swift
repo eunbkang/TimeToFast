@@ -69,8 +69,9 @@ enum Constants {
     
     enum Keys {
         static let isTimerRunning = "isTimerRunning"
-        static let fastPlanType = "fastPlanType"
+        static let isPlanSetByUser = "isPlanSetByUser"
         
+        static let fastPlanType = "fastPlanType"
         static let eatingStartHour = "eatingStartHour"
         static let eatingStartMinute = "eatingStartMinute"
     }
