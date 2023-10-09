@@ -1,5 +1,5 @@
 //
-//  FastingPlanView.swift
+//  FastingPlanTableViewCell.swift
 //  TimeToFast
 //
 //  Created by Eunbee Kang on 2023/10/09.
@@ -7,25 +7,11 @@
 
 import UIKit
 
-class FastingPlanView: BaseView {
+class FastingPlanTableViewCell: BaseTableViewCell {
     
-    var planSetting: PlanSetting {
-        didSet {
-            configPlanToView()
-        }
-    }
-    
-    private let headerView: PlanHeaderView = {
-        let view = PlanHeaderView(type: .fastingPlan)
-        
-        return view
-    }()
-    
-    let backgroundRectangle: UIView = {
+    private let backgroundRectangle: UIView = {
         let view = UIView()
         view.backgroundColor = .veryLightGray
-        view.layer.borderColor = UIColor.mainPurple.cgColor
-        view.layer.borderWidth = 1
         view.layer.cornerRadius = Constants.Size.backgroundCorner
         view.clipsToBounds = true
         
@@ -58,39 +44,28 @@ class FastingPlanView: BaseView {
         return view
     }()
     
-    init(planSetting: PlanSetting) {
-        self.planSetting = planSetting
-        super.init(frame: .zero)
+    func configPlanToView(plan: FastingPlan, isSelected: Bool) {
+        titleLabel.text = plan.title
+        detailLabel.text = plan.detail
         
-        configPlanToView()
+        if isSelected {
+            backgroundRectangle.layer.borderColor = UIColor.mainPurple.cgColor
+            backgroundRectangle.layer.borderWidth = 1
+        }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configPlanToView() {
-        titleLabel.text = planSetting.plan.title
-        detailLabel.text = planSetting.plan.detail
-    }
-    
-    override func configViewHierarchy() {
-        addSubview(headerView)
-        addSubview(backgroundRectangle)
+    override func configViewComponents() {
+        selectionStyle = .none
+        
+        contentView.addSubview(backgroundRectangle)
         backgroundRectangle.addSubview(labelStackView)
     }
     
     override func configLayoutConstraints() {
-        headerView.snp.makeConstraints { make in
-            make.leading.top.equalToSuperview()
-        }
-        
         backgroundRectangle.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(20)
+            make.verticalEdges.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview().inset(Constants.Size.edgePadding)
-            make.height.equalTo(72)
         }
-        
         labelStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(Constants.Size.edgePadding)
             make.centerY.equalToSuperview()

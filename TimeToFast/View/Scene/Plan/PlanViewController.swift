@@ -21,11 +21,20 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
         super.viewDidLoad()
         
         title = "Edit Plan"
+        navigationItem.backButtonTitle = ""
+        
         bindViewComponents()
     }
     
     @objc func dismissButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc func fastPlanViewTapped() {
+        print(#function)
+        let vc = ChooseFastingPlanViewController()
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func eatingFromTimeViewTapped() {
@@ -38,6 +47,9 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
     }
     
     override func configViewHierarchy() {
+        let fastPlanTapGesture = UITapGestureRecognizer(target: self, action: #selector(fastPlanViewTapped))
+        planView.fastingPlanView.backgroundRectangle.addGestureRecognizer(fastPlanTapGesture)
+        
         let eatingFromTimeTapGesture = UITapGestureRecognizer(target: self, action: #selector(eatingFromTimeViewTapped))
         planView.eatingPeriodView.fromTimeView.addGestureRecognizer(eatingFromTimeTapGesture)
         

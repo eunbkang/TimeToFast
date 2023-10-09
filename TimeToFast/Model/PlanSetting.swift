@@ -12,6 +12,6 @@ struct PlanSetting {
     
     var eatingStartTime: Date
     var eatingEndTime: Date? {
-        return Calendar.current.date(byAdding: .hour, value: 8, to: eatingStartTime)
+        return Calendar.current.date(byAdding: .hour, value: plan.eatingHours, to: eatingStartTime)
     }
 }
