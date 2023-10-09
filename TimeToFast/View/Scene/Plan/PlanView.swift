@@ -13,9 +13,12 @@ final class PlanView: BaseView {
 
     let fastingPlanView = FastingPlanView()
     
+    let eatingPeriodView = EatingPeriodView()
+    
     override func configViewHierarchy() {
         addSubview(weeklyScheduleView)
         addSubview(fastingPlanView)
+        addSubview(eatingPeriodView)
     }
     
     override func configLayoutConstraints() {
@@ -27,6 +30,12 @@ final class PlanView: BaseView {
         
         fastingPlanView.snp.makeConstraints { make in
             make.top.equalTo(weeklyScheduleView.snp.bottom).offset(36)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(102)
+        }
+        
+        eatingPeriodView.snp.makeConstraints { make in
+            make.top.equalTo(fastingPlanView.snp.bottom).offset(36)
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(102)
         }

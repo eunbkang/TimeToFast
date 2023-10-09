@@ -28,4 +28,13 @@ extension Date {
         let dateString = dateFormatter.string(from: self)
         return dateString
     }
+    
+    func dateToTimeOnlyString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.timeStyle = .short
+        
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
 }

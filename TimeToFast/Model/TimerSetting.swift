@@ -21,4 +21,4 @@ struct TimerSetting {
         guard let fastEndTime = fastEndTime else { return 0 }
         return fastEndTime.dateToAngle()
     }
-}
+} 

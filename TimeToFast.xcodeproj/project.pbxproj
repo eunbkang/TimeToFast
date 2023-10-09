@@ -41,6 +41,9 @@
 		7EC3D4922AD31B4F00C102FF /* CircularDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4912AD31B4F00C102FF /* CircularDayButton.swift */; };
 		7EC3D4942AD31BFF00C102FF /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4932AD31BFF00C102FF /* Days.swift */; };
 		7EC3D4962AD3BC9400C102FF /* FastingPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4952AD3BC9400C102FF /* FastingPlanView.swift */; };
+		7EC3D4982AD3CA2000C102FF /* EatingPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4972AD3CA2000C102FF /* EatingPeriodView.swift */; };
+		7EC3D49B2AD3CC0B00C102FF /* EatingPeriodTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D49A2AD3CC0B00C102FF /* EatingPeriodTimeView.swift */; };
+		7EC3D49D2AD3D38E00C102FF /* PlanSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +82,9 @@
 		7EC3D4912AD31B4F00C102FF /* CircularDayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularDayButton.swift; sourceTree = "<group>"; };
 		7EC3D4932AD31BFF00C102FF /* Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Days.swift; sourceTree = "<group>"; };
 		7EC3D4952AD3BC9400C102FF /* FastingPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingPlanView.swift; sourceTree = "<group>"; };
+		7EC3D4972AD3CA2000C102FF /* EatingPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatingPeriodView.swift; sourceTree = "<group>"; };
+		7EC3D49A2AD3CC0B00C102FF /* EatingPeriodTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatingPeriodTimeView.swift; sourceTree = "<group>"; };
+		7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanSetting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +133,6 @@
 		7E46264D2AC1953500C45ED6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E46265C2AC19D6800C45ED6 /* Component */,
 				7E46264E2AC1953B00C45ED6 /* Base */,
 				7E4626512AC1960F00C45ED6 /* Scene */,
 			);
@@ -184,7 +189,6 @@
 				7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */,
 				7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */,
 				7EC3D4802AD1C3BF00C102FF /* FastControlButton.swift */,
-				7EC3D4912AD31B4F00C102FF /* CircularDayButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -196,6 +200,7 @@
 				7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */,
 				7EC3D48D2AD3115100C102FF /* EditPlanHeader.swift */,
 				7EC3D4932AD31BFF00C102FF /* Days.swift */,
+				7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 		7EC3D47C2ACE8AE800C102FF /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				7E46265C2AC19D6800C45ED6 /* Component */,
 				7E4626522AC1962E00C45ED6 /* TimerViewController.swift */,
 				7E4626612AC40A0B00C45ED6 /* TimerView.swift */,
 				7E3D3AB32ACC979500363F2E /* TimerViewModel.swift */,
@@ -221,13 +227,24 @@
 		7EC3D4822AD2F9DC00C102FF /* Plan */ = {
 			isa = PBXGroup;
 			children = (
+				7EC3D4992AD3CBB600C102FF /* Component */,
 				7EC3D4832AD2F9F100C102FF /* PlanViewController.swift */,
 				7EC3D4852AD3073600C102FF /* PlanView.swift */,
-				7EC3D48B2AD3105000C102FF /* PlanHeaderView.swift */,
-				7EC3D4892AD30C5600C102FF /* WeeklyScheduleView.swift */,
-				7EC3D4952AD3BC9400C102FF /* FastingPlanView.swift */,
 			);
 			path = Plan;
+			sourceTree = "<group>";
+		};
+		7EC3D4992AD3CBB600C102FF /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D48B2AD3105000C102FF /* PlanHeaderView.swift */,
+				7EC3D4892AD30C5600C102FF /* WeeklyScheduleView.swift */,
+				7EC3D4912AD31B4F00C102FF /* CircularDayButton.swift */,
+				7EC3D4952AD3BC9400C102FF /* FastingPlanView.swift */,
+				7EC3D4972AD3CA2000C102FF /* EatingPeriodView.swift */,
+				7EC3D49A2AD3CC0B00C102FF /* EatingPeriodTimeView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,10 +326,12 @@
 				7EC3D4962AD3BC9400C102FF /* FastingPlanView.swift in Sources */,
 				7E3D3AB42ACC979500363F2E /* TimerViewModel.swift in Sources */,
 				7E3D3AB62ACC9D0000363F2E /* Observable.swift in Sources */,
+				7EC3D49D2AD3D38E00C102FF /* PlanSetting.swift in Sources */,
 				7EC3D48A2AD30C5600C102FF /* WeeklyScheduleView.swift in Sources */,
 				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
 				7EC3D4902AD3196400C102FF /* BaseTableViewCell.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
+				7EC3D4982AD3CA2000C102FF /* EatingPeriodView.swift in Sources */,
 				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
 				7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */,
 				7EC3D4812AD1C3BF00C102FF /* FastControlButton.swift in Sources */,
@@ -326,6 +345,7 @@
 				7EC3D4942AD31BFF00C102FF /* Days.swift in Sources */,
 				7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */,
 				7EC3D4882AD3074A00C102FF /* BaseView.swift in Sources */,
+				7EC3D49B2AD3CC0B00C102FF /* EatingPeriodTimeView.swift in Sources */,
 				7EC3D4922AD31B4F00C102FF /* CircularDayButton.swift in Sources */,
 				7E4626342AC1656300C45ED6 /* SceneDelegate.swift in Sources */,
 				7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */,
