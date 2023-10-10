@@ -25,6 +25,8 @@ final class SettingViewController: BaseViewController {
         return tableView
     }()
     
+    private let viewModel = SettingViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,8 @@ final class SettingViewController: BaseViewController {
         
         settingTableView.delegate = self
         settingTableView.dataSource = self
+        
+        viewModel.getStoredSetting()
     }
     
     override func configViewHierarchy() {
@@ -46,8 +50,12 @@ final class SettingViewController: BaseViewController {
         }
     }
     
-    private func bindViewComponents() {
-        
+    @objc func toggleSwitchValueChanged(_ sender: UISwitch) {
+        viewModel.saveToggleSwitchValue(index: sender.tag, isOn: sender.isOn)
+    }
+    
+    private func configToggleSwitchIsOn(index: Int) -> Bool {
+        return viewModel.configToggleSwitchIsOn(index: index)
     }
 }
 
@@ -60,6 +68,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.description()) as? SettingTableViewCell else { return UITableViewCell() }
         
         cell.setSettingContentToView(type: Setting.allCases[indexPath.row])
+        
+        cell.toggleSwitch.tag = indexPath.item
+        cell.toggleSwitch.addTarget(self, action: #selector(toggleSwitchValueChanged), for: .valueChanged)
+        cell.toggleSwitch.isOn = configToggleSwitchIsOn(index: indexPath.item)
         
         return cell
     }

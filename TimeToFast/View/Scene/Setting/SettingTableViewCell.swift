@@ -24,7 +24,7 @@ final class SettingTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    private lazy var toggleSwitch: UISwitch = {
+    lazy var toggleSwitch: UISwitch = {
         let toggleSwitch = UISwitch()
         toggleSwitch.onTintColor = .mainPurple
         
@@ -39,7 +39,6 @@ final class SettingTableViewCell: BaseTableViewCell {
     }
     
     override func configLayoutConstraints() {
-        
         settingImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(Constants.Size.edgePadding)
             make.centerY.equalToSuperview()
