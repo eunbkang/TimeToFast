@@ -8,11 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol SetTimeDelegate: AnyObject {
-    func didReceiveStartedTime(time: Date)
-}
-
-final class TimerViewController: BaseViewController, SetTimeDelegate {
+final class TimerViewController: BaseViewController {
     
     private lazy var timerView = TimerView(fastState: viewModel.fastState.value, timerSetting: viewModel.timerSetting.value)
     
@@ -53,6 +49,8 @@ final class TimerViewController: BaseViewController, SetTimeDelegate {
     
     @objc func planButtonTapped() {
         let vc = PlanViewController()
+        vc.delegate = self
+        
         let nav = UINavigationController(rootViewController: vc)
         present(nav, animated: true)
     }
@@ -100,8 +98,16 @@ final class TimerViewController: BaseViewController, SetTimeDelegate {
             self.timerView.timerSetting = timer
         }
     }
-    
+}
+
+extension TimerViewController: SetTimeDelegate {
     func didReceiveStartedTime(time: Date) {
         viewModel.timerSetting.value.fastStartTime = time
+    }
+}
+
+extension TimerViewController: SetPlanDelegate {
+    func didSavedPlanSetting() {
+        viewModel.getStoredSetting()
     }
 }

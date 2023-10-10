@@ -49,6 +49,7 @@
 		7EC3D4A32AD40A5F00C102FF /* FastingPlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A22AD40A5F00C102FF /* FastingPlanTableViewCell.swift */; };
 		7EC3D4A62AD410EE00C102FF /* ChooseFastingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A52AD410EE00C102FF /* ChooseFastingPlanViewController.swift */; };
 		7EC3D4A82AD42E8E00C102FF /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */; };
+		7EC3D4AE2AD4EC8100C102FF /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4AD2AD4EC8100C102FF /* Protocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,7 @@
 		7EC3D4A22AD40A5F00C102FF /* FastingPlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingPlanTableViewCell.swift; sourceTree = "<group>"; };
 		7EC3D4A52AD410EE00C102FF /* ChooseFastingPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFastingPlanViewController.swift; sourceTree = "<group>"; };
 		7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		7EC3D4AD2AD4EC8100C102FF /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 		7E4626542AC1986E00C45ED6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				7EC3D4AC2AD4EC3400C102FF /* Protocol */,
 				7E4626552AC1987400C45ED6 /* Extension */,
 				7E46265A2AC19B3500C45ED6 /* Constants.swift */,
 				7E3D3AB52ACC9D0000363F2E /* Observable.swift */,
@@ -270,6 +273,14 @@
 			path = FastingPlan;
 			sourceTree = "<group>";
 		};
+		7EC3D4AC2AD4EC3400C102FF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D4AD2AD4EC8100C102FF /* Protocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -365,6 +376,7 @@
 				7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */,
 				7E4626502AC1954A00C45ED6 /* BaseViewController.swift in Sources */,
 				7EC3D4A12AD4023300C102FF /* PlanViewModel.swift in Sources */,
+				7EC3D4AE2AD4EC8100C102FF /* Protocol.swift in Sources */,
 				7E4626322AC1656300C45ED6 /* AppDelegate.swift in Sources */,
 				7E46266D2AC481BB00C45ED6 /* TimerSetting.swift in Sources */,
 				7EC3D4942AD31BFF00C102FF /* Days.swift in Sources */,

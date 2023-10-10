@@ -13,6 +13,8 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
     
     private lazy var planView = PlanView(planSetting: viewModel.planSetting.value)
     
+    weak var delegate: SetPlanDelegate?
+    
     override func loadView() {
         view = planView
     }
@@ -51,7 +53,7 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
         viewModel.savePlan()
         dismiss(animated: true)
         
-        // TODO: - reflect changes to TimerView
+        delegate?.didSavedPlanSetting()
     }
     
     override func configViewHierarchy() {
