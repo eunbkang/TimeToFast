@@ -74,5 +74,7 @@ enum Constants {
         static let fastPlanType = "fastPlanType"
         static let eatingStartHour = "eatingStartHour"
         static let eatingStartMinute = "eatingStartMinute"
+        
+        static let isNotificationOn = "isNotificationOn"
     }
 }

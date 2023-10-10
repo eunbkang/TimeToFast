@@ -73,4 +73,13 @@ final class UserDefaultsManager {
             userDefaults.set(newValue, forKey: Constants.Keys.eatingStartMinute)
         }
     }
+    
+    var isNotificationOn: Bool {
+        get {
+            return userDefaults.bool(forKey: Constants.Keys.isNotificationOn)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Constants.Keys.isNotificationOn)
+        }
+    }
 }

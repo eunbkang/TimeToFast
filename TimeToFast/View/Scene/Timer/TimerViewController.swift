@@ -21,6 +21,8 @@ final class TimerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.backButtonTitle = ""
+        
         bindViewComponents()
         viewModel.getStoredSetting()
     }
@@ -64,7 +66,9 @@ final class TimerViewController: BaseViewController {
     }
     
     @objc func settingButtonTapped() {
+        let vc = SettingViewController()
         
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func startedTimeViewTapped() {
@@ -102,7 +106,8 @@ final class TimerViewController: BaseViewController {
 
 extension TimerViewController: SetTimeDelegate {
     func didReceiveStartedTime(time: Date) {
-        viewModel.timerSetting.value.fastStartTime = time
+//        viewModel.timerSetting.value.fastStartTime = time
+        // TODO: - to be saved in Realm
     }
 }
 

@@ -50,6 +50,10 @@
 		7EC3D4A62AD410EE00C102FF /* ChooseFastingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A52AD410EE00C102FF /* ChooseFastingPlanViewController.swift */; };
 		7EC3D4A82AD42E8E00C102FF /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */; };
 		7EC3D4AE2AD4EC8100C102FF /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4AD2AD4EC8100C102FF /* Protocol.swift */; };
+		7EC3D4B12AD51E9400C102FF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4B02AD51E9400C102FF /* SettingViewController.swift */; };
+		7EC3D4B42AD529D200C102FF /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4B32AD529D200C102FF /* SettingTableViewCell.swift */; };
+		7EC3D4B62AD52D3B00C102FF /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4B52AD52D3B00C102FF /* Setting.swift */; };
+		7EC3D4B82AD531FE00C102FF /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4B72AD531FE00C102FF /* SettingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +101,10 @@
 		7EC3D4A52AD410EE00C102FF /* ChooseFastingPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFastingPlanViewController.swift; sourceTree = "<group>"; };
 		7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		7EC3D4AD2AD4EC8100C102FF /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		7EC3D4B02AD51E9400C102FF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		7EC3D4B32AD529D200C102FF /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		7EC3D4B52AD52D3B00C102FF /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		7EC3D4B72AD531FE00C102FF /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +175,7 @@
 				7EC3D47C2ACE8AE800C102FF /* Timer */,
 				7EC3D47D2ACE8AEE00C102FF /* EditStartedTime */,
 				7EC3D4822AD2F9DC00C102FF /* Plan */,
+				7EC3D4AF2AD51E4100C102FF /* Setting */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -216,6 +225,7 @@
 				7EC3D4932AD31BFF00C102FF /* Days.swift */,
 				7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */,
 				7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */,
+				7EC3D4B52AD52D3B00C102FF /* Setting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,6 +289,24 @@
 				7EC3D4AD2AD4EC8100C102FF /* Protocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		7EC3D4AF2AD51E4100C102FF /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D4B22AD529A300C102FF /* New Group */,
+				7EC3D4B02AD51E9400C102FF /* SettingViewController.swift */,
+				7EC3D4B32AD529D200C102FF /* SettingTableViewCell.swift */,
+				7EC3D4B72AD531FE00C102FF /* SettingViewModel.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		7EC3D4B22AD529A300C102FF /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +388,7 @@
 				7EC3D4962AD3BC9400C102FF /* FastingPlanView.swift in Sources */,
 				7E3D3AB42ACC979500363F2E /* TimerViewModel.swift in Sources */,
 				7E3D3AB62ACC9D0000363F2E /* Observable.swift in Sources */,
+				7EC3D4B42AD529D200C102FF /* SettingTableViewCell.swift in Sources */,
 				7EC3D49D2AD3D38E00C102FF /* PlanSetting.swift in Sources */,
 				7EC3D48A2AD30C5600C102FF /* WeeklyScheduleView.swift in Sources */,
 				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
@@ -367,6 +396,7 @@
 				7EC3D4902AD3196400C102FF /* BaseTableViewCell.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
 				7EC3D4982AD3CA2000C102FF /* EatingPeriodView.swift in Sources */,
+				7EC3D4B62AD52D3B00C102FF /* Setting.swift in Sources */,
 				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
 				7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */,
 				7EC3D4812AD1C3BF00C102FF /* FastControlButton.swift in Sources */,
@@ -374,6 +404,7 @@
 				7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */,
 				7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */,
 				7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */,
+				7EC3D4B82AD531FE00C102FF /* SettingViewModel.swift in Sources */,
 				7E4626502AC1954A00C45ED6 /* BaseViewController.swift in Sources */,
 				7EC3D4A12AD4023300C102FF /* PlanViewModel.swift in Sources */,
 				7EC3D4AE2AD4EC8100C102FF /* Protocol.swift in Sources */,
@@ -395,6 +426,7 @@
 				7EC3D4792ACDFB7A00C102FF /* Date+Extension.swift in Sources */,
 				7EC3D48C2AD3105000C102FF /* PlanHeaderView.swift in Sources */,
 				7EC3D48E2AD3115100C102FF /* EditPlanHeader.swift in Sources */,
+				7EC3D4B12AD51E9400C102FF /* SettingViewController.swift in Sources */,
 				7EC3D4862AD3073600C102FF /* PlanView.swift in Sources */,
 				7EC3D47B2ACE6E9600C102FF /* SetTimeView.swift in Sources */,
 			);

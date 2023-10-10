@@ -9,7 +9,7 @@ import Foundation
 
 final class TimerViewModel {
     var stateTitle = Observable(Constants.StateTitle.idle)
-    var timeCounter = Observable("00:00:00")
+    var timeCounter = Observable("")
     var timerSetting = Observable(TimerSetting(plan: .sixteen, fastStartTime: Date()-60*60*10))
     var fastState = Observable(FastState.idle)
     
@@ -19,6 +19,9 @@ final class TimerViewModel {
     
     func getStoredSetting() {
         fastState.value = userDefaults.isTimerRunning ? .fasting : .idle
+        if fastState.value != .idle {
+            startTimer()
+        }
         
         switch userDefaults.isPlanSetByUser {
         case true:
@@ -42,13 +45,16 @@ final class TimerViewModel {
         case .idle:
             startTimer()
             fastState.value = .fasting
+            userDefaults.isTimerRunning = true
             
         case .fasting:
             stopTimer()
             fastState.value = .idle
+            userDefaults.isTimerRunning = false
             
         case .eating:
             fastState.value = .idle
+            userDefaults.isTimerRunning = false
         }
     }
     
