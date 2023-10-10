@@ -14,3 +14,7 @@ protocol SetTimeDelegate: AnyObject {
 protocol SetPlanDelegate: AnyObject {
     func didSavedPlanSetting()
 }
+
+protocol SelectedFastingPlanDelegate: AnyObject {
+    func didSelectedFastingPlan(plan: FastingPlan)
+}

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PlanViewController: BaseViewController, SetTimeDelegate{
+final class PlanViewController: BaseViewController {
     
     private let viewModel = PlanViewModel()
     
@@ -35,6 +35,8 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
     
     @objc func fastPlanViewTapped() {
         let vc = ChooseFastingPlanViewController()
+        vc.planSetting = viewModel.planSetting.value
+        vc.delegate = self
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -74,8 +76,16 @@ final class PlanViewController: BaseViewController, SetTimeDelegate{
             self.planView.planSetting = plan
         }
     }
-    
+}
+
+extension PlanViewController: SetTimeDelegate {
     func didReceiveStartedTime(time: Date) {
         viewModel.planSetting.value.eatingStartTime = time
+    }
+}
+
+extension PlanViewController: SelectedFastingPlanDelegate {
+    func didSelectedFastingPlan(plan: FastingPlan) {
+        viewModel.planSetting.value.plan = plan
     }
 }

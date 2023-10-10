@@ -131,6 +131,7 @@ final class TimerView: UIView {
         circularTimerView.timerSetting = timerSetting
         startedTimeView.timerSetting = timerSetting
         goalTimeView.timerSetting = timerSetting
+        planButton.fastPlan = timerSetting.plan
     }
     
     private func configFastingStateToView() {

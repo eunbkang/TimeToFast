@@ -17,6 +17,10 @@ final class ChooseFastingPlanViewController: BaseViewController {
         return tableView
     }()
     
+    var planSetting: PlanSetting?
+    
+    weak var delegate: SelectedFastingPlanDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Fasting Plan"
@@ -49,9 +53,19 @@ extension ChooseFastingPlanViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FastingPlanTableViewCell.description()) as? FastingPlanTableViewCell else { return UITableViewCell()}
         
-        
-        cell.configPlanToView(plan: FastingPlan.allCases[indexPath.row], isSelected: false)
+        cell.configPlanToView(plan: FastingPlan.allCases[indexPath.row], selectedPlan: planSetting?.plan)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FastingPlanTableViewCell.description()) as? FastingPlanTableViewCell else { return }
+        
+        let selectedPlan = FastingPlan.allCases[indexPath.row]
+        delegate?.didSelectedFastingPlan(plan: selectedPlan)
+        planSetting?.plan = selectedPlan
+        tableView.reloadData()
+        
+        navigationController?.popViewController(animated: true)
     }
 }

@@ -44,13 +44,16 @@ class FastingPlanTableViewCell: BaseTableViewCell {
         return view
     }()
     
-    func configPlanToView(plan: FastingPlan, isSelected: Bool) {
+    func configPlanToView(plan: FastingPlan, selectedPlan: FastingPlan?) {
         titleLabel.text = plan.title
         detailLabel.text = plan.detail
         
-        if isSelected {
+        guard let selectedPlan = selectedPlan else { return }
+        if plan == selectedPlan {
             backgroundRectangle.layer.borderColor = UIColor.mainPurple.cgColor
             backgroundRectangle.layer.borderWidth = 1
+        } else {
+            backgroundRectangle.layer.borderWidth = 0
         }
     }
     
