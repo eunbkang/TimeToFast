@@ -77,4 +77,9 @@ enum Constants {
         
         static let isNotificationOn = "isNotificationOn"
     }
+    
+    enum Notification {
+        static let fastingStartIdentifier = "fastingStartNotification"
+        static let eatingStartIdentifier = "eatingStartNotification"
+    }
 }

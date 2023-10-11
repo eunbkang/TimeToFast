@@ -54,6 +54,8 @@
 		7EC3D4B42AD529D200C102FF /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4B32AD529D200C102FF /* SettingTableViewCell.swift */; };
 		7EC3D4B62AD52D3B00C102FF /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4B52AD52D3B00C102FF /* Setting.swift */; };
 		7EC3D4B82AD531FE00C102FF /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4B72AD531FE00C102FF /* SettingViewModel.swift */; };
+		7EC3D4BA2AD6FF6A00C102FF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4B92AD6FF6A00C102FF /* Notification.swift */; };
+		7EC3D4BC2AD7082C00C102FF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4BB2AD7082C00C102FF /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +107,8 @@
 		7EC3D4B32AD529D200C102FF /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		7EC3D4B52AD52D3B00C102FF /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		7EC3D4B72AD531FE00C102FF /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		7EC3D4B92AD6FF6A00C102FF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		7EC3D4BB2AD7082C00C102FF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +192,7 @@
 				7E46265A2AC19B3500C45ED6 /* Constants.swift */,
 				7E3D3AB52ACC9D0000363F2E /* Observable.swift */,
 				7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */,
+				7EC3D4BB2AD7082C00C102FF /* NotificationManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */,
 				7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */,
 				7EC3D4B52AD52D3B00C102FF /* Setting.swift */,
+				7EC3D4B92AD6FF6A00C102FF /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -396,6 +402,7 @@
 				7EC3D4902AD3196400C102FF /* BaseTableViewCell.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
 				7EC3D4982AD3CA2000C102FF /* EatingPeriodView.swift in Sources */,
+				7EC3D4BA2AD6FF6A00C102FF /* Notification.swift in Sources */,
 				7EC3D4B62AD52D3B00C102FF /* Setting.swift in Sources */,
 				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
 				7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */,
@@ -406,6 +413,7 @@
 				7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */,
 				7EC3D4B82AD531FE00C102FF /* SettingViewModel.swift in Sources */,
 				7E4626502AC1954A00C45ED6 /* BaseViewController.swift in Sources */,
+				7EC3D4BC2AD7082C00C102FF /* NotificationManager.swift in Sources */,
 				7EC3D4A12AD4023300C102FF /* PlanViewModel.swift in Sources */,
 				7EC3D4AE2AD4EC8100C102FF /* Protocol.swift in Sources */,
 				7E4626322AC1656300C45ED6 /* AppDelegate.swift in Sources */,

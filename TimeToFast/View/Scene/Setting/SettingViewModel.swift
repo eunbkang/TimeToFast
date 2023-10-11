@@ -13,6 +13,8 @@ final class SettingViewModel {
     
     private let userDefaults = UserDefaultsManager.shared
     
+    private let notification = NotificationManager.shared
+    
     func getStoredSetting() {
         isNotificationOn.value = userDefaults.isNotificationOn
     }
@@ -21,6 +23,7 @@ final class SettingViewModel {
         if Setting.allCases[index] == .notification {
             userDefaults.isNotificationOn = isOn
         }
+        notification.setNotification()
     }
     
     func configToggleSwitchIsOn(index: Int) -> Bool {
@@ -30,4 +33,5 @@ final class SettingViewModel {
             return false
         }
     }
+    
 }

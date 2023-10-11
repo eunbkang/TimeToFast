@@ -13,10 +13,14 @@ final class PlanViewModel {
     
     private let userDefaults = UserDefaultsManager.shared
     
+    private let notification = NotificationManager.shared
+    
     func savePlan() {
         userDefaults.isPlanSetByUser = true
         userDefaults.fastPlanType = planSetting.value.plan
         userDefaults.eatingStartTime = planSetting.value.eatingStartTime
+        
+        notification.setNotification()
     }
     
     func getStoredSetting() {
