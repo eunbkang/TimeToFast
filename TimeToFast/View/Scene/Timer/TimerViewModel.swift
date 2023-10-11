@@ -18,20 +18,25 @@ final class TimerViewModel {
     private let userDefaults = UserDefaultsManager.shared
     
     func getStoredSetting() {
-        fastState.value = userDefaults.isTimerRunning ? .fasting : .idle
+        configTimerSetting()
+        configFastState()
+        
         if fastState.value != .idle {
             startTimer()
         }
-        
+    }
+    
+    private func configTimerSetting() {
         switch userDefaults.isPlanSetByUser {
         case true:
-            timerSetting.value.plan = userDefaults.fastPlanType ?? .sixteen
+            timerSetting.value.plan = userDefaults.fastPlanType
             timerSetting.value.fastStartTime = calculateFastStartTime(with: userDefaults.eatingStartTime)
             
         case false:
             timerSetting.value.plan = .sixteen
             timerSetting.value.fastStartTime = calculateFastStartTime(with: timerSetting.value.plan.defaultEatingStartTime)
         }
+        plusOneDay()
     }
     
     private func calculateFastStartTime(with eatingStartTime: Date) -> Date {
@@ -58,14 +63,58 @@ final class TimerViewModel {
         }
     }
     
+    private func configFastState() {
+        fastState.value = userDefaults.isTimerRunning ? fastingOrEating() : .idle
+    }
+    
+    private func fastingOrEating() -> FastState {
+        let current = Date()
+        return current < timerSetting.value.fastEndTime ? .fasting : .eating
+    }
+    
+    private func calculateEatingEndTime() -> Date {
+        let eatingStartTime = timerSetting.value.fastEndTime
+        let eatingHour = 24 - timerSetting.value.plan.rawValue
+
+        return Calendar.current.date(byAdding: .hour, value: eatingHour, to: eatingStartTime) ?? Date()
+    }
+    
+    private func plusOneDay() {
+        if Date() > userDefaults.eatingEndTime {
+            let fastingStartTime = timerSetting.value.fastStartTime
+            timerSetting.value.fastStartTime = fastingStartTime.addOneDay()
+        }
+    }
+    
+    private func configFastingCounter() {
+        let remainingTime = Int(timerSetting.value.fastEndTime.timeIntervalSince(.now))
+        setTimeCounter(remainingTime: remainingTime)
+        
+        if remainingTime <= 0 {
+            timer = nil
+        }
+    }
+    
+    private func configEatingCounter() {
+        let remainingTime = Int(calculateEatingEndTime().timeIntervalSince(.now))
+        setTimeCounter(remainingTime: remainingTime)
+        
+        if remainingTime <= 0 {
+            timer = nil
+        }
+    }
+    
     private func startTimer() {
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] timer in
-                let remainingTime = Int(self?.timerSetting.value.fastEndTime?.timeIntervalSince(.now) ?? 0)
-                self?.setTimeCounter(remainingTime: remainingTime)
+                self?.configTimerSetting()
+                self?.configFastState()
                 
-                if remainingTime <= 0 {
-                    self?.timer = nil
+                if self?.fastState.value == .fasting {
+                    self?.configFastingCounter()
+                    
+                } else if self?.fastState.value == .eating {
+                    self?.configEatingCounter()
                 }
             })
         }

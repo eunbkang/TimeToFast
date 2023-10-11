@@ -32,14 +32,13 @@ final class UserDefaultsManager {
         }
     }
     
-    var fastPlanType: FastingPlan? {
+    var fastPlanType: FastingPlan {
         get {
             let fastingHour = userDefaults.integer(forKey: Constants.Keys.fastPlanType)
-            let type = FastingPlan.allCases.first(where: { $0.rawValue == fastingHour })
+            let type = FastingPlan.allCases.first(where: { $0.rawValue == fastingHour })!
             return type
         }
         set {
-            guard let newValue = newValue else { return }
             userDefaults.set(newValue.rawValue, forKey: Constants.Keys.fastPlanType)
         }
     }
@@ -54,6 +53,12 @@ final class UserDefaultsManager {
             eatingStartHour = hour
             eatingStartMinute = minute
         }
+    }
+    
+    var eatingEndTime: Date {
+        let eatingHour = fastPlanType.eatingHours
+        
+        return Calendar.current.date(byAdding: .hour, value: eatingHour, to: eatingStartTime)!
     }
     
     private var eatingStartHour: Int {

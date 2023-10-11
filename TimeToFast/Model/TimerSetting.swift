@@ -11,8 +11,8 @@ struct TimerSetting {
     var plan: FastingPlan
     
     var fastStartTime: Date
-    var fastEndTime: Date? {
-        return Calendar.current.date(byAdding: .hour, value: plan.rawValue, to: fastStartTime)
+    var fastEndTime: Date {
+        return Calendar.current.date(byAdding: .hour, value: plan.rawValue, to: fastStartTime)!
     }
     
     var fastStartAngle: CGFloat {
@@ -20,7 +20,6 @@ struct TimerSetting {
     }
     
     var fastEndAngle: CGFloat {
-        guard let fastEndTime = fastEndTime else { return 0 }
         return fastEndTime.dateToAngle()
     }
 } 

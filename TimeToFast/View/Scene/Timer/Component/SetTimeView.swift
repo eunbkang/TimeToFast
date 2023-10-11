@@ -96,7 +96,7 @@ class SetTimeView: UIView {
         case .started:
             dateLabel.text = timerSetting.fastStartTime.dateToSetTimeString()
         case .goal:
-            dateLabel.text = timerSetting.fastEndTime?.dateToSetTimeString()
+            dateLabel.text = timerSetting.fastEndTime.dateToSetTimeString()
         }
     }
     

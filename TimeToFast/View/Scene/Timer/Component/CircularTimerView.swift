@@ -134,7 +134,7 @@ class CircularTimerView: UIView {
             arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
             radius: .timerRadius * timerSize,
             startAngle: timerSetting.fastEndAngle,
-            endAngle: timerSetting.fastStartAngle,
+            endAngle: Date().dateToAngle(),
             clockwise: true
         )
 

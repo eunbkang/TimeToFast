@@ -54,6 +54,10 @@ extension Date {
         return dateString
     }
     
+    func addOneDay() -> Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: self)!
+    }
+    
     static func setTimeForToday(hour: Int = 0, minute: Int = 0) -> Date {
         let calendar = Calendar.current
         let todayComponents = calendar.dateComponents([.year, .month, .day], from: Date())
