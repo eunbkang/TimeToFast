@@ -35,7 +35,7 @@ final class UserDefaultsManager {
     var fastPlanType: FastingPlan {
         get {
             let fastingHour = userDefaults.integer(forKey: Constants.Keys.fastPlanType)
-            let type = FastingPlan.allCases.first(where: { $0.rawValue == fastingHour })!
+            let type = FastingPlan.allCases.first(where: { $0.rawValue == fastingHour }) ?? .sixteen
             return type
         }
         set {
