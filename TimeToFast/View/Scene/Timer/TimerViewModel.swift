@@ -9,9 +9,13 @@ import Foundation
 
 final class TimerViewModel {
     var stateTitle = Observable(Constants.StateTitle.idle)
-    var timeCounter = Observable("")
-    var timerSetting = Observable(TimerSetting(plan: .sixteen, fastStartTime: Date()-60*60*10))
+    var timeCounter = Observable("00:00:00")
+    var timerSetting = Observable(TimerSetting(plan: .sixteen, fastStartTime: Date()))
     var fastState = Observable(FastState.idle)
+    lazy var recordCardTime = Observable(RecordCardTime(
+        start: timerSetting.value.fastStartTime.dateToTimeOnlyString(),
+        end: timerSetting.value.fastEndTime.dateToTimeOnlyString()
+    ))
     
     private var timer: Timer?
     
@@ -20,10 +24,37 @@ final class TimerViewModel {
     func getStoredSetting() {
         configTimerSetting()
         configFastState()
+        configRecordCardTime()
         
         if fastState.value != .idle {
             startTimer()
         }
+    }
+    
+    private func configRecordCardTime() {
+        switch fastState.value {
+        case .idle:
+            setIdleRecordCardTime()
+        case .fasting:
+            setFastingRecordCardTime()
+        case .eating:
+            setEatingRecordCardTime()
+        }
+    }
+    
+    private func setIdleRecordCardTime() {
+        recordCardTime.value.start = timerSetting.value.fastStartTime.dateToTimeOnlyString()
+        recordCardTime.value.end = timerSetting.value.fastEndTime.dateToTimeOnlyString()
+    }
+    
+    private func setFastingRecordCardTime() {
+        recordCardTime.value.start = userDefaults.recordStartTime.dateToSetTimeString()
+        recordCardTime.value.end = timerSetting.value.fastEndTime.dateToSetTimeString()
+    }
+    
+    private func setEatingRecordCardTime() {
+        recordCardTime.value.start = userDefaults.recordStartTime.dateToSetTimeString()
+        recordCardTime.value.end = userDefaults.recordEndTime.dateToSetTimeString()
     }
     
     private func configTimerSetting() {

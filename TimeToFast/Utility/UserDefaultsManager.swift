@@ -87,4 +87,23 @@ final class UserDefaultsManager {
             userDefaults.set(newValue, forKey: Constants.Keys.isNotificationOn)
         }
     }
+    
+    var recordStartTime: Date {
+        get {
+            return Date(timeIntervalSince1970: userDefaults.double(forKey: Constants.Keys.recordStartTime))
+        }
+        set {
+            userDefaults.set(newValue.timeIntervalSince1970, forKey: Constants.Keys.recordStartTime)
+        }
+    }
+    
+    var recordEndTime: Date {
+        get {
+            return Date(timeIntervalSince1970: userDefaults.double(forKey: Constants.Keys.recordEndTime))
+        }
+        set {
+            userDefaults.set(newValue.timeIntervalSince1970, forKey: Constants.Keys.recordEndTime)
+        }
+    }
+
 }

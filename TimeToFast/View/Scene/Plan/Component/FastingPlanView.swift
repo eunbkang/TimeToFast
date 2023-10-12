@@ -82,7 +82,8 @@ class FastingPlanView: BaseView {
     
     override func configLayoutConstraints() {
         headerView.snp.makeConstraints { make in
-            make.leading.top.equalToSuperview()
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().inset(28)
         }
         
         backgroundRectangle.snp.makeConstraints { make in

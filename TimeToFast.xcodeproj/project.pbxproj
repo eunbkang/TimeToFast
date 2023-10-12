@@ -59,6 +59,9 @@
 		7EC3D4BF2AD723CA00C102FF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC3D4BE2AD723CA00C102FF /* Realm */; };
 		7EC3D4C12AD723CA00C102FF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC3D4C02AD723CA00C102FF /* RealmSwift */; };
 		7EC3D4C42AD733D800C102FF /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4C32AD733D800C102FF /* RealmModel.swift */; };
+		7EC3D4C62AD77CC800C102FF /* RecordTimeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4C52AD77CC800C102FF /* RecordTimeCardView.swift */; };
+		7EC3D4DB2AD7ADFF00C102FF /* TimeCardSaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4DA2AD7ADFF00C102FF /* TimeCardSaveButton.swift */; };
+		7EC3D4DD2AD7CB1D00C102FF /* RecordCardTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +116,9 @@
 		7EC3D4B92AD6FF6A00C102FF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		7EC3D4BB2AD7082C00C102FF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7EC3D4C32AD733D800C102FF /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		7EC3D4C52AD77CC800C102FF /* RecordTimeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTimeCardView.swift; sourceTree = "<group>"; };
+		7EC3D4DA2AD7ADFF00C102FF /* TimeCardSaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardSaveButton.swift; sourceTree = "<group>"; };
+		7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCardTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +230,8 @@
 				7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */,
 				7EC3D47A2ACE6E9600C102FF /* SetTimeView.swift */,
 				7EC3D4802AD1C3BF00C102FF /* FastControlButton.swift */,
+				7EC3D4C52AD77CC800C102FF /* RecordTimeCardView.swift */,
+				7EC3D4DA2AD7ADFF00C102FF /* TimeCardSaveButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -232,13 +240,14 @@
 			isa = PBXGroup;
 			children = (
 				7E4626662AC4127B00C45ED6 /* States.swift */,
+				7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */,
 				7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */,
+				7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */,
 				7EC3D48D2AD3115100C102FF /* EditPlanHeader.swift */,
 				7EC3D4932AD31BFF00C102FF /* Days.swift */,
-				7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */,
-				7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */,
 				7EC3D4B52AD52D3B00C102FF /* Setting.swift */,
 				7EC3D4B92AD6FF6A00C102FF /* Notification.swift */,
+				7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,8 +424,10 @@
 				7EC3D4B42AD529D200C102FF /* SettingTableViewCell.swift in Sources */,
 				7EC3D49D2AD3D38E00C102FF /* PlanSetting.swift in Sources */,
 				7EC3D48A2AD30C5600C102FF /* WeeklyScheduleView.swift in Sources */,
+				7EC3D4DB2AD7ADFF00C102FF /* TimeCardSaveButton.swift in Sources */,
 				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
 				7EC3D4A32AD40A5F00C102FF /* FastingPlanTableViewCell.swift in Sources */,
+				7EC3D4DD2AD7CB1D00C102FF /* RecordCardTime.swift in Sources */,
 				7EC3D4902AD3196400C102FF /* BaseTableViewCell.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
 				7EC3D4982AD3CA2000C102FF /* EatingPeriodView.swift in Sources */,
@@ -447,6 +458,7 @@
 				7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */,
 				7EC3D4A82AD42E8E00C102FF /* UserDefaultsManager.swift in Sources */,
 				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
+				7EC3D4C62AD77CC800C102FF /* RecordTimeCardView.swift in Sources */,
 				7E4626692AC4207A00C45ED6 /* TimerControlButton.swift in Sources */,
 				7EC3D4A62AD410EE00C102FF /* ChooseFastingPlanViewController.swift in Sources */,
 				7E46265B2AC19B3500C45ED6 /* Constants.swift in Sources */,

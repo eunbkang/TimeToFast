@@ -9,7 +9,11 @@ import UIKit
 
 final class PlanHeaderView: UIView {
     
-    var type: EditPlanHeaderType
+    var type: EditPlanHeaderType {
+        didSet {
+            configTypeToView()
+        }
+    }
     
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
@@ -34,10 +38,16 @@ final class PlanHeaderView: UIView {
     
         configViewComponents()
         configLayoutConstraints()
+        configTypeToView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configTypeToView() {
+        imageView.image = UIImage(systemName: type.header.image, withConfiguration: UIImage.SymbolConfiguration(font: .preferredFont(forTextStyle: .footnote)))
+        titleLabel.text = type.header.title
     }
     
     private func configViewComponents() {
@@ -47,7 +57,7 @@ final class PlanHeaderView: UIView {
     
     private func configLayoutConstraints() {
         imageView.snp.makeConstraints { make in
-            make.leading.equalTo(28)
+            make.leading.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         titleLabel.snp.makeConstraints { make in

@@ -10,7 +10,7 @@ import SnapKit
 
 final class TimerViewController: BaseViewController {
     
-    private lazy var timerView = TimerView(fastState: viewModel.fastState.value, timerSetting: viewModel.timerSetting.value)
+    private lazy var timerView = TimerView(fastState: viewModel.fastState.value, timerSetting: viewModel.timerSetting.value, recordCardTime: viewModel.recordCardTime.value)
     
     private let viewModel = TimerViewModel()
     
@@ -28,9 +28,10 @@ final class TimerViewController: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         timerView.backgroundLayer.frame = view.bounds
         view.layer.insertSublayer(timerView.backgroundLayer, at: 0)
-        
     }
     
     override func configViewHierarchy() {
@@ -40,8 +41,8 @@ final class TimerViewController: BaseViewController {
         
         timerView.fastControlButton.addTarget(self, action: #selector(fastControlButtonTapped), for: .touchUpInside)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(startedTimeViewTapped))
-        timerView.startedTimeView.addGestureRecognizer(tapGestureRecognizer)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(leftTimeViewTapped))
+//        timerView.startedTimeView.addGestureRecognizer(tapGestureRecognizer)
         
         let recordButton = UIBarButtonItem(image: UIImage(systemName: "chart.bar.xaxis"), style: .plain, target: self, action: #selector(recordButtonTapped))
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(settingButtonTapped))
@@ -71,7 +72,7 @@ final class TimerViewController: BaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func startedTimeViewTapped() {
+    @objc func leftTimeViewTapped() {
         let vc = EditStartedTimeViewController()
         vc.type = .fastingStartedTime
         vc.timePicker.date = viewModel.timerSetting.value.fastStartTime

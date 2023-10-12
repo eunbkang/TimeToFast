@@ -64,6 +64,28 @@ enum FastState {
             return Constants.TimeStatus.eating
         }
     }
+    
+    var recordTimeCardHeaderType: EditPlanHeaderType {
+        switch self {
+        case .idle:
+            return .fastingPlan
+        case .fasting:
+            return .fastingInProgress
+        case .eating:
+            return .lastFasting
+        }
+    }
+    
+    var recordTimeCardsTitle: TimeCardTitle {
+        switch self {
+        case .idle:
+            return TimeCardTitle(left: "STARTS", right: "ENDS")
+        case .fasting:
+            return TimeCardTitle(left: "STARTED", right: "GOAL")
+        case .eating:
+            return TimeCardTitle(left: "STARTED", right: "ENDED")
+        }
+    }
 }
 
 enum TimerStatus {

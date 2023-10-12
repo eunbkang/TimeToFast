@@ -75,26 +75,10 @@ final class TimerView: UIView {
         return view
     }()
     
-    lazy var startedTimeView: SetTimeView = {
-        let view = SetTimeView(viewType: .started, fastState: fastState, timerSetting: timerSetting)
+    lazy var recordTimeCardView: RecordTimeCardView = {
+        let view = RecordTimeCardView(fastState: fastState, recordCardTime: recordCardTime, recordStatus: .notSaved)
         
         return view
-    }()
-    
-    lazy var goalTimeView: SetTimeView = {
-        let view = SetTimeView(viewType: .goal, fastState: fastState, timerSetting: timerSetting)
-        
-        return view
-    }()
-    
-    private lazy var setTimeStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [startedTimeView, goalTimeView])
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.spacing = 14
-        
-        return stackView
     }()
     
     var fastState: FastState {
@@ -109,16 +93,24 @@ final class TimerView: UIView {
         }
     }
     
+    var recordCardTime: RecordCardTime {
+        didSet {
+            configRecordCardTimeToView()
+        }
+    }
+    
     // MARK: - Initializer
     
-    init(fastState: FastState, timerSetting: TimerSetting) {
+    init(fastState: FastState, timerSetting: TimerSetting, recordCardTime: RecordCardTime) {
         self.fastState = fastState
         self.timerSetting = timerSetting
+        self.recordCardTime = recordCardTime
         super.init(frame: .zero)
         
         configViewHierarchy()
         configLayoutConstraints()
         configFastingStateToView()
+        configRecordCardTimeToView()
     }
     
     required init?(coder: NSCoder) {
@@ -129,8 +121,6 @@ final class TimerView: UIView {
     
     private func configTimerSettingToView() {
         circularTimerView.timerSetting = timerSetting
-        startedTimeView.timerSetting = timerSetting
-        goalTimeView.timerSetting = timerSetting
         planButton.fastPlan = timerSetting.plan
     }
     
@@ -143,12 +133,15 @@ final class TimerView: UIView {
         timerControlButton.fastState = fastState
         planButton.fastState = fastState
         circularTimerView.fastState = fastState
-        startedTimeView.fastState = fastState
-        goalTimeView.fastState = fastState
+        recordTimeCardView.fastState = fastState
+    }
+    
+    private func configRecordCardTimeToView() {
+        recordTimeCardView.recordCardTime = recordCardTime
     }
     
     private func configViewHierarchy() {
-        let components = [timerControlButton, planButton, stateTitleLabel, circularTimerView, setTimeStackView]
+        let components = [timerControlButton, planButton, stateTitleLabel, circularTimerView, recordTimeCardView]
         components.forEach { item in
             addSubview(item)
         }
@@ -166,13 +159,13 @@ final class TimerView: UIView {
             make.trailing.equalToSuperview().inset(Constants.Size.edgePadding)
         }
         stateTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(timerControlButton.snp.bottom).offset(36)
+            make.top.equalTo(timerControlButton.snp.bottom).offset(32)
             make.centerX.equalToSuperview()
         }
         circularTimerView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(Constants.Size.timer)
             make.height.equalTo(circularTimerView.snp.width)
-            make.top.equalTo(stateTitleLabel.snp.bottom).offset(48)
+            make.top.equalTo(stateTitleLabel.snp.bottom).offset(36)
             make.centerX.equalToSuperview()
         }
         
@@ -186,11 +179,11 @@ final class TimerView: UIView {
             make.height.equalTo(36)
             make.width.equalToSuperview().multipliedBy(0.52)
         }
-        setTimeStackView.snp.makeConstraints { make in
+        
+        recordTimeCardView.snp.makeConstraints { make in
+            make.top.equalTo(circularTimerView.snp.bottom).offset(36)
             make.horizontalEdges.equalToSuperview().inset(Constants.Size.edgePadding)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(circularTimerView.snp.bottom).offset(52)
-            make.height.equalTo(64)
+            make.height.equalTo(112)
         }
     }
 }

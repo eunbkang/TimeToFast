@@ -39,9 +39,7 @@ class NotificationManager {
         let trigger = UNCalendarNotificationTrigger(dateMatching: makeFastingStartDateComponent(), repeats: true)
         let request = UNNotificationRequest(identifier: Constants.Notification.fastingStartIdentifier, content: content, trigger: trigger)
         
-        UNUserNotificationCenter.current().add(request) { error in
-            print(error)
-        }
+        UNUserNotificationCenter.current().add(request)
     }
     
     private func sendEatingNotification() {
@@ -54,9 +52,7 @@ class NotificationManager {
         let trigger = UNCalendarNotificationTrigger(dateMatching: makeEatingStartDateComponent(), repeats: true)
         let request = UNNotificationRequest(identifier: Constants.Notification.eatingStartIdentifier, content: content, trigger: trigger)
         
-        UNUserNotificationCenter.current().add(request) { error in
-            print(error)
-        }
+        UNUserNotificationCenter.current().add(request)
     }
     
     private func createNotification() {

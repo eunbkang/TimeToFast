@@ -56,7 +56,8 @@ class EatingPeriodView: BaseView {
     
     override func configLayoutConstraints() {
         headerView.snp.makeConstraints { make in
-            make.leading.top.equalToSuperview()
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().inset(28)
         }
         
         eatingPeriodStackView.snp.makeConstraints { make in

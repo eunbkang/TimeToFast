@@ -14,7 +14,17 @@ enum SetTimeViewType {
 
 class SetTimeView: UIView {
     
-    var viewType: SetTimeViewType
+//    var viewType: SetTimeViewType
+    var title: String {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    var date: String {
+        didSet {
+            dateLabel.text = date
+        }
+    }
     
     var fastState: FastState {
         didSet {
@@ -22,29 +32,25 @@ class SetTimeView: UIView {
         }
     }
     
-    var timerSetting: TimerSetting {
-        didSet {
-            configTimerSettingToView()
-        }
-    }
-    
-    private lazy var backgroundRectangle: UIView = {
+    lazy var backgroundRectangle: UIView = {
         let view = UIView()
+        view.backgroundColor = .red
         view.layer.cornerRadius = .buttonCornerRadius
         view.clipsToBounds = true
         
         return view
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .footnote, weight: .semibold)
         label.textColor = .systemGray
+        label.text = title
         
         return label
     }()
     
-    private let editImageView: UIImageView = {
+    let editImageView: UIImageView = {
         let view = UIImageView()
         let config = UIImage.SymbolConfiguration(font: .preferredFont(forTextStyle: .footnote))
         view.image = UIImage(systemName: "pencil", withConfiguration: config)
@@ -55,8 +61,9 @@ class SetTimeView: UIView {
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
+        label.font = .preferredFont(forTextStyle: .footnote, weight: .semibold)
         label.textColor = .black
+        label.text = date
         
         return label
     }()
@@ -66,20 +73,20 @@ class SetTimeView: UIView {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = 4
         
         return stackView
     }()
     
-    init(viewType: SetTimeViewType, fastState: FastState, timerSetting: TimerSetting) {
-        self.viewType = viewType
+    init(title: String, date: String, fastState: FastState) {
+//        self.viewType = viewType
+        self.title = title
+        self.date = date
         self.fastState = fastState
-        self.timerSetting = timerSetting
         super.init(frame: .zero)
         
         configViewHierarchy()
         configLayoutConstraints()
-        configTimerSettingToView()
         configStateToView()
     }
     
@@ -88,28 +95,13 @@ class SetTimeView: UIView {
     }
     
     private func configStateToView() {
-        backgroundRectangle.backgroundColor = fastState == .idle ? Constants.Color.veryLightGray : .white.withAlphaComponent(0.5)
-    }
-    
-    private func configTimerSettingToView() {
-        switch viewType {
-        case .started:
-            dateLabel.text = timerSetting.fastStartTime.dateToSetTimeString()
-        case .goal:
-            dateLabel.text = timerSetting.fastEndTime.dateToSetTimeString()
-        }
+        backgroundRectangle.backgroundColor = fastState == .idle ? .white : .white.withAlphaComponent(0.75)
     }
     
     private func configViewHierarchy() {
         addSubview(backgroundRectangle)
         addSubview(labelStackView)
-        
-        if viewType == .started {
-            addSubview(editImageView)
-            titleLabel.text = Constants.SetTimeTitle.started
-        } else {
-            titleLabel.text = Constants.SetTimeTitle.goal
-        }
+        addSubview(editImageView)
     }
     
     private func configLayoutConstraints() {
@@ -119,12 +111,9 @@ class SetTimeView: UIView {
         labelStackView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-        
-        if viewType == .started {
-            editImageView.snp.makeConstraints { make in
-                make.centerY.equalTo(titleLabel.snp.centerY)
-                make.leading.equalTo(titleLabel.snp.trailing).offset(8)
-            }
+        editImageView.snp.makeConstraints { make in
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(8)
         }
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class FastingRecord: Object {
+class FastingRecordTable: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var date: Date
     @Persisted var fastingPlan: String
