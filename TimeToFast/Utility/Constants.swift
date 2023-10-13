@@ -85,4 +85,11 @@ enum Constants {
         static let fastingStartIdentifier = "fastingStartNotification"
         static let eatingStartIdentifier = "eatingStartNotification"
     }
+    
+    enum Alert {
+        enum EditPlan {
+            static let title = "Edit Plan"
+            static let message = "This will reset the timer. Any unsaved records will be lost."
+        }
+    }
 }

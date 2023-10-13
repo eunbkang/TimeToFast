@@ -52,10 +52,17 @@ final class PlanViewController: BaseViewController {
     }
     
     @objc func saveButtonTapped() {
-        viewModel.savePlan()
-        dismiss(animated: true)
+        let alert = UIAlertController(title: Constants.Alert.EditPlan.title, message: Constants.Alert.EditPlan.message, preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "Confirm", style: .default) { _ in
+            self.viewModel.savePlan()
+            self.delegate?.didSavedPlanSetting()
+            self.dismiss(animated: true)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         
-        delegate?.didSavedPlanSetting()
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true)
     }
     
     override func configViewHierarchy() {
