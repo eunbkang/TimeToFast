@@ -149,9 +149,8 @@ final class TimerViewController: BaseViewController {
 }
 
 extension TimerViewController: SetTimeDelegate {
-    func didReceiveStartedTime(time: Date) {
-//        viewModel.timerSetting.value.fastStartTime = time
-        // TODO: - to be saved in Realm
+    func didReceiveEditedTime(type: EditTimeType, time: Date) {
+        viewModel.saveEditedTimeToUserDefaults(type: type, time: time)
     }
 }
 

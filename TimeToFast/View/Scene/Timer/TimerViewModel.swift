@@ -185,6 +185,17 @@ final class TimerViewModel {
         timeCounter.value = String(format: "%02d:%02d:%02d", hour, minute, second)
     }
     
+    func saveEditedTimeToUserDefaults(type: EditTimeType, time: Date) {
+        if type == .fastingStartedTime {
+            userDefaults.recordStartTime = time
+            recordCardTime.value.start = time.dateToSetTimeString()
+            
+        } else if type == .fastingEndedTime {
+            userDefaults.recordEndTime = time
+            recordCardTime.value.end = time.dateToSetTimeString()
+        }
+    }
+    
     func configTimeViewEditable() {
         switch fastState.value {
         case .idle:

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SetTimeDelegate: AnyObject {
-    func didReceiveStartedTime(time: Date)
+    func didReceiveEditedTime(type: EditTimeType, time: Date)
 }
 
 protocol SetPlanDelegate: AnyObject {

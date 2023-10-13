@@ -79,7 +79,7 @@ final class PlanViewController: BaseViewController {
 }
 
 extension PlanViewController: SetTimeDelegate {
-    func didReceiveStartedTime(time: Date) {
+    func didReceiveEditedTime(type: EditTimeType, time: Date) {
         viewModel.planSetting.value.eatingStartTime = time
     }
 }

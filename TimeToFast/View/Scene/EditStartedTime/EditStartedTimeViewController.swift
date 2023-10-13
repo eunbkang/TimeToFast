@@ -77,7 +77,7 @@ final class EditStartedTimeViewController: BaseViewController {
     }
     
     @objc func saveButtonTapped() {
-        delegate?.didReceiveStartedTime(time: timePicker.date)
+        delegate?.didReceiveEditedTime(type: type, time: timePicker.date)
         
         dismiss(animated: true)
     }
