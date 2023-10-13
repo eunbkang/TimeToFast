@@ -53,13 +53,26 @@ final class TimerViewModel {
     }
     
     private func setFastingRecordCardTime() {
-        recordCardTime.value.start = userDefaults.recordStartTime.dateToSetTimeString()
+        let isStartTimeZero = userDefaults.recordStartTime.timeIntervalSince1970 == 0
+        let startTimeFromTimer = timerSetting.value.fastStartTime.dateToSetTimeString()
+        let startTimeFromUserDefaults = userDefaults.recordStartTime.dateToSetTimeString()
+        
+        recordCardTime.value.start = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
         recordCardTime.value.end = timerSetting.value.fastEndTime.dateToSetTimeString()
     }
     
     private func setEatingRecordCardTime() {
-        recordCardTime.value.start = userDefaults.recordStartTime.dateToSetTimeString()
-        recordCardTime.value.end = userDefaults.recordEndTime.dateToSetTimeString()
+        let isStartTimeZero = userDefaults.recordStartTime.timeIntervalSince1970 == 0
+        let startTimeFromTimer = timerSetting.value.fastStartTime.dateToSetTimeString()
+        let startTimeFromUserDefaults = userDefaults.recordStartTime.dateToSetTimeString()
+        
+        
+        let isEndTimeZero = userDefaults.recordEndTime.timeIntervalSince1970 == 0
+        let endTimeFromTimer = timerSetting.value.fastEndTime.dateToSetTimeString()
+        let endTimeFromUserDefaults = userDefaults.recordEndTime.dateToSetTimeString()
+        
+        recordCardTime.value.start = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
+        recordCardTime.value.end = isEndTimeZero ? endTimeFromTimer : endTimeFromUserDefaults
     }
     
     private func configTimerSetting() {

@@ -99,7 +99,7 @@ final class TimerViewController: BaseViewController {
         if isEditable {
             timerView.recordTimeCardView.leftTimeView.addGestureRecognizer(leftTapGestureRecognizer)
         } else {
-            timerView.recordTimeCardView.leftTimeView.removeGestureRecognizer(leftTapGestureRecognizer)
+            timerView.recordTimeCardView.leftTimeView.gestureRecognizers?.removeAll()
         }
     }
     
@@ -109,7 +109,7 @@ final class TimerViewController: BaseViewController {
         if isEditable {
             timerView.recordTimeCardView.rightTimeView.addGestureRecognizer(rightTapGestureRecognizer)
         } else {
-            timerView.recordTimeCardView.rightTimeView.removeGestureRecognizer(rightTapGestureRecognizer)
+            timerView.recordTimeCardView.rightTimeView.gestureRecognizers?.removeAll()
         }
     }
     
@@ -130,6 +130,10 @@ final class TimerViewController: BaseViewController {
         
         viewModel.timerSetting.bind { timer in
             self.timerView.timerSetting = timer
+        }
+        
+        viewModel.recordCardTime.bind { time in
+            self.timerView.recordCardTime = time
         }
         
         viewModel.isStartTimeEditable.bind { editable in
