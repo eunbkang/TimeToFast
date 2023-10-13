@@ -17,6 +17,10 @@ final class TimerViewModel {
         end: timerSetting.value.fastEndTime.dateToTimeOnlyString()
     ))
     
+    var recordStatus = Observable(RecordStatus.notSaved)
+    var isStartTimeEditable = Observable(false)
+    var isEndTimeEditable = Observable(false)
+    
     private var timer: Timer?
     
     private let userDefaults = UserDefaultsManager.shared
@@ -25,13 +29,14 @@ final class TimerViewModel {
         configTimerSetting()
         configFastState()
         configRecordCardTime()
+        configTimeViewEditable()
         
         if fastState.value != .idle {
             startTimer()
         }
     }
     
-    private func configRecordCardTime() {
+    func configRecordCardTime() {
         switch fastState.value {
         case .idle:
             setIdleRecordCardTime()
@@ -165,5 +170,21 @@ final class TimerViewModel {
         let second = (remainingTime % 3600) % 60
         
         timeCounter.value = String(format: "%02d:%02d:%02d", hour, minute, second)
+    }
+    
+    func configTimeViewEditable() {
+        switch fastState.value {
+        case .idle:
+            isStartTimeEditable.value = false
+            isEndTimeEditable.value = false
+            
+        case .fasting:
+            isStartTimeEditable.value = true
+            isEndTimeEditable.value = false
+            
+        case .eating:
+            isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
+            isEndTimeEditable.value = recordStatus.value == .notSaved ? true : false
+        }
     }
 }

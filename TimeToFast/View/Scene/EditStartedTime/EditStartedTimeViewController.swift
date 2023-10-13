@@ -9,6 +9,7 @@ import UIKit
 
 enum EditTimeType {
     case fastingStartedTime
+    case fastingEndedTime
     case planEatingFromTime
 }
 
@@ -46,6 +47,11 @@ final class EditStartedTimeViewController: BaseViewController {
         case .fastingStartedTime:
             title = "Edit Started Time"
             timePicker.datePickerMode = .dateAndTime
+            
+        case .fastingEndedTime:
+            title = "Edit Ended Time"
+            timePicker.datePickerMode = .dateAndTime
+            
         case .planEatingFromTime:
             title = "Eating From"
             timePicker.datePickerMode = .time

@@ -36,6 +36,18 @@ class RecordTimeCardView: UIView {
         }
     }
     
+    var isStartTimeEditable: Bool {
+        didSet {
+            showOrHideEditImage()
+        }
+    }
+    
+    var isEndTimeEditable: Bool {
+        didSet {
+            showOrHideEditImage()
+        }
+    }
+    
     private var backgroundRectangle: UIView = {
         let view = UIView()
         view.layer.cornerRadius = .backgroundCornerRadius
@@ -50,7 +62,7 @@ class RecordTimeCardView: UIView {
         return view
     }()
     
-    private lazy var leftTimeView: SetTimeView = {
+    lazy var leftTimeView: SetTimeView = {
         let view = SetTimeView(
             title: fastState.recordTimeCardsTitle.left,
             date: recordCardTime.start,
@@ -60,7 +72,7 @@ class RecordTimeCardView: UIView {
         return view
     }()
     
-    private lazy var rightTimeView: SetTimeView = {
+    lazy var rightTimeView: SetTimeView = {
         let view = SetTimeView(
             title: fastState.recordTimeCardsTitle.right,
             date: recordCardTime.end,
@@ -86,10 +98,12 @@ class RecordTimeCardView: UIView {
         return button
     }()
     
-    init(fastState: FastState, recordCardTime: RecordCardTime, recordStatus: RecordStatus) {
+    init(fastState: FastState, recordCardTime: RecordCardTime, recordStatus: RecordStatus, isStartTimeEditable: Bool, isEndTimeEditable: Bool) {
         self.fastState = fastState
         self.recordCardTime = recordCardTime
         self.recordStatus = recordStatus
+        self.isStartTimeEditable = isStartTimeEditable
+        self.isEndTimeEditable = isEndTimeEditable
         super.init(frame: .zero)
         
         configViewHierarchy()
@@ -98,6 +112,7 @@ class RecordTimeCardView: UIView {
         setFastStateToView()
         setRecordStatusToView()
         setRecordCardTimeToView()
+        showOrHideEditImage()
     }
     
     required init?(coder: NSCoder) {
@@ -172,18 +187,7 @@ class RecordTimeCardView: UIView {
     }
     
     private func showOrHideEditImage() {
-        switch fastState {
-        case .idle:
-            leftTimeView.editImageView.isHidden = true
-            rightTimeView.editImageView.isHidden = true
-            
-        case .fasting:
-            leftTimeView.editImageView.isHidden = false
-            rightTimeView.editImageView.isHidden = true
-            
-        case .eating:
-            leftTimeView.editImageView.isHidden = recordStatus == .notSaved ? false : true
-            rightTimeView.editImageView.isHidden = recordStatus == .notSaved ? false : true
-        }
+        leftTimeView.editImageView.isHidden = !isStartTimeEditable
+        rightTimeView.editImageView.isHidden = !isEndTimeEditable
     }
 }

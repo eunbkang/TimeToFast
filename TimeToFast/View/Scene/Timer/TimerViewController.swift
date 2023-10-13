@@ -41,9 +41,6 @@ final class TimerViewController: BaseViewController {
         
         timerView.fastControlButton.addTarget(self, action: #selector(fastControlButtonTapped), for: .touchUpInside)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(leftTimeViewTapped))
-//        timerView.startedTimeView.addGestureRecognizer(tapGestureRecognizer)
-        
         let recordButton = UIBarButtonItem(image: UIImage(systemName: "chart.bar.xaxis"), style: .plain, target: self, action: #selector(recordButtonTapped))
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(settingButtonTapped))
         navigationItem.leftBarButtonItem = recordButton
@@ -82,13 +79,45 @@ final class TimerViewController: BaseViewController {
         present(nav, animated: true)
     }
     
+    @objc func rightTimeViewTapped() {
+        let vc = EditStartedTimeViewController()
+        vc.type = .fastingEndedTime
+        vc.timePicker.date = viewModel.timerSetting.value.fastEndTime
+        vc.delegate = self
+        
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true)
+    }
+    
     @objc func fastControlButtonTapped() {
         
+    }
+    
+    private func setStartTimeViewTapGestures(isEditable: Bool) {
+        let leftTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(leftTimeViewTapped))
+        
+        if isEditable {
+            timerView.recordTimeCardView.leftTimeView.addGestureRecognizer(leftTapGestureRecognizer)
+        } else {
+            timerView.recordTimeCardView.leftTimeView.removeGestureRecognizer(leftTapGestureRecognizer)
+        }
+    }
+    
+    private func setEndTimeViewTapGestures(isEditable: Bool) {
+        let rightTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(rightTimeViewTapped))
+        
+        if isEditable {
+            timerView.recordTimeCardView.rightTimeView.addGestureRecognizer(rightTapGestureRecognizer)
+        } else {
+            timerView.recordTimeCardView.rightTimeView.removeGestureRecognizer(rightTapGestureRecognizer)
+        }
     }
     
     private func bindViewComponents() {
         viewModel.fastState.bind { fastState in
             self.timerView.fastState = fastState
+            self.viewModel.configTimeViewEditable()
+            self.viewModel.configRecordCardTime()
         }
         
         viewModel.stateTitle.bind { state in
@@ -101,6 +130,16 @@ final class TimerViewController: BaseViewController {
         
         viewModel.timerSetting.bind { timer in
             self.timerView.timerSetting = timer
+        }
+        
+        viewModel.isStartTimeEditable.bind { editable in
+            self.timerView.recordTimeCardView.isStartTimeEditable = editable
+            self.setStartTimeViewTapGestures(isEditable: editable)
+        }
+        
+        viewModel.isEndTimeEditable.bind { editable in
+            self.timerView.recordTimeCardView.isEndTimeEditable = editable
+            self.setEndTimeViewTapGestures(isEditable: editable)
         }
     }
 }

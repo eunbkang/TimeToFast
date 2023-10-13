@@ -76,7 +76,7 @@ final class TimerView: UIView {
     }()
     
     lazy var recordTimeCardView: RecordTimeCardView = {
-        let view = RecordTimeCardView(fastState: fastState, recordCardTime: recordCardTime, recordStatus: .notSaved)
+        let view = RecordTimeCardView(fastState: fastState, recordCardTime: recordCardTime, recordStatus: .notSaved, isStartTimeEditable: false, isEndTimeEditable: false)
         
         return view
     }()
