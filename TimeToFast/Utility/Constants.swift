@@ -89,7 +89,12 @@ enum Constants {
     enum Alert {
         enum EditPlan {
             static let title = "Edit Plan"
-            static let message = "This will reset the timer. Any unsaved records will be lost."
+            static let message = "Editing plan will reset the timer and any unsaved fasting results."
+        }
+        
+        enum SaveRecord {
+            static let title = "Save"
+            static let message = "Do you want to save your last fasting result?"
         }
     }
 }

@@ -24,6 +24,9 @@ final class TimerViewModel {
     private var timer: Timer?
     
     private let userDefaults = UserDefaultsManager.shared
+    private let repository = FastingRecordRepository.shared
+    
+    // MARK: - methods
     
     func getStoredSetting() {
         configTimerSetting()
@@ -34,6 +37,15 @@ final class TimerViewModel {
         if fastState.value != .idle {
             startTimer()
         }
+    }
+    
+    private func configFastState() {
+        fastState.value = userDefaults.isTimerRunning ? fastingOrEating() : .idle
+    }
+    
+    private func fastingOrEating() -> FastState {
+        let current = Date()
+        return current < timerSetting.value.fastEndTime ? .fasting : .eating
     }
     
     func configRecordCardTime() {
@@ -94,6 +106,22 @@ final class TimerViewModel {
         return Calendar.current.date(byAdding: .hour, value: -fastingHours, to: eatingStartTime)!
     }
     
+    private func calculateEatingEndTime() -> Date {
+        let eatingStartTime = timerSetting.value.fastEndTime
+        let eatingHour = 24 - timerSetting.value.plan.rawValue
+
+        return Calendar.current.date(byAdding: .hour, value: eatingHour, to: eatingStartTime) ?? Date()
+    }
+    
+    private func plusOneDay() {
+        if Date() > userDefaults.eatingEndTime {
+            let fastingStartTime = timerSetting.value.fastStartTime
+            timerSetting.value.fastStartTime = fastingStartTime.addOneDay()
+        }
+    }
+    
+    // MARK: - Timer
+    
     func controlTimer() {
         switch fastState.value {
         case .idle:
@@ -109,29 +137,6 @@ final class TimerViewModel {
         case .eating:
             fastState.value = .idle
             userDefaults.isTimerRunning = false
-        }
-    }
-    
-    private func configFastState() {
-        fastState.value = userDefaults.isTimerRunning ? fastingOrEating() : .idle
-    }
-    
-    private func fastingOrEating() -> FastState {
-        let current = Date()
-        return current < timerSetting.value.fastEndTime ? .fasting : .eating
-    }
-    
-    private func calculateEatingEndTime() -> Date {
-        let eatingStartTime = timerSetting.value.fastEndTime
-        let eatingHour = 24 - timerSetting.value.plan.rawValue
-
-        return Calendar.current.date(byAdding: .hour, value: eatingHour, to: eatingStartTime) ?? Date()
-    }
-    
-    private func plusOneDay() {
-        if Date() > userDefaults.eatingEndTime {
-            let fastingStartTime = timerSetting.value.fastStartTime
-            timerSetting.value.fastStartTime = fastingStartTime.addOneDay()
         }
     }
     
@@ -185,6 +190,8 @@ final class TimerViewModel {
         timeCounter.value = String(format: "%02d:%02d:%02d", hour, minute, second)
     }
     
+    // MARK: - UserDefaults
+    
     func saveEditedTimeToUserDefaults(type: EditTimeType, time: Date) {
         if type == .fastingStartedTime {
             userDefaults.recordStartTime = time
@@ -210,5 +217,31 @@ final class TimerViewModel {
             isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
             isEndTimeEditable.value = recordStatus.value == .notSaved ? true : false
         }
+    }
+    
+    // MARK: - Realm
+    
+    func saveNewFastingRecord() throws {
+        let record = makeFastingRecordTable()
+        try repository?.create(record)
+    }
+    
+    
+    
+    private func makeFastingRecordTable() -> FastingRecordTable {
+        let startTime = userDefaults.recordStartTime
+        let endTime = userDefaults.recordEndTime
+        
+        let dateComponent = Calendar.current.dateComponents([.year, .month, .day], from: endTime)
+        let date = Calendar.current.date(from: dateComponent)!
+        
+        let fastingPlan = userDefaults.fastPlanType.rawValue
+        let fastingDuration = endTime.timeIntervalSince(startTime)
+        
+        let isGoalAchieved = fastingDuration / 3600 > Double(fastingPlan) ? true : false
+        
+        let record = FastingRecordTable(date: date, fastingPlan: String(fastingPlan), fastingStartTime: startTime, fastingEndTime: endTime, fastingDuration: fastingDuration, isGoalAchieved: isGoalAchieved)
+        
+        return record
     }
 }

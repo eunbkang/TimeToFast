@@ -1,5 +1,5 @@
 //
-//  RealmModel.swift
+//  FastingRecordTable.swift
 //  TimeToFast
 //
 //  Created by Eunbee Kang on 2023/10/12.
@@ -15,11 +15,11 @@ class FastingRecordTable: Object {
     @Persisted var fastingStartTime: Date
     @Persisted var fastingEndTime: Date
     @Persisted var note: String
-    @Persisted var fastingDuration: Int
-    @Persisted var eatingDuration: Int
+    @Persisted var fastingDuration: Double
+    @Persisted var eatingDuration: Double
     @Persisted var isGoalAchieved: Bool
     
-    convenience init(date: Date, fastingPlan: String, fastingStartTime: Date, fastingEndTime: Date, note: String, fastingDuration: Int, eatingDuration: Int, isGoalAchieved: Bool) {
+    convenience init(date: Date, fastingPlan: String, fastingStartTime: Date, fastingEndTime: Date, note: String = "", fastingDuration: Double, eatingDuration: Double = 0, isGoalAchieved: Bool) {
         self.init()
         
         self.date = date

@@ -14,5 +14,5 @@ struct LocalNotification {
 
 struct NotificationMessage {
     var fastingStart = LocalNotification(title: "Time to fast!", body: "Fasting time has started. Stay committed!")
-    var eatingStart = LocalNotification(title: "Time to eat!", body: "It's time to eat! Break your fast with a healthy meal.")
+    var eatingStart = LocalNotification(title: "Time to eat!", body: "It's time to eat! Save your fasting result and break your fast with a healthy meal.")
 }

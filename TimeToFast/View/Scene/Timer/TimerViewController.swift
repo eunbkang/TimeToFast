@@ -13,6 +13,7 @@ final class TimerViewController: BaseViewController {
     private lazy var timerView = TimerView(fastState: viewModel.fastState.value, timerSetting: viewModel.timerSetting.value, recordCardTime: viewModel.recordCardTime.value)
     
     private let viewModel = TimerViewModel()
+    private let repository = FastingRecordRepository.shared
     
     override func loadView() {
         view = timerView
@@ -40,6 +41,8 @@ final class TimerViewController: BaseViewController {
         timerView.timerControlButton.addTarget(self, action: #selector(timerControlButtonTapped), for: .touchUpInside)
         
         timerView.fastControlButton.addTarget(self, action: #selector(fastControlButtonTapped), for: .touchUpInside)
+        
+        timerView.recordTimeCardView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         
         let recordButton = UIBarButtonItem(image: UIImage(systemName: "chart.bar.xaxis"), style: .plain, target: self, action: #selector(recordButtonTapped))
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(settingButtonTapped))
@@ -91,6 +94,31 @@ final class TimerViewController: BaseViewController {
     
     @objc func fastControlButtonTapped() {
         
+    }
+    
+    @objc func saveButtonTapped() {
+        let alert = UIAlertController(title: Constants.Alert.SaveRecord.title, message: Constants.Alert.SaveRecord.message, preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "Confirm", style: .default) { _ in
+            do {
+                try self.viewModel.saveNewFastingRecord()
+                self.showAlert(title: "Saved Successfully.", message: nil)
+            } catch {
+                self.showAlert(title: "Error", message: "Failed to save the record.")
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
+    
+    private func showAlert(title: String, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okay = UIAlertAction(title: "OK", style: .cancel)
+        
+        alert.addAction(okay)
+        present(alert, animated: true)
     }
     
     private func setStartTimeViewTapGestures(isEditable: Bool) {
