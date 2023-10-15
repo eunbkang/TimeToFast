@@ -20,6 +20,9 @@ enum EditPlanHeaderType: Int, CaseIterable {
     case fastingInProgress
     case lastFasting
     
+    case thisWeek
+    case pastRecords
+    
     var header: EditPlanHeader {
         switch self {
         case .weeklySchedule:
@@ -32,6 +35,10 @@ enum EditPlanHeaderType: Int, CaseIterable {
             return EditPlanHeader(image: "flame.fill", title: "FASTING IN PROGRESS")
         case .lastFasting:
             return EditPlanHeader(image: "flame.fill", title: "LAST FASTING RESULT")
+        case .thisWeek:
+            return EditPlanHeader(image: "chart.bar.fill", title: "THIS WEEK")
+        case .pastRecords:
+            return EditPlanHeader(image: "calendar", title: "PAST RECORDS")
         }
     }
 }

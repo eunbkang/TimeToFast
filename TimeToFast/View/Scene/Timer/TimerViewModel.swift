@@ -226,8 +226,6 @@ final class TimerViewModel {
         try repository?.create(record)
     }
     
-    
-    
     private func makeFastingRecordTable() -> FastingRecordTable {
         let startTime = userDefaults.recordStartTime
         let endTime = userDefaults.recordEndTime

@@ -63,7 +63,9 @@ final class TimerViewController: BaseViewController {
     }
     
     @objc func recordButtonTapped() {
+        let vc = RecordViewController()
         
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func settingButtonTapped() {

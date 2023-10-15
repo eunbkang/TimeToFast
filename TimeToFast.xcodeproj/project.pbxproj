@@ -63,6 +63,11 @@
 		7EC3D4DB2AD7ADFF00C102FF /* TimeCardSaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4DA2AD7ADFF00C102FF /* TimeCardSaveButton.swift */; };
 		7EC3D4DD2AD7CB1D00C102FF /* RecordCardTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */; };
 		7EC3D4DF2ADA527200C102FF /* FastingRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4DE2ADA527200C102FF /* FastingRecordRepository.swift */; };
+		7EC3D4E22ADC258900C102FF /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4E12ADC258900C102FF /* RecordViewController.swift */; };
+		7EC3D4E42ADC25CA00C102FF /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4E32ADC25CA00C102FF /* RecordView.swift */; };
+		7EC3D4E72ADC267000C102FF /* BackShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4E62ADC267000C102FF /* BackShadowView.swift */; };
+		7EC3D4EA2ADC288A00C102FF /* PastRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4E92ADC288A00C102FF /* PastRecordsView.swift */; };
+		7EC3D4EC2ADC455900C102FF /* ThisWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4EB2ADC455900C102FF /* ThisWeekView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +126,11 @@
 		7EC3D4DA2AD7ADFF00C102FF /* TimeCardSaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardSaveButton.swift; sourceTree = "<group>"; };
 		7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCardTime.swift; sourceTree = "<group>"; };
 		7EC3D4DE2ADA527200C102FF /* FastingRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastingRecordRepository.swift; sourceTree = "<group>"; };
+		7EC3D4E12ADC258900C102FF /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		7EC3D4E32ADC25CA00C102FF /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		7EC3D4E62ADC267000C102FF /* BackShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackShadowView.swift; sourceTree = "<group>"; };
+		7EC3D4E92ADC288A00C102FF /* PastRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastRecordsView.swift; sourceTree = "<group>"; };
+		7EC3D4EB2ADC455900C102FF /* ThisWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeekView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +204,7 @@
 				7EC3D47C2ACE8AE800C102FF /* Timer */,
 				7EC3D47D2ACE8AEE00C102FF /* EditStartedTime */,
 				7EC3D4822AD2F9DC00C102FF /* Plan */,
+				7EC3D4E02ADC257700C102FF /* Record */,
 				7EC3D4AF2AD51E4100C102FF /* Setting */,
 			);
 			path = Scene;
@@ -342,6 +353,26 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		7EC3D4E02ADC257700C102FF /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D4E52ADC261B00C102FF /* Component */,
+				7EC3D4E12ADC258900C102FF /* RecordViewController.swift */,
+				7EC3D4E32ADC25CA00C102FF /* RecordView.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		7EC3D4E52ADC261B00C102FF /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D4E62ADC267000C102FF /* BackShadowView.swift */,
+				7EC3D4E92ADC288A00C102FF /* PastRecordsView.swift */,
+				7EC3D4EB2ADC455900C102FF /* ThisWeekView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -426,12 +457,14 @@
 				7E3D3AB62ACC9D0000363F2E /* Observable.swift in Sources */,
 				7EC3D4B42AD529D200C102FF /* SettingTableViewCell.swift in Sources */,
 				7EC3D49D2AD3D38E00C102FF /* PlanSetting.swift in Sources */,
+				7EC3D4E72ADC267000C102FF /* BackShadowView.swift in Sources */,
 				7EC3D48A2AD30C5600C102FF /* WeeklyScheduleView.swift in Sources */,
 				7EC3D4DB2AD7ADFF00C102FF /* TimeCardSaveButton.swift in Sources */,
 				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
 				7EC3D4A32AD40A5F00C102FF /* FastingPlanTableViewCell.swift in Sources */,
 				7EC3D4DD2AD7CB1D00C102FF /* RecordCardTime.swift in Sources */,
 				7EC3D4902AD3196400C102FF /* BaseTableViewCell.swift in Sources */,
+				7EC3D4E42ADC25CA00C102FF /* RecordView.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
 				7EC3D4982AD3CA2000C102FF /* EatingPeriodView.swift in Sources */,
 				7EC3D4BA2AD6FF6A00C102FF /* Notification.swift in Sources */,
@@ -439,11 +472,13 @@
 				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
 				7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */,
 				7EC3D4812AD1C3BF00C102FF /* FastControlButton.swift in Sources */,
+				7EC3D4EC2ADC455900C102FF /* ThisWeekView.swift in Sources */,
 				7EC3D4842AD2F9F100C102FF /* PlanViewController.swift in Sources */,
 				7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */,
 				7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */,
 				7E4626532AC1962E00C45ED6 /* TimerViewController.swift in Sources */,
 				7EC3D4B82AD531FE00C102FF /* SettingViewModel.swift in Sources */,
+				7EC3D4E22ADC258900C102FF /* RecordViewController.swift in Sources */,
 				7E4626502AC1954A00C45ED6 /* BaseViewController.swift in Sources */,
 				7EC3D4BC2AD7082C00C102FF /* NotificationManager.swift in Sources */,
 				7EC3D4C42AD733D800C102FF /* FastingRecordTable.swift in Sources */,
@@ -460,6 +495,7 @@
 				7EC3D4922AD31B4F00C102FF /* CircularDayButton.swift in Sources */,
 				7E4626342AC1656300C45ED6 /* SceneDelegate.swift in Sources */,
 				7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */,
+				7EC3D4EA2ADC288A00C102FF /* PastRecordsView.swift in Sources */,
 				7EC3D4A82AD42E8E00C102FF /* UserDefaultsManager.swift in Sources */,
 				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
 				7EC3D4C62AD77CC800C102FF /* RecordTimeCardView.swift in Sources */,
