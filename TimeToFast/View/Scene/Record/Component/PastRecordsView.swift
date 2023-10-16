@@ -81,7 +81,7 @@ final class PastRecordsView: BaseView {
     }
     
     private func configCalendarStyle() {
-        calendarView.headerHeight = 40
+        calendarView.headerHeight = 42
         calendarView.weekdayHeight = 20
         calendarView.backgroundColor = .white
         calendarView.placeholderType = .none

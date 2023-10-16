@@ -71,6 +71,7 @@
 		7EC3D4EF2ADC52F200C102FF /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC3D4EE2ADC52F200C102FF /* FSCalendar */; };
 		7EC3D4F12ADD5BFE00C102FF /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4F02ADD5BFE00C102FF /* RecordViewModel.swift */; };
 		7EC3D4F32ADD67F300C102FF /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */; };
+		7EC3D4F62ADDA74A00C102FF /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC3D4F52ADDA74A00C102FF /* DGCharts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 			files = (
 				7EC3D4C12AD723CA00C102FF /* RealmSwift in Frameworks */,
 				7EC3D4EF2ADC52F200C102FF /* FSCalendar in Frameworks */,
+				7EC3D4F62ADDA74A00C102FF /* DGCharts in Frameworks */,
 				7EC3D4BF2AD723CA00C102FF /* Realm in Frameworks */,
 				7E46264C2AC16C9D00C45ED6 /* SnapKit in Frameworks */,
 			);
@@ -402,6 +404,7 @@
 				7EC3D4BE2AD723CA00C102FF /* Realm */,
 				7EC3D4C02AD723CA00C102FF /* RealmSwift */,
 				7EC3D4EE2ADC52F200C102FF /* FSCalendar */,
+				7EC3D4F52ADDA74A00C102FF /* DGCharts */,
 			);
 			productName = TimeToFast;
 			productReference = 7E46262E2AC1656300C45ED6 /* TimeToFast.app */;
@@ -435,6 +438,7 @@
 				7E46264A2AC16C9D00C45ED6 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7EC3D4BD2AD723CA00C102FF /* XCRemoteSwiftPackageReference "realm-swift" */,
 				7EC3D4ED2ADC52F200C102FF /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				7EC3D4F42ADDA74A00C102FF /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 7E46262F2AC1656300C45ED6 /* Products */;
 			projectDirPath = "";
@@ -763,6 +767,14 @@
 				minimumVersion = 2.8.3;
 			};
 		};
+		7EC3D4F42ADDA74A00C102FF /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -785,6 +797,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7EC3D4ED2ADC52F200C102FF /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		7EC3D4F52ADDA74A00C102FF /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EC3D4F42ADDA74A00C102FF /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

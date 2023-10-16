@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import DGCharts
 
 final class RecordViewController: BaseViewController {
     
@@ -27,6 +28,15 @@ final class RecordViewController: BaseViewController {
         
         recordView.pastRecordsView.calendarView.delegate = self
         recordView.pastRecordsView.calendarView.dataSource = self
+        
+        configBarChart()
+    }
+    
+    private func configBarChart() {
+        recordView.thisWeekView.chartView.data = viewMocel.makeBarChartData()
+        
+        recordView.thisWeekView.chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: viewMocel.dayData)
+        recordView.thisWeekView.chartView.xAxis.setLabelCount(viewMocel.hoursData.count, force: false)
     }
 }
 

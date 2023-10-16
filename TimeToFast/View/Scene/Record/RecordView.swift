@@ -18,7 +18,7 @@ final class RecordView: BaseView {
     private let contentView = UIView()
     
     let pastRecordsView = PastRecordsView()
-    private let thisWeekView = ThisWeekView()
+    let thisWeekView = ThisWeekView()
 
     private lazy var stackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [thisWeekView, pastRecordsView])
@@ -48,7 +48,7 @@ final class RecordView: BaseView {
         }
         
         thisWeekView.snp.makeConstraints { make in
-            make.height.equalTo(362)
+            make.height.equalTo(266)
         }
         pastRecordsView.snp.makeConstraints { make in
             make.height.equalTo(362)

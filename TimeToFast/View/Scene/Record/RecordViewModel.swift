@@ -7,8 +7,11 @@
 
 import Foundation
 import RealmSwift
+import DGCharts
 
 final class RecordViewModel {
+    
+    private let repository = FastingRecordRepository.shared
     
     private var recordResults: Results<FastingRecordTable>? {
         get {
@@ -20,7 +23,8 @@ final class RecordViewModel {
     
     var recordedDates: Observable<[Date]> = Observable([])
     
-    private let repository = FastingRecordRepository.shared
+    let dayData = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
+    let hoursData: [Double] = [14.3, 15.7, 16.0, 16.3, 14.8, 16.8, 0]
     
     func fetchFastingRecord() {
         repository?.recordList = repository?.fetch()
@@ -59,5 +63,22 @@ final class RecordViewModel {
         } else {
             return .nothing
         }
+    }
+    
+    func makeBarChartData() -> BarChartData {
+        let dataSet = BarChartDataSet(entries: makeChartDataEntry(data: hoursData), label: "fasting hour")
+        
+        return BarChartData(dataSet: dataSet)
+    }
+    
+    private func makeChartDataEntry(data: [Double]) -> [BarChartDataEntry] {
+        var barEntry: [BarChartDataEntry] = []
+        
+        for i in 0 ..< data.count {
+            let item = BarChartDataEntry(x: Double(i), y: data[i])
+            barEntry.append(item)
+        }
+        
+        return barEntry
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DGCharts
 
 final class ThisWeekView: BaseView {
     
@@ -21,9 +22,17 @@ final class ThisWeekView: BaseView {
         return view
     }()
     
+    let chartView: BarChartView = {
+        let view = BarChartView()
+        view.backgroundColor = .systemYellow
+        
+        return view
+    }()
+    
     override func configViewHierarchy() {
         addSubview(headerView)
         addSubview(backgroundRect)
+        backgroundRect.addSubview(chartView)
     }
     
     override func configLayoutConstraints() {
@@ -34,7 +43,11 @@ final class ThisWeekView: BaseView {
         backgroundRect.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(24)
             make.horizontalEdges.equalToSuperview().inset(Constants.Size.edgePadding)
-            make.height.equalTo(332)
+            make.height.equalTo(236)
+        }
+        chartView.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(24)
+            make.horizontalEdges.equalToSuperview().inset(32)
         }
     }
 }

@@ -25,6 +25,27 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+		<key>PlaygroundChart (Playground) 1.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>PlaygroundChart (Playground) 2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>PlaygroundChart (Playground).xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>SnapKitPlayground (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
