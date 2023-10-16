@@ -69,6 +69,8 @@
 		7EC3D4EA2ADC288A00C102FF /* PastRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4E92ADC288A00C102FF /* PastRecordsView.swift */; };
 		7EC3D4EC2ADC455900C102FF /* ThisWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4EB2ADC455900C102FF /* ThisWeekView.swift */; };
 		7EC3D4EF2ADC52F200C102FF /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC3D4EE2ADC52F200C102FF /* FSCalendar */; };
+		7EC3D4F12ADD5BFE00C102FF /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4F02ADD5BFE00C102FF /* RecordViewModel.swift */; };
+		7EC3D4F32ADD67F300C102FF /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +134,8 @@
 		7EC3D4E62ADC267000C102FF /* BackShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackShadowView.swift; sourceTree = "<group>"; };
 		7EC3D4E92ADC288A00C102FF /* PastRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastRecordsView.swift; sourceTree = "<group>"; };
 		7EC3D4EB2ADC455900C102FF /* ThisWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeekView.swift; sourceTree = "<group>"; };
+		7EC3D4F02ADD5BFE00C102FF /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
+		7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +267,7 @@
 				7EC3D4B52AD52D3B00C102FF /* Setting.swift */,
 				7EC3D4B92AD6FF6A00C102FF /* Notification.swift */,
 				7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */,
+				7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				7EC3D4E52ADC261B00C102FF /* Component */,
 				7EC3D4E12ADC258900C102FF /* RecordViewController.swift */,
 				7EC3D4E32ADC25CA00C102FF /* RecordView.swift */,
+				7EC3D4F02ADD5BFE00C102FF /* RecordViewModel.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */,
 				7EC3D4A32AD40A5F00C102FF /* FastingPlanTableViewCell.swift in Sources */,
 				7EC3D4DD2AD7CB1D00C102FF /* RecordCardTime.swift in Sources */,
+				7EC3D4F12ADD5BFE00C102FF /* RecordViewModel.swift in Sources */,
 				7EC3D4902AD3196400C102FF /* BaseTableViewCell.swift in Sources */,
 				7EC3D4E42ADC25CA00C102FF /* RecordView.swift in Sources */,
 				7E4626592AC19AFD00C45ED6 /* UIColor+Extension.swift in Sources */,
@@ -494,6 +501,7 @@
 				7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */,
 				7EC3D49F2AD3DD6300C102FF /* FastingPlan.swift in Sources */,
 				7EC3D4DF2ADA527200C102FF /* FastingRecordRepository.swift in Sources */,
+				7EC3D4F32ADD67F300C102FF /* CalendarDate.swift in Sources */,
 				7EC3D4882AD3074A00C102FF /* BaseView.swift in Sources */,
 				7EC3D49B2AD3CC0B00C102FF /* EatingPeriodTimeView.swift in Sources */,
 				7EC3D4922AD31B4F00C102FF /* CircularDayButton.swift in Sources */,

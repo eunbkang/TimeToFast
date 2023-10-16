@@ -66,6 +66,17 @@ extension Date {
         return Calendar.current.date(byAdding: .day, value: 1, to: self)!
     }
     
+    func isToday() -> Bool {
+        let calendar = Calendar.current
+        let todayComponents = calendar.dateComponents([.year, .month, .day], from: Date())
+        let today = calendar.date(from: todayComponents)!
+        
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: self)
+        let thisDate = calendar.date(from: dateComponents)!
+        
+        return today == thisDate ? true : false
+    }
+    
     static func setTimeForToday(hour: Int = 0, minute: Int = 0) -> Date {
         let calendar = Calendar.current
         let todayComponents = calendar.dateComponents([.year, .month, .day], from: Date())

@@ -13,6 +13,8 @@ final class FastingRecordRepository {
     
     private let realm: Realm
     
+    var recordList: Results<FastingRecordTable>?
+    
     private init?() {
         guard let realm = try? Realm() else { return nil }
         self.realm = realm
@@ -24,7 +26,7 @@ final class FastingRecordRepository {
         }
     }
     
-    func fetch() -> Results<FastingRecordTable> {
+    func fetch() -> Results<FastingRecordTable>? {
         let records = realm.objects(FastingRecordTable.self).sorted(byKeyPath: "date", ascending: false)
         return records
     }

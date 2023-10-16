@@ -81,7 +81,7 @@ final class PastRecordsView: BaseView {
     }
     
     private func configCalendarStyle() {
-        calendarView.headerHeight = 44
+        calendarView.headerHeight = 40
         calendarView.weekdayHeight = 20
         calendarView.backgroundColor = .white
         calendarView.placeholderType = .none
@@ -92,15 +92,10 @@ final class PastRecordsView: BaseView {
         calendarView.appearance.headerTitleColor = .clear
         calendarView.appearance.headerTitleFont = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
         
-        calendarView.appearance.weekdayTextColor = .systemGray
+        calendarView.appearance.weekdayTextColor = .systemGray3
         calendarView.appearance.weekdayFont = .preferredFont(forTextStyle: .footnote, weight: .semibold)
-        calendarView.appearance.titleDefaultColor = .black
         calendarView.appearance.titleFont = .preferredFont(forTextStyle: .body)
+        calendarView.appearance.borderSelectionColor = .mainPurple
         
-        calendarView.appearance.selectionColor = .clear
-        calendarView.appearance.titleSelectionColor = .black
-        calendarView.appearance.borderSelectionColor = .darkPurple
-        
-        calendarView.appearance.eventDefaultColor = .darkPurple
     }
 }

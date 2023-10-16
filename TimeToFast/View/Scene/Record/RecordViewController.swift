@@ -11,6 +11,7 @@ import FSCalendar
 final class RecordViewController: BaseViewController {
     
     private let recordView = RecordView()
+    private let viewMocel = RecordViewModel()
     
     override func loadView() {
         view = recordView
@@ -22,6 +23,8 @@ final class RecordViewController: BaseViewController {
         title = "Records"
         navigationItem.backButtonTitle = ""
         
+        viewMocel.fetchFastingRecord()
+        
         recordView.pastRecordsView.calendarView.delegate = self
         recordView.pastRecordsView.calendarView.dataSource = self
     }
@@ -32,5 +35,23 @@ extension RecordViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
         recordView.pastRecordsView.headerLabel.text = calendar.currentPage.yearAndMonth()
     }
     
-
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        return date.isToday() ? .black : .clear
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        return date.isToday() ? .white : viewMocel.configCalendarDateColor(for: date).titleColor
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleSelectionColorFor date: Date) -> UIColor? {
+        return date.isToday() ? .white : viewMocel.configCalendarDateColor(for: date).titleColor
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+        return date.isToday() ? .black : .clear
+    }
+    
+    func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
+        return viewMocel.configCalendarDateColor(for: date).title
+    }
 }

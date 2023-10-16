@@ -45,4 +45,5 @@ extension UIColor {
     static let mainPurple = Constants.Color.mainPurple
     static let darkPurple = Constants.Color.darkPurple
     static let mainGreen = Constants.Color.mainGreen
+    static let darkGreen = Constants.Color.darkGreen
 }
