@@ -68,6 +68,7 @@
 		7EC3D4E72ADC267000C102FF /* BackShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4E62ADC267000C102FF /* BackShadowView.swift */; };
 		7EC3D4EA2ADC288A00C102FF /* PastRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4E92ADC288A00C102FF /* PastRecordsView.swift */; };
 		7EC3D4EC2ADC455900C102FF /* ThisWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4EB2ADC455900C102FF /* ThisWeekView.swift */; };
+		7EC3D4EF2ADC52F200C102FF /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC3D4EE2ADC52F200C102FF /* FSCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EC3D4C12AD723CA00C102FF /* RealmSwift in Frameworks */,
+				7EC3D4EF2ADC52F200C102FF /* FSCalendar in Frameworks */,
 				7EC3D4BF2AD723CA00C102FF /* Realm in Frameworks */,
 				7E46264C2AC16C9D00C45ED6 /* SnapKit in Frameworks */,
 			);
@@ -393,6 +395,7 @@
 				7E46264B2AC16C9D00C45ED6 /* SnapKit */,
 				7EC3D4BE2AD723CA00C102FF /* Realm */,
 				7EC3D4C02AD723CA00C102FF /* RealmSwift */,
+				7EC3D4EE2ADC52F200C102FF /* FSCalendar */,
 			);
 			productName = TimeToFast;
 			productReference = 7E46262E2AC1656300C45ED6 /* TimeToFast.app */;
@@ -425,6 +428,7 @@
 			packageReferences = (
 				7E46264A2AC16C9D00C45ED6 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7EC3D4BD2AD723CA00C102FF /* XCRemoteSwiftPackageReference "realm-swift" */,
+				7EC3D4ED2ADC52F200C102FF /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 7E46262F2AC1656300C45ED6 /* Products */;
 			projectDirPath = "";
@@ -743,6 +747,14 @@
 				minimumVersion = 10.43.0;
 			};
 		};
+		7EC3D4ED2ADC52F200C102FF /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -760,6 +772,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7EC3D4BD2AD723CA00C102FF /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		7EC3D4EE2ADC52F200C102FF /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EC3D4ED2ADC52F200C102FF /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -54,6 +54,14 @@ extension Date {
         return dateString
     }
     
+    func yearAndMonth() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy"
+        
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+    
     func addOneDay() -> Date {
         return Calendar.current.date(byAdding: .day, value: 1, to: self)!
     }

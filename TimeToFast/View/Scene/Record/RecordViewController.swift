@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FSCalendar
 
 final class RecordViewController: BaseViewController {
     
@@ -20,6 +21,16 @@ final class RecordViewController: BaseViewController {
         
         title = "Records"
         navigationItem.backButtonTitle = ""
+        
+        recordView.pastRecordsView.calendarView.delegate = self
+        recordView.pastRecordsView.calendarView.dataSource = self
+    }
+}
+
+extension RecordViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        recordView.pastRecordsView.headerLabel.text = calendar.currentPage.yearAndMonth()
     }
     
+
 }

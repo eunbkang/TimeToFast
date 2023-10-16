@@ -17,7 +17,7 @@ final class RecordView: BaseView {
     
     private let contentView = UIView()
     
-    private let pastRecordsView = PastRecordsView()
+    let pastRecordsView = PastRecordsView()
     private let thisWeekView = ThisWeekView()
 
     private lazy var stackView: UIStackView = {
