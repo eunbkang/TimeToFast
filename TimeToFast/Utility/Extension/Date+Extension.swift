@@ -54,6 +54,14 @@ extension Date {
         return dateString
     }
     
+    func dateToWeekday() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE"
+        
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+    
     func yearAndMonth() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM yyyy"
@@ -75,6 +83,13 @@ extension Date {
         let thisDate = calendar.date(from: dateComponents)!
         
         return today == thisDate ? true : false
+    }
+    
+    func makeDateOnlyDate() -> Date {
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: self)
+        
+        return calendar.date(from: dateComponents)!
     }
     
     static func setTimeForToday(hour: Int = 0, minute: Int = 0) -> Date {

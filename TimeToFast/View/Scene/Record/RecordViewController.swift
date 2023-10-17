@@ -35,8 +35,8 @@ final class RecordViewController: BaseViewController {
     private func configBarChart() {
         recordView.thisWeekView.chartView.data = viewMocel.makeBarChartData()
         
-        recordView.thisWeekView.chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: viewMocel.dayData)
-        recordView.thisWeekView.chartView.xAxis.setLabelCount(viewMocel.hoursData.count, force: false)
+        recordView.thisWeekView.chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: viewMocel.makeThisWeekDay())
+        recordView.thisWeekView.chartView.xAxis.setLabelCount(viewMocel.thisWeekData.count, force: false)
     }
 }
 
@@ -50,11 +50,11 @@ extension RecordViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        return date.isToday() ? .white : viewMocel.configCalendarDateColor(for: date).titleColor
+        return date.isToday() ? .white : viewMocel.configCalendarDateType(for: date).titleColor
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleSelectionColorFor date: Date) -> UIColor? {
-        return date.isToday() ? .white : viewMocel.configCalendarDateColor(for: date).titleColor
+        return date.isToday() ? .white : viewMocel.configCalendarDateType(for: date).titleColor
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
@@ -62,6 +62,6 @@ extension RecordViewController: FSCalendarDelegate, FSCalendarDataSource, FSCale
     }
     
     func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
-        return viewMocel.configCalendarDateColor(for: date).title
+        return viewMocel.configCalendarDateType(for: date).title
     }
 }

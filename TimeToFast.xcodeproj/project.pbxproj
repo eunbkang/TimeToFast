@@ -72,6 +72,7 @@
 		7EC3D4F12ADD5BFE00C102FF /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4F02ADD5BFE00C102FF /* RecordViewModel.swift */; };
 		7EC3D4F32ADD67F300C102FF /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */; };
 		7EC3D4F62ADDA74A00C102FF /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC3D4F52ADDA74A00C102FF /* DGCharts */; };
+		7EC3D4F82ADE43B000C102FF /* ThisWeekData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4F72ADE43B000C102FF /* ThisWeekData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,7 @@
 		7EC3D4EB2ADC455900C102FF /* ThisWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeekView.swift; sourceTree = "<group>"; };
 		7EC3D4F02ADD5BFE00C102FF /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
+		7EC3D4F72ADE43B000C102FF /* ThisWeekData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisWeekData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +272,7 @@
 				7EC3D4B92AD6FF6A00C102FF /* Notification.swift */,
 				7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */,
 				7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */,
+				7EC3D4F72ADE43B000C102FF /* ThisWeekData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				7E4626322AC1656300C45ED6 /* AppDelegate.swift in Sources */,
 				7E46266D2AC481BB00C45ED6 /* TimerSetting.swift in Sources */,
 				7EC3D4942AD31BFF00C102FF /* Days.swift in Sources */,
+				7EC3D4F82ADE43B000C102FF /* ThisWeekData.swift in Sources */,
 				7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */,
 				7EC3D49F2AD3DD6300C102FF /* FastingPlan.swift in Sources */,
 				7EC3D4DF2ADA527200C102FF /* FastingRecordRepository.swift in Sources */,
