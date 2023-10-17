@@ -101,11 +101,16 @@ final class TimerViewController: BaseViewController {
     @objc func saveButtonTapped() {
         let alert = UIAlertController(title: Constants.Alert.SaveRecord.title, message: Constants.Alert.SaveRecord.message, preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .default) { _ in
-            do {
-                try self.viewModel.saveNewFastingRecord()
-                self.showAlert(title: "Saved Successfully.", message: nil)
-            } catch {
-                self.showAlert(title: "Error", message: "Failed to save the record.")
+            if self.viewModel.checkIsNewRecordToday() {
+                do {
+                    try self.viewModel.saveNewFastingRecord()
+                    self.viewModel.getStoredSetting()
+                    self.showAlert(title: Constants.Alert.SaveSucceed.title, message: nil)
+                } catch {
+                    self.showAlert(title: Constants.Alert.SaveError.title, message: Constants.Alert.SaveError.message)
+                }
+            } else {
+                self.showAlertTodaysRecordExists()
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
@@ -120,6 +125,24 @@ final class TimerViewController: BaseViewController {
         let okay = UIAlertAction(title: "OK", style: .cancel)
         
         alert.addAction(okay)
+        present(alert, animated: true)
+    }
+    
+    private func showAlertTodaysRecordExists() {
+        let alert = UIAlertController(title: Constants.Alert.TodaysRecordExists.title, message: Constants.Alert.TodaysRecordExists.message, preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "Replace", style: .default) { _ in
+            do {
+                try self.viewModel.updateTodaysRecord()
+                self.viewModel.getStoredSetting()
+                self.showAlert(title: Constants.Alert.SaveSucceed.title, message: nil)
+            } catch {
+                self.showAlert(title: Constants.Alert.SaveError.title, message: Constants.Alert.SaveError.message)
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
         present(alert, animated: true)
     }
     
@@ -174,6 +197,10 @@ final class TimerViewController: BaseViewController {
         viewModel.isEndTimeEditable.bind { editable in
             self.timerView.recordTimeCardView.isEndTimeEditable = editable
             self.setEndTimeViewTapGestures(isEditable: editable)
+        }
+        
+        viewModel.recordStatus.bind { status in
+            self.timerView.recordTimeCardView.recordStatus = status
         }
     }
 }

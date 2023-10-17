@@ -37,6 +37,25 @@ final class FastingRecordRepository {
         }
     }
     
+    func updateRecord(id: ObjectId, record: FastingRecordTable) throws {
+        try realm.write {
+            realm.create(
+                FastingRecordTable.self,
+                value: [
+                    "_id": id,
+                    "fastingPlan": record.fastingPlan,
+                    "fastingStartTime": record.fastingStartTime,
+                    "fastingEndTime": record.fastingEndTime,
+                    "note": record.note,
+                    "fastingDuration": record.fastingDuration,
+                    "eatingDuration": record.eatingDuration,
+                    "isGoalAchieved": record.isGoalAchieved
+                ],
+                update: .modified
+            )
+        }
+    }
+    
     func delete(_ record: FastingRecordTable) throws {
         try realm.write {
             realm.delete(record)

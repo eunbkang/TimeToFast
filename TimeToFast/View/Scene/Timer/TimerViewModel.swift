@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class TimerViewModel {
     var stateTitle = Observable(Constants.StateTitle.idle)
@@ -26,6 +27,14 @@ final class TimerViewModel {
     private let userDefaults = UserDefaultsManager.shared
     private let repository = FastingRecordRepository.shared
     
+    private var recordResults: Results<FastingRecordTable>? {
+        get {
+            return repository?.recordList
+        }
+    }
+    
+    var recordList: Observable<[FastingRecordTable]> = Observable([])
+    
     // MARK: - methods
     
     func getStoredSetting() {
@@ -33,6 +42,8 @@ final class TimerViewModel {
         configFastState()
         configRecordCardTime()
         configTimeViewEditable()
+        fetchFastingRecord()
+        configRecordStatus()
         
         if fastState.value != .idle {
             startTimer()
@@ -85,6 +96,20 @@ final class TimerViewModel {
         
         recordCardTime.value.start = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
         recordCardTime.value.end = isEndTimeZero ? endTimeFromTimer : endTimeFromUserDefaults
+    }
+    
+    private func fetchFastingRecord() {
+        repository?.recordList = repository?.fetch()
+        
+        guard let results = recordResults else { return }
+        recordList.value = Array(results)
+    }
+    
+    private func configRecordStatus() {
+        guard let recordResults = recordResults else { return }
+        let recordCardDate = recordResults.first(where: { $0.date.makeDateOnlyDate() == userDefaults.recordEndTime.makeDateOnlyDate() })
+
+        recordStatus.value = recordCardDate == nil ? .notSaved : .saved
     }
     
     private func configTimerSetting() {
@@ -226,6 +251,13 @@ final class TimerViewModel {
         try repository?.create(record)
     }
     
+    func updateTodaysRecord() throws {
+        guard let todayRecord = recordResults?.first(where: { $0.date.makeDateOnlyDate() == Date().makeDateOnlyDate() }) else { return }
+        let newRecord = makeFastingRecordTable()
+        
+        try repository?.updateRecord(id: todayRecord._id, record: newRecord)
+    }
+    
     private func makeFastingRecordTable() -> FastingRecordTable {
         let startTime = userDefaults.recordStartTime
         let endTime = userDefaults.recordEndTime
@@ -241,5 +273,14 @@ final class TimerViewModel {
         let record = FastingRecordTable(date: date, fastingPlan: String(fastingPlan), fastingStartTime: startTime, fastingEndTime: endTime, fastingDuration: fastingDuration, isGoalAchieved: isGoalAchieved)
         
         return record
+    }
+    
+    func checkIsNewRecordToday() -> Bool {
+        guard let recordResults = recordResults else { return false }
+        if recordResults.contains(where: { $0.date.makeDateOnlyDate() == Date().makeDateOnlyDate() }) {
+            return false
+        } else {
+            return true
+        }
     }
 }

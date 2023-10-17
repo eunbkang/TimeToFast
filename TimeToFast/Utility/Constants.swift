@@ -96,5 +96,19 @@ enum Constants {
             static let title = "Save"
             static let message = "Do you want to save your last fasting result?"
         }
+        
+        enum TodaysRecordExists {
+            static let title = "Today's record exists"
+            static let message = "You have saved today's fasting result already. Do you want to replace it with the new data?"
+        }
+        
+        enum SaveSucceed {
+            static let title = "Saved Successfully."
+        }
+        
+        enum SaveError {
+            static let title = "Error"
+            static let message = "Failed to save the record."
+        }
     }
 }
