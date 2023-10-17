@@ -24,12 +24,13 @@ final class ThisWeekView: BaseView {
     
     let chartView: BarChartView = {
         let view = BarChartView()
-        view.backgroundColor = .systemYellow
         
         return view
     }()
     
     override func configViewHierarchy() {
+        configChartStyle()
+        
         addSubview(headerView)
         addSubview(backgroundRect)
         backgroundRect.addSubview(chartView)
@@ -47,7 +48,35 @@ final class ThisWeekView: BaseView {
         }
         chartView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(24)
-            make.horizontalEdges.equalToSuperview().inset(32)
+            make.horizontalEdges.equalToSuperview().inset(16)
         }
+    }
+    
+    private func configChartStyle() {
+        chartView.backgroundColor = .white
+        chartView.legend.enabled = false
+        chartView.doubleTapToZoomEnabled = false
+        chartView.highlightPerTapEnabled = false
+        chartView.highlightPerDragEnabled = false
+        
+        chartView.noDataText = "There are no fasting records this week."
+        chartView.noDataFont = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
+        chartView.noDataTextColor = .systemGray2
+        
+        chartView.leftAxis.drawGridLinesEnabled = false
+        chartView.leftAxis.drawLabelsEnabled = false
+        chartView.leftAxis.drawAxisLineEnabled = false
+        chartView.rightAxis.drawGridLinesEnabled = false
+        chartView.rightAxis.drawLabelsEnabled = false
+        chartView.rightAxis.drawAxisLineEnabled = false
+        chartView.xAxis.drawGridLinesEnabled = false
+        chartView.xAxis.drawLabelsEnabled = true
+        chartView.xAxis.drawAxisLineEnabled = false
+        
+        chartView.xAxis.labelPosition = .bottom
+        chartView.xAxis.labelFont = .preferredFont(forTextStyle: .caption1)
+        chartView.xAxis.labelTextColor = .systemGray
+        
+        chartView.animate(yAxisDuration: 0.5)
     }
 }

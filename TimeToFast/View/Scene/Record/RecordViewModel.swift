@@ -5,7 +5,7 @@
 //  Created by Eunbee Kang on 2023/10/16.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 import DGCharts
 
@@ -67,8 +67,14 @@ final class RecordViewModel {
     
     func makeBarChartData() -> BarChartData {
         let dataSet = BarChartDataSet(entries: makeChartDataEntry(data: hoursData), label: "fasting hour")
+        dataSet.setColors(isGoalAchievedFromHoursData(), alpha: 1.0)
+        dataSet.valueFont = .preferredFont(forTextStyle: .caption1)
+        dataSet.valueTextColor = .darkPurple
         
-        return BarChartData(dataSet: dataSet)
+        let barChartData = BarChartData(dataSet: dataSet)
+        barChartData.barWidth = 0.6
+        
+        return barChartData
     }
     
     private func makeChartDataEntry(data: [Double]) -> [BarChartDataEntry] {
@@ -80,5 +86,15 @@ final class RecordViewModel {
         }
         
         return barEntry
+    }
+    
+    private func isGoalAchievedFromHoursData() -> [UIColor] {
+        var colors: [UIColor] = []
+        
+        for hour in hoursData {
+            let color: UIColor = hour >= 16 ? .mainPurple : .lightPurple
+            colors.append(color)
+        }
+        return colors
     }
 }
