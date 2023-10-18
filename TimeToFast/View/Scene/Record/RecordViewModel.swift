@@ -55,16 +55,26 @@ final class RecordViewModel {
         }
     }
     
-    func makeBarChartData() -> BarChartData {
-        let dataSet = BarChartDataSet(entries: makeChartDataEntry(), label: "fasting hour")
-        dataSet.setColors(isGoalAchievedFromHoursData(), alpha: 1.0)
-        dataSet.valueFont = .preferredFont(forTextStyle: .caption1)
-        dataSet.valueTextColor = .darkPurple
+    func makeBarChartData() -> BarChartData? {
+        if isThisWeekDataHasValue() {
+            let dataSet = BarChartDataSet(entries: makeChartDataEntry(), label: "fasting hour")
+            dataSet.setColors(isGoalAchievedFromHoursData(), alpha: 1.0)
+            dataSet.valueFont = .preferredFont(forTextStyle: .caption1)
+            dataSet.valueTextColor = .darkPurple
+            
+            let barChartData = BarChartData(dataSet: dataSet)
+            barChartData.barWidth = 0.6
+            
+            return barChartData
+        } else {
+            return nil
+        }
+    }
+    
+    private func isThisWeekDataHasValue() -> Bool {
+        let array = thisWeekData.map({ $0.value })
         
-        let barChartData = BarChartData(dataSet: dataSet)
-        barChartData.barWidth = 0.6
-        
-        return barChartData
+        return array.contains(where: { $0 > 0 }) ? true : false
     }
     
     private func makeChartDataEntry() -> [BarChartDataEntry] {

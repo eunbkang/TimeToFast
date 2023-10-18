@@ -41,6 +41,10 @@ final class RecordViewController: BaseViewController {
 }
 
 extension RecordViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+//    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+//        <#code#>
+//    }
+    
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         recordView.pastRecordsView.headerLabel.text = calendar.currentPage.yearAndMonth()
     }

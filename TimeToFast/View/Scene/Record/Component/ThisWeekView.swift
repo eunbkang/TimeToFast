@@ -44,7 +44,7 @@ final class ThisWeekView: BaseView {
         backgroundRect.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(24)
             make.horizontalEdges.equalToSuperview().inset(Constants.Size.edgePadding)
-            make.height.equalTo(236)
+            make.height.equalTo(200)
         }
         chartView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(24)
@@ -60,7 +60,7 @@ final class ThisWeekView: BaseView {
         chartView.highlightPerDragEnabled = false
         
         chartView.noDataText = "There are no fasting records this week."
-        chartView.noDataFont = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
+        chartView.noDataFont = .preferredFont(forTextStyle: .subheadline)
         chartView.noDataTextColor = .systemGray2
         
         chartView.leftAxis.drawGridLinesEnabled = false

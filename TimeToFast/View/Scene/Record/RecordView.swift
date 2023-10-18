@@ -26,8 +26,18 @@ final class RecordView: BaseView {
         return view
     }()
 
+    private lazy var pastRecordsStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [pastRecordsView, dailyRecordCardView])
+        view.axis = .vertical
+        view.alignment = .fill
+        view.distribution = .equalSpacing
+        view.spacing = 16
+
+        return view
+    }()
+    
     private lazy var stackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [thisWeekView, pastRecordsView, dailyRecordCardView])
+        let view = UIStackView(arrangedSubviews: [thisWeekView, pastRecordsStackView])
         view.axis = .vertical
         view.alignment = .fill
         view.distribution = .equalSpacing
@@ -35,6 +45,12 @@ final class RecordView: BaseView {
 
         return view
     }()
+    
+    // MARK: - Methods
+    
+    func showSelectedDateRecord() {
+        
+    }
     
     override func configViewHierarchy() {
         addSubview(scrollView)
@@ -54,7 +70,7 @@ final class RecordView: BaseView {
         }
         
         thisWeekView.snp.makeConstraints { make in
-            make.height.equalTo(266)
+            make.height.equalTo(230)
         }
         pastRecordsView.snp.makeConstraints { make in
             make.height.equalTo(362)
