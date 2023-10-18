@@ -231,9 +231,11 @@ class DailyRecordCardView: BaseView {
     // MARK: - Methods
     
     private func configStateToView() {
-        [chevronImageView, goalStackView, fastingPlanLabelButton, hourAndTimeStackView, hourStackView].forEach { item in
+        [chevronImageView, fastingPlanLabelButton, hourAndTimeStackView, hourStackView].forEach { item in
             item.isHidden = isRecordSaved ? false : true
         }
+        
+        goalStackView.isHidden = isRecordSaved && (fastingRecord.isGoalAchieved == true) ? false : true
         
         noRecordLabel.isHidden = isRecordSaved ? true : false
     }
