@@ -11,6 +11,14 @@ class DailyRecordCardView: BaseView {
     
     var fastingRecord: FastingRecordTable {
         didSet {
+            configStateToView()
+            configDataToView()
+        }
+    }
+    
+    var isRecordSaved: Bool {
+        didSet {
+            configStateToView()
             configDataToView()
         }
     }
@@ -48,6 +56,15 @@ class DailyRecordCardView: BaseView {
         view.clipsToBounds = true
         
         return view
+    }()
+    
+    private let noRecordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No record"
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.textColor = .systemGray2
+        
+        return label
     }()
     
     private let trophyImageView: UIImageView = {
@@ -198,11 +215,13 @@ class DailyRecordCardView: BaseView {
         return stackView
     }()
     
-    init(fastingRecord: FastingRecordTable) {
+    init(fastingRecord: FastingRecordTable, isRecordSaved: Bool) {
         self.fastingRecord = fastingRecord
+        self.isRecordSaved = isRecordSaved
         super.init(frame: .zero)
         
         configDataToView()
+        configStateToView()
     }
     
     required init?(coder: NSCoder) {
@@ -211,13 +230,21 @@ class DailyRecordCardView: BaseView {
     
     // MARK: - Methods
     
+    private func configStateToView() {
+        [chevronImageView, goalStackView, fastingPlanLabelButton, hourAndTimeStackView, hourStackView].forEach { item in
+            item.isHidden = isRecordSaved ? false : true
+        }
+        
+        noRecordLabel.isHidden = isRecordSaved ? true : false
+    }
+    
     override func configViewHierarchy() {
         addSubview(backgroundRect)
         backgroundRect.addSubview(dateLabel)
-        backgroundRect.addSubview(chevronImageView)
         backgroundRect.addSubview(smallBackgroundRect)
+        backgroundRect.addSubview(chevronImageView)
         
-        [goalStackView, fastingPlanLabelButton, hourAndTimeStackView, hourStackView].forEach { component in
+        [goalStackView, fastingPlanLabelButton, hourAndTimeStackView, hourStackView, noRecordLabel].forEach { component in
             smallBackgroundRect.addSubview(component)
         }
     }
@@ -264,6 +291,10 @@ class DailyRecordCardView: BaseView {
         
         hourStackView.snp.makeConstraints { make in
             make.center.equalTo(circularFastingHourView)
+        }
+        
+        noRecordLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
     

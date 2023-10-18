@@ -11,7 +11,7 @@ import DGCharts
 
 final class RecordViewController: BaseViewController {
     
-    private let recordView = RecordView()
+    private let recordView = RecordView(fastingRecord: FastingRecordTable(date: Date(), fastingPlan: "16", fastingStartTime: Date()-3600*(9+17), fastingEndTime: Date()-3600*9, fastingDuration: 16.8, isGoalAchieved: true), isRecordSaved: false)
     private let viewMocel = RecordViewModel()
     
     override func loadView() {
@@ -30,6 +30,7 @@ final class RecordViewController: BaseViewController {
         recordView.pastRecordsView.calendarView.dataSource = self
         
         configBarChart()
+        setDataToRecordView(for: Date())
     }
     
     private func configBarChart() {
@@ -38,12 +39,21 @@ final class RecordViewController: BaseViewController {
         recordView.thisWeekView.chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: viewMocel.makeThisWeekDay())
         recordView.thisWeekView.chartView.xAxis.setLabelCount(viewMocel.thisWeekData.count, force: false)
     }
+    
+    private func setDataToRecordView(for date: Date) {
+        if let record = viewMocel.makeSelectedDateData(for: date) {
+            recordView.fastingRecord = record
+            recordView.isRecordSaved = true
+        } else {
+            recordView.isRecordSaved = false
+        }
+    }
 }
 
 extension RecordViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
-//    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        <#code#>
-//    }
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        setDataToRecordView(for: date)
+    }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         recordView.pastRecordsView.headerLabel.text = calendar.currentPage.yearAndMonth()

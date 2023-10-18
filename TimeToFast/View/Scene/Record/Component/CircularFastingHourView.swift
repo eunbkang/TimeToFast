@@ -22,7 +22,6 @@ class CircularFastingHourView: UIView {
     private lazy var fastingHourShapeLayer = {
         let layer = CAShapeLayer()
         layer.lineWidth = timerLineWidth
-        layer.strokeColor = UIColor.mainPurple.cgColor
         layer.lineCap = .round
         layer.fillColor = UIColor.clear.cgColor
         
@@ -55,5 +54,7 @@ class CircularFastingHourView: UIView {
         )
         
         fastingHourShapeLayer.path = fastingHourPath.cgPath
+        
+        fastingHourShapeLayer.strokeColor = fastingRecord.isGoalAchieved ? UIColor.mainPurple.cgColor : UIColor.lightPurple.cgColor
     }
 }

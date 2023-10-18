@@ -55,6 +55,10 @@ final class RecordViewModel {
         }
     }
     
+    func makeSelectedDateData(for date: Date) -> FastingRecordTable? {
+        return recordList.value.first(where: { $0.date == date })
+    }
+    
     func makeBarChartData() -> BarChartData? {
         if isThisWeekDataHasValue() {
             let dataSet = BarChartDataSet(entries: makeChartDataEntry(), label: "fasting hour")

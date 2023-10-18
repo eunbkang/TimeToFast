@@ -9,6 +9,18 @@ import UIKit
 
 final class RecordView: BaseView {
     
+    var fastingRecord: FastingRecordTable {
+        didSet {
+            configDataToView()
+        }
+    }
+    
+    var isRecordSaved: Bool {
+        didSet {
+            configDataToView()
+        }
+    }
+    
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         
@@ -20,8 +32,8 @@ final class RecordView: BaseView {
     let pastRecordsView = PastRecordsView()
     let thisWeekView = ThisWeekView()
     
-    private let dailyRecordCardView: DailyRecordCardView = {
-        let view = DailyRecordCardView(fastingRecord: FastingRecordTable(date: Date(), fastingPlan: "16", fastingStartTime: Date()-3600*(9+17), fastingEndTime: Date()-3600*9, fastingDuration: 16.8, isGoalAchieved: true))
+    private lazy var dailyRecordCardView: DailyRecordCardView = {
+        let view = DailyRecordCardView(fastingRecord: fastingRecord, isRecordSaved: isRecordSaved)
         
         return view
     }()
@@ -46,10 +58,23 @@ final class RecordView: BaseView {
         return view
     }()
     
+    init(fastingRecord: FastingRecordTable, isRecordSaved: Bool) {
+        self.fastingRecord = fastingRecord
+        self.isRecordSaved = isRecordSaved
+        super.init(frame: .zero)
+        
+        configDataToView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Methods
     
-    func showSelectedDateRecord() {
-        
+    func configDataToView() {
+        dailyRecordCardView.fastingRecord = fastingRecord
+        dailyRecordCardView.isRecordSaved = isRecordSaved
     }
     
     override func configViewHierarchy() {
