@@ -24,6 +24,7 @@ final class TimerViewModel {
     
     private var timer: Timer?
     
+    private let notification = NotificationManager.shared
     private let userDefaults = UserDefaultsManager.shared
     private let repository = FastingRecordRepository.shared
     
@@ -121,6 +122,8 @@ final class TimerViewModel {
         case false:
             timerSetting.value.plan = .sixteen
             timerSetting.value.fastStartTime = calculateFastStartTime(with: timerSetting.value.plan.defaultEatingStartTime)
+            userDefaults.fastPlanType = .sixteen
+            userDefaults.eatingStartTime = timerSetting.value.plan.defaultEatingStartTime
         }
         plusOneDay()
     }
@@ -153,15 +156,18 @@ final class TimerViewModel {
             startTimer()
             fastState.value = .fasting
             userDefaults.isTimerRunning = true
+            notification.setNotification()
             
         case .fasting:
             stopTimer()
             fastState.value = .idle
             userDefaults.isTimerRunning = false
+            notification.removeNotification()
             
         case .eating:
             fastState.value = .idle
             userDefaults.isTimerRunning = false
+            notification.removeNotification()
         }
     }
     
@@ -242,6 +248,15 @@ final class TimerViewModel {
             isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
             isEndTimeEditable.value = recordStatus.value == .notSaved ? true : false
         }
+    }
+    
+    func makeTimerStartAlertMessage() -> String {
+        let plan = userDefaults.fastPlanType.planButtonTitle
+        let eatingStart = userDefaults.eatingStartTime.dateToTimeOnlyString()
+        let eatingEnd = userDefaults.eatingEndTime.dateToTimeOnlyString()
+        let message = Constants.Alert.TimerStart.message
+        
+        return "\(message)\n\(plan)\nEat from \(eatingStart) to \(eatingEnd)"
     }
     
     // MARK: - Realm

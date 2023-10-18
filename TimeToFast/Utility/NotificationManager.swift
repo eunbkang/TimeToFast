@@ -60,7 +60,7 @@ class NotificationManager {
         sendEatingNotification()
     }
     
-    private func removeNotification() {
+    func removeNotification() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     

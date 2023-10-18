@@ -115,5 +115,15 @@ enum Constants {
             static let title = "Error"
             static let message = "Failed to save the record."
         }
+        
+        enum TimerStart {
+            static let title = "Start Timer"
+            static let message = "Do you want to start the fasting timer with this plan?"
+        }
+        
+        enum TimerStop {
+            static let title = "Stop Timer"
+            static let message = "Do you really want to stop the fasting timer?"
+        }
     }
 }

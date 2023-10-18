@@ -59,7 +59,7 @@ final class TimerViewController: BaseViewController {
     }
     
     @objc func timerControlButtonTapped() {
-        viewModel.controlTimer()
+        showAlertStartTimer()
     }
     
     @objc func recordButtonTapped() {
@@ -138,6 +138,21 @@ final class TimerViewController: BaseViewController {
             } catch {
                 self.showAlert(title: Constants.Alert.SaveError.title, message: Constants.Alert.SaveError.message)
             }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
+    
+    private func showAlertStartTimer() {
+        let alertTitle = viewModel.fastState.value == .idle ? Constants.Alert.TimerStart.title : Constants.Alert.TimerStop.title
+        let alertMessage = viewModel.fastState.value == .idle ? viewModel.makeTimerStartAlertMessage() : Constants.Alert.TimerStop.message
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "Yes", style: .default) { _ in
+            self.viewModel.controlTimer()
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         
