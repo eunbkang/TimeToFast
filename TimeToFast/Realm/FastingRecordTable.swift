@@ -31,4 +31,11 @@ class FastingRecordTable: Object {
         self.eatingDuration = eatingDuration
         self.isGoalAchieved = isGoalAchieved
     }
+    
+    func makeFastingPlan() -> FastingPlan {
+        let fastingHour = Int(fastingPlan)
+        let type = FastingPlan.allCases.first(where: { $0.rawValue == fastingHour }) ?? .sixteen
+        
+        return type
+    }
 }

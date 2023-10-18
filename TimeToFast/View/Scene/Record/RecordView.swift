@@ -19,9 +19,15 @@ final class RecordView: BaseView {
     
     let pastRecordsView = PastRecordsView()
     let thisWeekView = ThisWeekView()
+    
+    private let dailyRecordCardView: DailyRecordCardView = {
+        let view = DailyRecordCardView(fastingRecord: FastingRecordTable(date: Date(), fastingPlan: "16", fastingStartTime: Date()-3600*(9+17), fastingEndTime: Date()-3600*9, fastingDuration: 16.8, isGoalAchieved: true))
+        
+        return view
+    }()
 
     private lazy var stackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [thisWeekView, pastRecordsView])
+        let view = UIStackView(arrangedSubviews: [thisWeekView, pastRecordsView, dailyRecordCardView])
         view.axis = .vertical
         view.alignment = .fill
         view.distribution = .equalSpacing
@@ -53,9 +59,14 @@ final class RecordView: BaseView {
         pastRecordsView.snp.makeConstraints { make in
             make.height.equalTo(362)
         }
+        dailyRecordCardView.snp.makeConstraints { make in
+            make.height.equalTo(184)
+        }
+        
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
-            make.horizontalEdges.bottom.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview().inset(16)
         }
     }
 }

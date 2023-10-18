@@ -21,9 +21,17 @@ extension Date {
     func dateToSetTimeString() -> String {
         let dateFormatter = DateFormatter()
 //        dateFormatter.dateFormat = "MMM d, h:mm a"
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         dateFormatter.doesRelativeDateFormatting = true
+        
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+    
+    func dateToFullTimeString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, h:mm a"
         
         let dateString = dateFormatter.string(from: self)
         return dateString
@@ -65,6 +73,14 @@ extension Date {
     func yearAndMonth() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM yyyy"
+        
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+    
+    func dateMonthYear() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
         
         let dateString = dateFormatter.string(from: self)
         return dateString

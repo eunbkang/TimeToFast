@@ -52,6 +52,11 @@ enum Constants {
         
         static let timer: CGFloat = 0.78
         static let timerRadius: CGFloat = 0.4625
+        
+        enum FastingCircle {
+            static let width: CGFloat = 58
+            static let line: CGFloat = 9
+        }
     }
     
     enum Color {
