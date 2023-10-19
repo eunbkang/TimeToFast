@@ -69,11 +69,21 @@ final class TimerViewModel {
         case .eating:
             setEatingRecordCardTime()
         }
+        print(#function)
+        print("timerSetting", timerSetting.value.fastStartTime, timerSetting.value.fastEndTime)
+        print("recordCardTime", recordCardTime.value.start, recordCardTime.value.end)
+        print("userDefaults start", userDefaults.eatingStartTime, userDefaults.recordStartTime)
+        print("userDefaults end", userDefaults.eatingEndTime, userDefaults.recordEndTime)
     }
     
     private func setIdleRecordCardTime() {
-        recordCardTime.value.start = timerSetting.value.fastStartTime.dateToTimeOnlyString()
-        recordCardTime.value.end = timerSetting.value.fastEndTime.dateToTimeOnlyString()
+        let startTimeFromTimer = timerSetting.value.fastStartTime
+        let endTimeFromTimer = timerSetting.value.fastEndTime
+        
+        recordCardTime.value.start = startTimeFromTimer.dateToTimeOnlyString()
+        recordCardTime.value.end = endTimeFromTimer.dateToTimeOnlyString()
+        userDefaults.recordStartTime = startTimeFromTimer
+        userDefaults.recordEndTime = endTimeFromTimer
     }
     
     private func setFastingRecordCardTime() {
@@ -83,6 +93,10 @@ final class TimerViewModel {
         
         recordCardTime.value.start = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
         recordCardTime.value.end = timerSetting.value.fastEndTime.dateToSetTimeString()
+        
+        if isStartTimeZero {
+            userDefaults.recordStartTime = timerSetting.value.fastStartTime
+        }
     }
     
     private func setEatingRecordCardTime() {
@@ -97,6 +111,11 @@ final class TimerViewModel {
         
         recordCardTime.value.start = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
         recordCardTime.value.end = isEndTimeZero ? endTimeFromTimer : endTimeFromUserDefaults
+        
+        if isStartTimeZero {
+            userDefaults.recordStartTime = timerSetting.value.fastStartTime
+            userDefaults.recordEndTime = timerSetting.value.fastEndTime
+        }
     }
     
     private func fetchFastingRecord() {
@@ -113,7 +132,7 @@ final class TimerViewModel {
         recordStatus.value = recordCardDate == nil ? .notSaved : .saved
     }
     
-    private func configTimerSetting() {
+    func configTimerSetting() {
         switch userDefaults.isPlanSetByUser {
         case true:
             timerSetting.value.plan = userDefaults.fastPlanType
@@ -126,6 +145,12 @@ final class TimerViewModel {
             userDefaults.eatingStartTime = timerSetting.value.plan.defaultEatingStartTime
         }
         plusOneDay()
+        
+        print(#function)
+        print("timerSetting", timerSetting.value.fastStartTime, timerSetting.value.fastEndTime)
+        print("recordCardTime", recordCardTime.value.start, recordCardTime.value.end)
+        print("userDefaults start", userDefaults.eatingStartTime, userDefaults.recordStartTime)
+        print("userDefaults end", userDefaults.eatingEndTime, userDefaults.recordEndTime)
     }
     
     private func calculateFastStartTime(with eatingStartTime: Date) -> Date {

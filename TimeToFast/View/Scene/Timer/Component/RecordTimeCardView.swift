@@ -163,6 +163,7 @@ class RecordTimeCardView: UIView {
     
     private func setRecordStatusToView() {
         saveButton.status = recordStatus
+        saveButton.isEnabled = recordStatus == .notSaved ? true : false
         
         if fastState == .eating {
             saveButton.isHidden = false

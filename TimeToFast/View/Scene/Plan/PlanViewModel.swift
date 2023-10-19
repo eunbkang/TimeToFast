@@ -28,7 +28,7 @@ final class PlanViewModel {
     func getStoredSetting() {
         switch userDefaults.isPlanSetByUser {
         case true:
-            planSetting.value.plan = userDefaults.fastPlanType ?? .sixteen
+            planSetting.value.plan = userDefaults.fastPlanType
             planSetting.value.eatingStartTime = userDefaults.eatingStartTime
             
         case false:

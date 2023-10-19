@@ -185,6 +185,7 @@ final class TimerViewController: BaseViewController {
         viewModel.fastState.bind { fastState in
             self.timerView.fastState = fastState
             self.viewModel.configTimeViewEditable()
+            self.viewModel.configTimerSetting()
             self.viewModel.configRecordCardTime()
         }
         
