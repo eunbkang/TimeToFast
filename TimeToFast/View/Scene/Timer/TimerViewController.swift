@@ -95,7 +95,7 @@ final class TimerViewController: BaseViewController {
     }
     
     @objc func fastControlButtonTapped() {
-        
+        showAlertStartOrEndFastEarly()
     }
     
     @objc func saveButtonTapped() {
@@ -110,7 +110,7 @@ final class TimerViewController: BaseViewController {
                     self.showAlert(title: Constants.Alert.SaveError.title, message: Constants.Alert.SaveError.message)
                 }
             } else {
-                self.showAlertTodaysRecordExists()
+                self.showAlertTodaysRecordExists(isEarly: false)
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
@@ -128,11 +128,11 @@ final class TimerViewController: BaseViewController {
         present(alert, animated: true)
     }
     
-    private func showAlertTodaysRecordExists() {
+    private func showAlertTodaysRecordExists(isEarly: Bool) {
         let alert = UIAlertController(title: Constants.Alert.TodaysRecordExists.title, message: Constants.Alert.TodaysRecordExists.message, preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Replace", style: .default) { _ in
             do {
-                try self.viewModel.updateTodaysRecord()
+                try self.viewModel.updateTodaysRecord(isEarly: isEarly)
                 self.viewModel.getStoredSetting()
                 self.showAlert(title: Constants.Alert.SaveSucceed.title, message: nil)
             } catch {
@@ -153,6 +153,31 @@ final class TimerViewController: BaseViewController {
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Yes", style: .default) { _ in
             self.viewModel.controlTimer()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
+    
+    private func showAlertStartOrEndFastEarly() {
+        let alertTitle = viewModel.fastState.value == .fasting ? Constants.Alert.EndEarly.title : Constants.Alert.StartEarly.title
+        let alertMessage = viewModel.fastState.value == .fasting ? Constants.Alert.EndEarly.message : Constants.Alert.StartEarly.message
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "Yes", style: .default) { _ in
+            if self.viewModel.checkIsNewRecordToday() {
+                do {
+                    try self.viewModel.startOrEndFastEarly()
+                    self.viewModel.getStoredSetting()
+                    self.showAlert(title: Constants.Alert.SaveSucceed.title, message: nil)
+                } catch {
+                    self.showAlert(title: Constants.Alert.SaveError.title, message: Constants.Alert.SaveError.message)
+                }
+            } else {
+                self.showAlertTodaysRecordExists(isEarly: true)
+            }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         

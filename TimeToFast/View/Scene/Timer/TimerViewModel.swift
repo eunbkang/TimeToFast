@@ -128,8 +128,6 @@ final class TimerViewModel {
         
         if let todaysSavedRecord = recordResults.first(where: { $0.date.makeDateOnlyDate() == Date().makeDateOnlyDate() }) {
             
-            print("today's saved record", todaysSavedRecord.fastingStartTime, todaysSavedRecord.fastingEndTime)
-            
             return (todaysSavedRecord.fastingStartTime, todaysSavedRecord.fastingEndTime)
         } else {
             return (Date(), Date())
@@ -195,6 +193,7 @@ final class TimerViewModel {
             notification.removeNotification()
             
         case .eating:
+            stopTimer()
             fastState.value = .idle
             userDefaults.isTimerRunning = false
             notification.removeNotification()
@@ -296,8 +295,13 @@ final class TimerViewModel {
         try repository?.create(record)
     }
     
-    func updateTodaysRecord() throws {
+    func updateTodaysRecord(isEarly: Bool) throws {
         guard let todayRecord = recordResults?.first(where: { $0.date.makeDateOnlyDate() == Date().makeDateOnlyDate() }) else { return }
+        if isEarly {
+            userDefaults.recordEndTime = Date()
+            recordCardTime.value.end = Date().dateToSetTimeString()
+        }
+        
         let newRecord = makeFastingRecordTable()
         
         try repository?.updateRecord(id: todayRecord._id, record: newRecord)
@@ -306,6 +310,8 @@ final class TimerViewModel {
     private func makeFastingRecordTable() -> FastingRecordTable {
         let startTime = userDefaults.recordStartTime
         let endTime = userDefaults.recordEndTime
+        
+        print(#function, startTime, endTime)
         
         let dateComponent = Calendar.current.dateComponents([.year, .month, .day], from: endTime)
         let date = Calendar.current.date(from: dateComponent)!
@@ -326,6 +332,36 @@ final class TimerViewModel {
             return false
         } else {
             return true
+        }
+    }
+    
+    func startOrEndFastEarly() throws {
+        print(#function, fastState.value)
+        
+        if fastState.value == .fasting {
+            print("end fasting early")
+            // TODO: - alert confirm 시
+            // 1. 기록 저장
+            userDefaults.recordEndTime = Date()
+            recordCardTime.value.end = Date().dateToSetTimeString()
+            
+            try saveNewFastingRecord()
+            
+            // 2. 타이머 eating으로 전환
+            
+            
+            
+            
+            // 3. 그 시점부터 eatingProgressPath 그려주기
+            
+        } else if fastState.value == .eating {
+            print("eating")
+            // TODO: - alert confirm 시
+            // 1. 버튼 누른 시점을 recordCardTie start & userDefault recordEndTime에 저장해두기
+            // 2. fasting으로 전환
+            // 3. 그 시점부터 fastingProgressPath 그려주기
+            
+            
         }
     }
 }

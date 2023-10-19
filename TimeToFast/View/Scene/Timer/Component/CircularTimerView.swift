@@ -103,34 +103,34 @@ class CircularTimerView: UIView {
             eatingProgressLayer.isHidden = true
             
         case .eating:
-            fastingProgressLayer.isHidden = false
             eatingProgressLayer.isHidden = false
+            fastingProgressLayer.isHidden = false
         }
     }
     
     private func configTimerSettingToView() {
-        let fastingTrackPath2 = UIBezierPath(
+        let fastingTrackPath = UIBezierPath(
             arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
             radius: .timerRadius * timerSize,
             startAngle: timerSetting.fastStartAngle,
             endAngle: timerSetting.fastEndAngle,
             clockwise: true
         )
-        let fastingProgressPath2 = UIBezierPath(
+        let fastingProgressPath = UIBezierPath(
             arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
             radius: .timerRadius * timerSize,
             startAngle: timerSetting.fastStartAngle,
             endAngle: Date().dateToAngle(),
             clockwise: true
         )
-        let eatingTrackPath2 = UIBezierPath(
+        let eatingTrackPath = UIBezierPath(
             arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
             radius: .timerRadius * timerSize,
             startAngle: timerSetting.fastEndAngle,
             endAngle: timerSetting.fastStartAngle,
             clockwise: true
         )
-        let eatingProgressPath2 = UIBezierPath(
+        let eatingProgressPath = UIBezierPath(
             arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
             radius: .timerRadius * timerSize,
             startAngle: timerSetting.fastEndAngle,
@@ -138,10 +138,10 @@ class CircularTimerView: UIView {
             clockwise: true
         )
 
-        fastingTrackLayer.path = fastingTrackPath2.cgPath
-        fastingProgressLayer.path = fastingProgressPath2.cgPath
-        eatingTrackLayer.path = eatingTrackPath2.cgPath
-        eatingProgressLayer.path = eatingProgressPath2.cgPath
+        fastingTrackLayer.path = fastingTrackPath.cgPath
+        fastingProgressLayer.path = fastingProgressPath.cgPath
+        eatingTrackLayer.path = eatingTrackPath.cgPath
+        eatingProgressLayer.path = eatingProgressPath.cgPath
     }
     
     private func configClock() {

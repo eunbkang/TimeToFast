@@ -125,5 +125,15 @@ enum Constants {
             static let title = "Stop Timer"
             static let message = "Do you really want to stop the fasting timer?"
         }
+        
+        enum StartEarly {
+            static let title = "Start fasting early"
+            static let message = "Do you want to start fasting now?"
+        }
+        
+        enum EndEarly {
+            static let title = "End fasting early"
+            static let message = "Do you want to end fasting early and start eating now?"
+        }
     }
 }
