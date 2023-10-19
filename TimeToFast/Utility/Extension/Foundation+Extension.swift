@@ -15,7 +15,15 @@ extension CGFloat {
     static let backgroundCornerRadius = Constants.Size.backgroundCorner
     
     var degreeToRadian: CGFloat {
-        return CGFloat(self) * .pi / 180
+        return self * .pi / 180
+    }
+}
+
+extension CGPoint {
+    static func pointOnCircle(center: CGPoint, radius: CGFloat, angle: CGFloat) -> CGPoint {
+        let x = center.x + radius * cos(angle)
+        let y = center.y + radius * sin(angle)
+        return CGPoint(x: x, y: y)
     }
 }
 

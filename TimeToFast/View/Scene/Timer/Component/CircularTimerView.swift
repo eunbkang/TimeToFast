@@ -27,7 +27,7 @@ class CircularTimerView: UIView {
         let layer = CAShapeLayer()
         layer.strokeColor = Constants.Color.lightPurple.cgColor
         layer.lineWidth = .timerRadius * timerSize * 0.1
-        layer.lineCap = .square
+        layer.lineCap = .butt
         layer.fillColor = UIColor.clear.cgColor
         
         return layer
@@ -47,7 +47,7 @@ class CircularTimerView: UIView {
         let layer = CAShapeLayer()
         layer.strokeColor = Constants.Color.lightGreen.cgColor
         layer.lineWidth = .timerRadius * timerSize * 0.1
-        layer.lineCap = .square
+        layer.lineCap = .butt
         layer.fillColor = UIColor.clear.cgColor
         
         return layer
@@ -69,6 +69,46 @@ class CircularTimerView: UIView {
         view.contentMode = .scaleAspectFit
         
         return view
+    }()
+    
+    private lazy var fastingSymbolBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderColor = UIColor.mainPurple.cgColor
+        view.layer.borderWidth = 2
+        view.layer.cornerRadius = timerSize * 0.098 / 2
+        view.clipsToBounds = true
+
+        return view
+    }()
+    
+    private let flameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "🔥"
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.sizeToFit()
+        
+        return label
+    }()
+    
+    private lazy var eatingSymbolBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderColor = UIColor.mainGreen.cgColor
+        view.layer.borderWidth = 2
+        view.layer.cornerRadius = timerSize * 0.098 / 2
+        view.clipsToBounds = true
+
+        return view
+    }()
+    
+    private let foodLabel: UILabel = {
+        let label = UILabel()
+        label.text = "🍔"
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.sizeToFit()
+        
+        return label
     }()
         
     init(fastState: FastState, timerSetting: TimerSetting) {
@@ -109,32 +149,37 @@ class CircularTimerView: UIView {
     }
     
     private func configTimerSettingToView() {
+        let center = CGPoint(x: timerSize / 2, y: timerSize / 2)
+        let radius = timerSize * .timerRadius
+        let lineWidth = .timerRadius * timerSize * 0.15 - 8
+        let delta = asin(lineWidth * 0.5 / radius)
+        
         let fastingTrackPath = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: .timerRadius * timerSize,
+            arcCenter: center,
+            radius: radius,
             startAngle: timerSetting.fastStartAngle,
             endAngle: timerSetting.fastEndAngle,
             clockwise: true
         )
         let fastingProgressPath = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: .timerRadius * timerSize,
-            startAngle: timerSetting.fastStartAngle,
-            endAngle: Date().dateToAngle(),
+            arcCenter: center,
+            radius: radius,
+            startAngle: timerSetting.fastStartAngle + delta,
+            endAngle: Date().dateToAngle() - delta,
             clockwise: true
         )
         let eatingTrackPath = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: .timerRadius * timerSize,
+            arcCenter: center,
+            radius: radius,
             startAngle: timerSetting.fastEndAngle,
             endAngle: timerSetting.fastStartAngle,
             clockwise: true
         )
         let eatingProgressPath = UIBezierPath(
-            arcCenter: CGPoint(x: timerSize / 2, y: timerSize / 2),
-            radius: .timerRadius * timerSize,
-            startAngle: timerSetting.fastEndAngle,
-            endAngle: Date().dateToAngle(),
+            arcCenter: center,
+            radius: radius,
+            startAngle: timerSetting.fastEndAngle + delta,
+            endAngle: Date().dateToAngle() - delta,
             clockwise: true
         )
 
@@ -142,13 +187,41 @@ class CircularTimerView: UIView {
         fastingProgressLayer.path = fastingProgressPath.cgPath
         eatingTrackLayer.path = eatingTrackPath.cgPath
         eatingProgressLayer.path = eatingProgressPath.cgPath
+        
+        configSymbolImage()
     }
     
     private func configClock() {
         addSubview(clockImageView)
         clockImageView.snp.makeConstraints { make in
-            make.size.equalTo(timerSize * 0.83)
+            make.size.equalTo(timerSize * 0.82)
             make.center.equalToSuperview()
+        }
+    }
+    
+    private func configSymbolImage() {
+        let fastingAngle: CGFloat = timerSetting.fastStartAngle
+        let eatingAngle: CGFloat = timerSetting.fastEndAngle
+        let center = CGPoint(x: timerSize / 2, y: timerSize / 2)
+        let radius = timerSize * .timerRadius
+        
+        addSubview(fastingSymbolBackView)
+        addSubview(eatingSymbolBackView)
+        
+        flameLabel.center = CGPoint.pointOnCircle(center: center, radius: radius, angle: fastingAngle)
+        foodLabel.center = CGPoint.pointOnCircle(center: center, radius: radius, angle: eatingAngle)
+        
+        addSubview(flameLabel)
+        addSubview(foodLabel)
+        
+        fastingSymbolBackView.snp.makeConstraints { make in
+            make.size.equalTo(timerSize * 0.098)
+            make.center.equalTo(flameLabel)
+        }
+        
+        eatingSymbolBackView.snp.makeConstraints { make in
+            make.size.equalTo(timerSize * 0.098)
+            make.center.equalTo(foodLabel)
         }
     }
 }

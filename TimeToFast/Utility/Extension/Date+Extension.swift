@@ -11,11 +11,9 @@ extension Date {
     func dateToAngle() -> CGFloat {
         let hours = CGFloat(self.hours)
         let minutes = CGFloat(self.minutes)
+        let angle = (hours + minutes/60) * 360/24
         
-        let hourAngle = ((hours - 6) * 360/24).degreeToRadian
-        let minuteAngle = (minutes * 360/(60*24)).degreeToRadian
-        
-        return hourAngle + minuteAngle
+        return angle.degreeToRadian - .pi/2
     }
     
     func dateToSetTimeString() -> String {
