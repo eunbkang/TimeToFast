@@ -1,35 +1,11 @@
 //
-//  States.swift
+//  FastState.swift
 //  TimeToFast
 //
 //  Created by Eunbee Kang on 2023/09/27.
 //
 
 import Foundation
-
-enum FastPlanType {
-    case fast1410
-    case fast1608
-    case fast1806
-    case fast2004
-    
-    var title: String {
-        switch self {
-        case .fast1410:
-            return Constants.FastPlan.fast1410
-        case .fast1608:
-            return Constants.FastPlan.fast1608
-        case .fast1806:
-            return Constants.FastPlan.fast1806
-        case .fast2004:
-            return Constants.FastPlan.fast2004
-        }
-    }
-    
-    var planButtonTitle: String {
-        return "\(title) FAST"
-    }
-}
 
 enum FastState {
     case idle
@@ -84,29 +60,6 @@ enum FastState {
             return TimeCardTitle(left: "STARTED", right: "GOAL")
         case .eating:
             return TimeCardTitle(left: "STARTED", right: "ENDED")
-        }
-    }
-}
-
-enum TimerStatus {
-    case playing
-    case stopped
-    
-    var title: String {
-        switch self {
-        case .playing:
-            return Constants.TimerControl.playing
-        case .stopped:
-            return Constants.TimerControl.stopped
-        }
-    }
-    
-    var image: String {
-        switch self {
-        case .playing:
-            return Constants.TimerControl.playingImage
-        case .stopped:
-            return Constants.TimerControl.stoppedImage
         }
     }
 }

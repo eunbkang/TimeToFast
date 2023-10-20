@@ -21,10 +21,11 @@
 		7E46265B2AC19B3500C45ED6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46265A2AC19B3500C45ED6 /* Constants.swift */; };
 		7E4626622AC40A0B00C45ED6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626612AC40A0B00C45ED6 /* TimerView.swift */; };
 		7E4626642AC4108700C45ED6 /* FastPlanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626632AC4108700C45ED6 /* FastPlanButton.swift */; };
-		7E4626672AC4127B00C45ED6 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626662AC4127B00C45ED6 /* States.swift */; };
+		7E4626672AC4127B00C45ED6 /* FastState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626662AC4127B00C45ED6 /* FastState.swift */; };
 		7E4626692AC4207A00C45ED6 /* TimerControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4626682AC4207A00C45ED6 /* TimerControlButton.swift */; };
 		7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */; };
 		7E46266D2AC481BB00C45ED6 /* TimerSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */; };
+		7E782E702AE2E52A003634C2 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E782E6F2AE2E529003634C2 /* TimerStatus.swift */; };
 		7E9436482ADFF34B00BCF4EB /* CircularFastingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */; };
 		7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */; };
 		7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */; };
@@ -93,10 +94,11 @@
 		7E46265A2AC19B3500C45ED6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7E4626612AC40A0B00C45ED6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		7E4626632AC4108700C45ED6 /* FastPlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastPlanButton.swift; sourceTree = "<group>"; };
-		7E4626662AC4127B00C45ED6 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		7E4626662AC4127B00C45ED6 /* FastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastState.swift; sourceTree = "<group>"; };
 		7E4626682AC4207A00C45ED6 /* TimerControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlButton.swift; sourceTree = "<group>"; };
 		7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Extension.swift"; sourceTree = "<group>"; };
 		7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetting.swift; sourceTree = "<group>"; };
+		7E782E6F2AE2E529003634C2 /* TimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStatus.swift; sourceTree = "<group>"; };
 		7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularFastingHourView.swift; sourceTree = "<group>"; };
 		7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradientLayer.swift; sourceTree = "<group>"; };
 		7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
@@ -266,19 +268,52 @@
 		7E4626652AC4126600C45ED6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7E4626662AC4127B00C45ED6 /* States.swift */,
-				7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */,
-				7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */,
-				7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */,
-				7EC3D48D2AD3115100C102FF /* EditPlanHeader.swift */,
-				7EC3D4932AD31BFF00C102FF /* Days.swift */,
-				7EC3D4B52AD52D3B00C102FF /* Setting.swift */,
-				7EC3D4B92AD6FF6A00C102FF /* Notification.swift */,
-				7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */,
-				7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */,
-				7EC3D4F72ADE43B000C102FF /* ThisWeekData.swift */,
+				7E782E712AE2E54F003634C2 /* Timer */,
+				7E782E742AE2E597003634C2 /* Plan */,
+				7E782E732AE2E589003634C2 /* Record */,
+				7E782E722AE2E56D003634C2 /* Setting */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7E782E712AE2E54F003634C2 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				7E782E6F2AE2E529003634C2 /* TimerStatus.swift */,
+				7E4626662AC4127B00C45ED6 /* FastState.swift */,
+				7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */,
+				7EC3D4DC2AD7CB1D00C102FF /* RecordCardTime.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		7E782E722AE2E56D003634C2 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D4B52AD52D3B00C102FF /* Setting.swift */,
+				7EC3D4B92AD6FF6A00C102FF /* Notification.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		7E782E732AE2E589003634C2 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D4F22ADD67F300C102FF /* CalendarDate.swift */,
+				7EC3D4F72ADE43B000C102FF /* ThisWeekData.swift */,
+				7EC3D4932AD31BFF00C102FF /* Days.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		7E782E742AE2E597003634C2 /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */,
+				7EC3D49C2AD3D38E00C102FF /* PlanSetting.swift */,
+				7EC3D48D2AD3115100C102FF /* EditPlanHeader.swift */,
+			);
+			path = Plan;
 			sourceTree = "<group>";
 		};
 		7EC3D47C2ACE8AE800C102FF /* Timer */ = {
@@ -516,6 +551,7 @@
 				7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */,
 				7EC3D49F2AD3DD6300C102FF /* FastingPlan.swift in Sources */,
 				7EC3D4DF2ADA527200C102FF /* FastingRecordRepository.swift in Sources */,
+				7E782E702AE2E52A003634C2 /* TimerStatus.swift in Sources */,
 				7EC3D4F32ADD67F300C102FF /* CalendarDate.swift in Sources */,
 				7EC3D4882AD3074A00C102FF /* BaseView.swift in Sources */,
 				7EC3D49B2AD3CC0B00C102FF /* EatingPeriodTimeView.swift in Sources */,
@@ -524,7 +560,7 @@
 				7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */,
 				7EC3D4EA2ADC288A00C102FF /* PastRecordsView.swift in Sources */,
 				7EC3D4A82AD42E8E00C102FF /* UserDefaultsManager.swift in Sources */,
-				7E4626672AC4127B00C45ED6 /* States.swift in Sources */,
+				7E4626672AC4127B00C45ED6 /* FastState.swift in Sources */,
 				7EC3D4C62AD77CC800C102FF /* RecordTimeCardView.swift in Sources */,
 				7E4626692AC4207A00C45ED6 /* TimerControlButton.swift in Sources */,
 				7EC3D4A62AD410EE00C102FF /* ChooseFastingPlanViewController.swift in Sources */,
