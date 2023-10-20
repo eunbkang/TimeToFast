@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 final class TimerViewModel {
-    var stateTitle = Observable(Constants.StateTitle.idle)
     var timeCounter = Observable("00:00:00")
     var timerSetting = Observable(TimerSetting(plan: .sixteen, fastStartTime: Date()))
     var fastState = Observable(FastState.idle)
@@ -114,13 +113,6 @@ final class TimerViewModel {
             recordCardTime.value.start = startTimeFromUserDefaults
             recordCardTime.value.end = endTimeFromUserDefaults
         }
-    }
-    
-    private func fetchFastingRecord() {
-        repository?.recordList = repository?.fetch()
-        
-        guard let results = recordResults else { return }
-        recordList.value = Array(results)
     }
     
     private func findTodaysSavedRecord() -> (start: Date, end: Date) {
@@ -289,6 +281,13 @@ final class TimerViewModel {
     }
     
     // MARK: - Realm
+    
+    private func fetchFastingRecord() {
+        repository?.recordList = repository?.fetch()
+        
+        guard let results = recordResults else { return }
+        recordList.value = Array(results)
+    }
     
     func saveNewFastingRecord() throws {
         let record = makeFastingRecordTable()

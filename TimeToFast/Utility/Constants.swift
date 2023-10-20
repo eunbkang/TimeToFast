@@ -17,7 +17,7 @@ enum Constants {
     }
     
     enum TimerControl {
-        static let playing = ""
+        static let playing = "STOP"
         static let stopped = "START TIMER"
         
         static let playingImage = "stop.fill"

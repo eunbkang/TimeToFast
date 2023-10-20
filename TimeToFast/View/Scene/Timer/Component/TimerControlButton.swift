@@ -9,7 +9,7 @@ import UIKit
 
 class TimerControlButton: UIButton {
     
-    var status: TimerStatus {
+    private var status: TimerStatus {
         return fastState == .idle ? .stopped : .playing
     }
     

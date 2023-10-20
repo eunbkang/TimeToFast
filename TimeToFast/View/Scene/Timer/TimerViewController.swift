@@ -214,10 +214,6 @@ final class TimerViewController: BaseViewController {
             self.viewModel.configRecordCardTime()
         }
         
-        viewModel.stateTitle.bind { state in
-            self.timerView.stateTitleLabel.text = state
-        }
-        
         viewModel.timeCounter.bind { time in
             self.timerView.timeCounterLabel.text = time
         }
