@@ -677,7 +677,7 @@
 				DEVELOPMENT_TEAM = 44Q9HUN6LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimeToFast/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Time to Fast";
+				INFOPLIST_KEY_CFBundleDisplayName = "Time to fast!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -709,7 +709,7 @@
 				DEVELOPMENT_TEAM = 44Q9HUN6LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimeToFast/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Time to Fast";
+				INFOPLIST_KEY_CFBundleDisplayName = "Time to fast!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
