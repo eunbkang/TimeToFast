@@ -23,6 +23,8 @@ final class RecordViewModel {
     
     var recordedDates: Observable<[Date]> = Observable([])
     
+    var seledtedDateRecord: Observable<FastingRecordTable?> = Observable(nil)
+    
     var thisWeek: [Date] = []
     var thisWeekData: [ThisWeekData] = []
     
@@ -34,6 +36,7 @@ final class RecordViewModel {
         configRecordedDates()
         makeThisWeekDates()
         makeThisWeekData()
+        makeSelectedDateData(for: Date())
     }
     
     private func configRecordedDates() {
@@ -55,8 +58,8 @@ final class RecordViewModel {
         }
     }
     
-    func makeSelectedDateData(for date: Date) -> FastingRecordTable? {
-        return recordList.value.first(where: { $0.date == date })
+    func makeSelectedDateData(for date: Date) {
+        seledtedDateRecord.value = recordList.value.first(where: { $0.date == date.makeDateOnlyDate() })
     }
     
     func makeBarChartData() -> BarChartData? {
@@ -96,7 +99,7 @@ final class RecordViewModel {
         var colors: [UIColor] = []
         
         for dayData in thisWeekData {
-            let color: UIColor = dayData.value >= 16 ? .mainPurple : .lightPurple
+            let color: UIColor = dayData.isGoalAchieved == true ? .mainPurple : .lightPurple
             colors.append(color)
         }
         return colors

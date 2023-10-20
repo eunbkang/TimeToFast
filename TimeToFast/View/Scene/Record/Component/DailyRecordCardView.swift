@@ -244,7 +244,7 @@ class DailyRecordCardView: BaseView {
         addSubview(backgroundRect)
         backgroundRect.addSubview(dateLabel)
         backgroundRect.addSubview(smallBackgroundRect)
-        backgroundRect.addSubview(chevronImageView)
+//        backgroundRect.addSubview(chevronImageView)
         
         [goalStackView, fastingPlanLabelButton, hourAndTimeStackView, hourStackView, noRecordLabel].forEach { component in
             smallBackgroundRect.addSubview(component)
@@ -260,10 +260,10 @@ class DailyRecordCardView: BaseView {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(14)
         }
-        chevronImageView.snp.makeConstraints { make in
-            make.centerY.equalTo(dateLabel.snp.centerY)
-            make.trailing.equalToSuperview().inset(Constants.Size.edgePadding)
-        }
+//        chevronImageView.snp.makeConstraints { make in
+//            make.centerY.equalTo(dateLabel.snp.centerY)
+//            make.trailing.equalToSuperview().inset(Constants.Size.edgePadding)
+//        }
         
         smallBackgroundRect.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(10)
