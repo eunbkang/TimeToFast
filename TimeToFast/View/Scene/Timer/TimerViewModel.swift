@@ -64,7 +64,7 @@ final class TimerViewModel {
         if current < timerSetting.value.fastEndTime {
             if userDefaults.isFastingBreak {
                 return .fastingBreak
-            } else  if userDefaults.isFastingEarly {
+            } else if userDefaults.isFastingEarly {
                 return .fastingEarly
             } else {
                 return .fasting
@@ -120,8 +120,8 @@ final class TimerViewModel {
         let isStartTimeZero = userDefaults.recordStartTime.timeIntervalSince1970 == 0
         let isEndTimeZero = userDefaults.recordEndTime.timeIntervalSince1970 == 0
         
-        userDefaults.recordStartTime = recordStatus.value == .notSaved ? timerSetting.value.fastStartTime : findTodaysSavedRecord().start
-        userDefaults.recordEndTime = recordStatus.value == .notSaved ? timerSetting.value.fastEndTime : findTodaysSavedRecord().end
+        userDefaults.recordStartTime = recordStatus.value == .notSaved ? timerSetting.value.fastStartTime : findLastFastingSavedRecord().start
+        userDefaults.recordEndTime = recordStatus.value == .notSaved ? timerSetting.value.fastEndTime : findLastFastingSavedRecord().end
         
         let startTimeFromTimer = timerSetting.value.fastStartTime.dateToSetTimeString()
         let startTimeFromUserDefaults = userDefaults.recordStartTime.dateToSetTimeString()
@@ -138,12 +138,12 @@ final class TimerViewModel {
         }
     }
     
-    private func findTodaysSavedRecord() -> (start: Date, end: Date) {
+    private func findLastFastingSavedRecord() -> (start: Date, end: Date) {
         guard let recordResults = recordResults else { return (Date(), Date()) }
         
-        if let todaysSavedRecord = recordResults.first(where: { $0.date.makeDateOnlyDate() == Date().makeDateOnlyDate() }) {
+        if let record = recordResults.first(where: { $0.fastingEndTime == userDefaults.recordEndTime }) {
+            return (record.fastingStartTime, record.fastingEndTime)
             
-            return (todaysSavedRecord.fastingStartTime, todaysSavedRecord.fastingEndTime)
         } else {
             return (Date(), Date())
         }
@@ -152,7 +152,7 @@ final class TimerViewModel {
     private func configRecordStatus() {
         guard let recordResults = recordResults else { return }
         let recordCardDateResult = recordResults.first(where: {
-            $0.date == userDefaults.recordEndTime && $0.date.timeIntervalSince1970 > 0
+            $0.fastingEndTime == userDefaults.recordEndTime && $0.date.timeIntervalSince1970 > 0
         })
         
         recordStatus.value = recordCardDateResult == nil ? .notSaved : .saved
