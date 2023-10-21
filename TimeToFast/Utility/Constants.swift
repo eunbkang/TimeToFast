@@ -26,7 +26,7 @@ enum Constants {
     
     enum FastControl {
         static let startEarly = "START FAST EARLY"
-        static let breakFast = "BREAEK THE FAST"
+        static let breakFast = "BREAK THE FAST"
         static let resumeFast = "RESUME FASTING"
     }
     
