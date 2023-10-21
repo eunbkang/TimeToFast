@@ -153,7 +153,6 @@ class CircularTimerView: UIView {
         let center = CGPoint(x: timerSize / 2, y: timerSize / 2)
         let radius = timerSize * .timerRadius
         let lineWidth = .timerRadius * timerSize * 0.15 - 8
-        let delta = asin(lineWidth * 0.5 / radius)
         
         let fastingTrackPath = UIBezierPath(
             arcCenter: center,
@@ -165,8 +164,8 @@ class CircularTimerView: UIView {
         let fastingProgressPath = UIBezierPath(
             arcCenter: center,
             radius: radius,
-            startAngle: timerSetting.fastStartAngle + delta,
-            endAngle: Date().dateToAngle() - delta,
+            startAngle: timerSetting.fastStartAngle,
+            endAngle: configFastingProgressEndAngle(),
             clockwise: true
         )
         let eatingTrackPath = UIBezierPath(
@@ -179,8 +178,8 @@ class CircularTimerView: UIView {
         let eatingProgressPath = UIBezierPath(
             arcCenter: center,
             radius: radius,
-            startAngle: timerSetting.fastEndAngle + delta,
-            endAngle: Date().dateToAngle() - delta,
+            startAngle: timerSetting.fastEndAngle,
+            endAngle: Date().dateToAngle(),
             clockwise: true
         )
 
@@ -190,6 +189,23 @@ class CircularTimerView: UIView {
         eatingProgressLayer.path = eatingProgressPath.cgPath
         
         configSymbolImage()
+    }
+    
+    private func configFastingProgressEndAngle() -> CGFloat {
+        let currentAngle = Date().dateToAngle()
+        let timerEndAngle = timerSetting.fastEndAngle
+        
+        print(currentAngle, timerEndAngle)
+        
+        if fastState == .eating {
+            return timerEndAngle
+        } else {
+            if currentAngle < timerEndAngle {
+                return currentAngle
+            } else {
+                return timerEndAngle
+            }
+        }
     }
     
     private func configClock() {

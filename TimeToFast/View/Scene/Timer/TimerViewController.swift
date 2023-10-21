@@ -208,7 +208,12 @@ final class TimerViewController: BaseViewController {
     }
     
     private func configFastingEarlyAlert() {
+        let title = Constants.Alert.StartEarly.title
+        let message = Constants.Alert.StartEarly.message
         
+        showAlert(title: title, message: message) { _ in
+            self.viewModel.startFastingEarly()
+        }
     }
     
     private func setStartTimeViewTapGestures(isEditable: Bool) {

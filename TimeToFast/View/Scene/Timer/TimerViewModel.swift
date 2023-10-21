@@ -10,7 +10,7 @@ import RealmSwift
 
 final class TimerViewModel {
     var timeCounter = Observable("00:00:00")
-    var timerSetting = Observable(TimerSetting(plan: .sixteen, fastStartTime: Date()))
+    var timerSetting = Observable(TimerSetting(plan: .sixteen, fastStartTime: Date(), fastEndTime: Date()+3600*16))
     var fastState = Observable(FastState.idle)
     lazy var recordCardTime = Observable(RecordCardTime(
         start: timerSetting.value.fastStartTime.dateToTimeOnlyString(),
@@ -56,6 +56,10 @@ final class TimerViewModel {
     
     private func fastingOrEating() -> FastState {
         let current = Date()
+        if isPlusOneDayRequired() {
+            userDefaults.isFastingEarly = false
+            userDefaults.isFastingBreak = false
+        }
         
         if current < timerSetting.value.fastEndTime {
             if userDefaults.isFastingBreak {
@@ -155,18 +159,49 @@ final class TimerViewModel {
     }
     
     func configTimerSetting() {
+        let isFastingEarly = userDefaults.isFastingEarly
+        
         switch userDefaults.isPlanSetByUser {
         case true:
+            let eatingStart = setEatingStartTimeWithDay()
             timerSetting.value.plan = userDefaults.fastPlanType
-            timerSetting.value.fastStartTime = calculateFastStartTime(with: userDefaults.eatingStartTime)
+            timerSetting.value.fastStartTime = isFastingEarly ? userDefaults.recordStartTime : calculateFastStartTime(with: eatingStart)
+            timerSetting.value.fastEndTime = eatingStart
             
         case false:
+            let eatingStart = timerSetting.value.plan.defaultEatingStartTime
             timerSetting.value.plan = .sixteen
-            timerSetting.value.fastStartTime = calculateFastStartTime(with: timerSetting.value.plan.defaultEatingStartTime)
+            timerSetting.value.fastStartTime = isFastingEarly ? userDefaults.recordStartTime : calculateFastStartTime(with: eatingStart)
+            timerSetting.value.fastEndTime = eatingStart
             userDefaults.fastPlanType = .sixteen
             userDefaults.eatingStartTime = timerSetting.value.plan.defaultEatingStartTime
         }
-        plusOneDay()
+        plusOneDayToFastStartTime()
+    }
+    
+    private func setTimeForFastingEarly() {
+        if userDefaults.isFastingEarly {
+            timerSetting.value.fastStartTime = userDefaults.recordStartTime
+        }
+    }
+    
+    private func setEatingStartTimeWithDay() -> Date {
+        let fastStartTime = calculateFastStartTime(with: userDefaults.eatingStartTime)
+        let eatingStartTime = userDefaults.eatingStartTime
+        
+        if userDefaults.isFastingEarly {
+            if Date() < eatingStartTime {
+                return eatingStartTime
+            } else {
+                return Calendar.current.date(byAdding: .day, value: 1, to: eatingStartTime)!
+            }
+        } else {
+            if Date() < fastStartTime {
+                return Calendar.current.date(byAdding: .day, value: -1, to: eatingStartTime)!
+            } else {
+                return eatingStartTime
+            }
+        }
     }
     
     private func calculateFastStartTime(with eatingStartTime: Date) -> Date {
@@ -182,8 +217,12 @@ final class TimerViewModel {
         return Calendar.current.date(byAdding: .hour, value: eatingHour, to: eatingStartTime) ?? Date()
     }
     
-    private func plusOneDay() {
-        if Date() > userDefaults.eatingEndTime {
+    private func isPlusOneDayRequired() -> Bool {
+        return Date() > userDefaults.eatingEndTime
+    }
+    
+    private func plusOneDayToFastStartTime() {
+        if isPlusOneDayRequired() {
             let fastingStartTime = timerSetting.value.fastStartTime
             timerSetting.value.fastStartTime = fastingStartTime.addOneDay()
         }
@@ -197,6 +236,8 @@ final class TimerViewModel {
             startTimer()
             fastState.value = .fasting
             userDefaults.isTimerRunning = true
+            userDefaults.isFastingBreak = false
+            userDefaults.isFastingEarly = false
             notification.setNotification()
             
         case .fasting, .fastingBreak, .fastingEarly:
@@ -206,12 +247,16 @@ final class TimerViewModel {
             userDefaults.isFastingBreak = false
             userDefaults.isFastingEarly = false
             notification.removeNotification()
+            configTimerSetting()
+            configRecordCardTime()
             
         case .eating:
             stopTimer()
             fastState.value = .idle
             userDefaults.isTimerRunning = false
             notification.removeNotification()
+            configTimerSetting()
+            configRecordCardTime()
         }
     }
     
@@ -345,8 +390,6 @@ final class TimerViewModel {
         let startTime = userDefaults.recordStartTime
         let endTime = userDefaults.recordEndTime
         
-        print(#function, startTime, endTime)
-        
         let dateComponent = Calendar.current.dateComponents([.year, .month, .day], from: endTime)
         let date = Calendar.current.date(from: dateComponent)!
         
@@ -395,5 +438,14 @@ final class TimerViewModel {
         
         fastState.value = .fasting
         userDefaults.isFastingBreak = false
+    }
+    
+    func startFastingEarly() {
+        let startTime = Date()
+        userDefaults.recordStartTime = startTime
+        recordCardTime.value.start = startTime.dateToSetTimeString()
+        
+        fastState.value = .fastingEarly
+        userDefaults.isFastingEarly = true
     }
 }
