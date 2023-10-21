@@ -377,11 +377,23 @@ final class TimerViewModel {
         return "\(recordExists)\nFrom \(startTime) to \(endTime)\n\(replace)"
     }
     
+    // MARK: - Fasting Control
+    
     func breakFasting() {
-        userDefaults.recordEndTime = Date()
-        recordCardTime.value.end = Date().dateToSetTimeString()
+        let endTime = Date()
+        userDefaults.recordEndTime = endTime
+        recordCardTime.value.end = endTime.dateToSetTimeString()
         
         fastState.value = .fastingBreak
         userDefaults.isFastingBreak = true
+    }
+    
+    func resumeFasting() {
+        let endTime = timerSetting.value.fastEndTime
+        userDefaults.recordEndTime = endTime
+        recordCardTime.value.end = endTime.dateToSetTimeString()
+        
+        fastState.value = .fasting
+        userDefaults.isFastingBreak = false
     }
 }

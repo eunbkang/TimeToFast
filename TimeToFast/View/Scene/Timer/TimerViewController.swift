@@ -199,7 +199,12 @@ final class TimerViewController: BaseViewController {
     }
     
     private func configResumeFastinglert() {
+        let title = Constants.Alert.ResumeFast.title
+        let message = Constants.Alert.ResumeFast.message
         
+        showAlert(title: title, message: message) { _ in
+            self.viewModel.resumeFasting()
+        }
     }
     
     private func configFastingEarlyAlert() {
@@ -232,7 +237,6 @@ final class TimerViewController: BaseViewController {
             self.viewModel.configTimeViewEditable()
             self.viewModel.configTimerSetting()
             self.viewModel.configRecordCardTime()
-            print("bind", self.viewModel.recordCardTime.value.end)
         }
         
         viewModel.timeCounter.bind { time in

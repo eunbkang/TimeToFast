@@ -36,12 +36,12 @@ class FastControlButton: UIButton {
         
         switch fastState {
         case .idle, .fastingBreak:
-            isEnabled = false
             backgroundColor = Constants.Color.veryLightGray
             
         case .fasting, .eating, .fastingEarly:
-            isEnabled = true
             backgroundColor = .white.withAlphaComponent(0.5)
         }
+        
+        isEnabled = fastState == .idle ? false : true
     }
 }

@@ -143,7 +143,7 @@ enum Constants {
         
         enum ResumeFast {
             static let title = "Resume fasting"
-            static let message = "Do you want to cancel breaking the fast and resume?\nPress 'Yes' to resume fasting and reset the last fasting record."
+            static let message = "Do you want to cancel breaking the fast and resume?\nPress 'Yes' to resume fasting and reset the unsaved fasting record."
         }
     }
 }
