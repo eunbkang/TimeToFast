@@ -104,7 +104,8 @@ class CircularTimerView: UIView {
     
     private let foodLabel: UILabel = {
         let label = UILabel()
-        label.text = "🍔"
+        let foods = ["🍔", "🌮", "🍕", "🥘", "🍱", "🥯", "🍛", "🍳", "🍝", "🍜"]
+        label.text = foods.randomElement()!
         label.font = .preferredFont(forTextStyle: .headline)
         label.sizeToFit()
         

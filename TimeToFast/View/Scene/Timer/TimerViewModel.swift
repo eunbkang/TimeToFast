@@ -114,7 +114,7 @@ final class TimerViewModel {
         let isStartTimeZero = userDefaults.recordStartTime.timeIntervalSince1970 == 0
         let isEndTimeZero = userDefaults.recordEndTime.timeIntervalSince1970 == 0
         
-        userDefaults.recordStartTime = recordStatus.value == .notSaved ? timerSetting.value.fastEndTime : findTodaysSavedRecord().start
+        userDefaults.recordStartTime = recordStatus.value == .notSaved ? timerSetting.value.fastStartTime : findTodaysSavedRecord().start
         userDefaults.recordEndTime = recordStatus.value == .notSaved ? timerSetting.value.fastEndTime : findTodaysSavedRecord().end
         
         let startTimeFromTimer = timerSetting.value.fastStartTime.dateToSetTimeString()
@@ -345,7 +345,7 @@ final class TimerViewModel {
         let fastingPlan = userDefaults.fastPlanType.rawValue
         let fastingDuration = endTime.timeIntervalSince(startTime)
         
-        let isGoalAchieved = fastingDuration / 3600 > Double(fastingPlan) ? true : false
+        let isGoalAchieved = fastingDuration / 3600 >= Double(fastingPlan) ? true : false
         
         let record = FastingRecordTable(date: date, fastingPlan: String(fastingPlan), fastingStartTime: startTime, fastingEndTime: endTime, fastingDuration: fastingDuration, isGoalAchieved: isGoalAchieved)
         
