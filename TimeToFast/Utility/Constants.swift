@@ -108,7 +108,8 @@ enum Constants {
         
         enum TodaysRecordExists {
             static let title = "Today's record exists"
-            static let message = "You have saved today's fasting result already. Do you want to replace it with the new data?"
+            static let recordExistsMessage = "You have saved today's fasting result already."
+            static let replaceMessage = "Do you want to replace it with the new data?"
         }
         
         enum SaveSucceed {
@@ -132,12 +133,17 @@ enum Constants {
         
         enum StartEarly {
             static let title = "Start fasting early"
-            static let message = "Do you want to start fasting now?"
+            static let message = "Do you want to start fasting now?\nPress 'Yes' to make the current time as today's fasting start time.\nThe goal time will be set as your planned eating start time."
         }
         
-        enum EndEarly {
-            static let title = "End fasting early"
-            static let message = "Do you want to end fasting early and start eating now?"
+        enum BreakFast {
+            static let title = "Break your fast"
+            static let message = "Are you sure you want to break your fast now?\nPress 'Yes' to make the current time as the fasting end time.\nThe timer will continue counting down to keep up with your plan."
+        }
+        
+        enum ResumeFast {
+            static let title = "Resume fasting"
+            static let message = "Do you want to cancel breaking the fast and resume?\nPress 'Yes' to resume fasting and reset the last fasting record."
         }
     }
 }

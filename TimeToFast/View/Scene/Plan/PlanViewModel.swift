@@ -21,6 +21,8 @@ final class PlanViewModel {
         userDefaults.eatingStartTime = planSetting.value.eatingStartTime
         userDefaults.recordStartTime = Date(timeIntervalSince1970: 0)
         userDefaults.recordEndTime = Date(timeIntervalSince1970: 0)
+        userDefaults.isFastingBreak = false
+        userDefaults.isFastingEarly = false
         
         notification.setNotification()
     }

@@ -95,13 +95,15 @@ final class TimerViewController: BaseViewController {
     }
     
     @objc func fastControlButtonTapped() {
-        showAlertStartOrEndFastEarly()
+        showAlertFastControlButton()
     }
     
     @objc func saveButtonTapped() {
         let alert = UIAlertController(title: Constants.Alert.SaveRecord.title, message: Constants.Alert.SaveRecord.message, preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .default) { _ in
-            if self.viewModel.checkIsNewRecordToday() {
+            if let existingRecord = self.viewModel.checkIsNewRecordToday() {
+                self.showAlertTodaysRecordExists(isEarly: false, record: existingRecord)
+            } else {
                 do {
                     try self.viewModel.saveNewFastingRecord()
                     self.viewModel.getStoredSetting()
@@ -109,8 +111,6 @@ final class TimerViewController: BaseViewController {
                 } catch {
                     self.showAlert(title: Constants.Alert.SaveError.title, message: Constants.Alert.SaveError.message)
                 }
-            } else {
-                self.showAlertTodaysRecordExists(isEarly: false)
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
@@ -128,8 +128,10 @@ final class TimerViewController: BaseViewController {
         present(alert, animated: true)
     }
     
-    private func showAlertTodaysRecordExists(isEarly: Bool) {
-        let alert = UIAlertController(title: Constants.Alert.TodaysRecordExists.title, message: Constants.Alert.TodaysRecordExists.message, preferredStyle: .alert)
+    private func showAlertTodaysRecordExists(isEarly: Bool, record: FastingRecordTable) {
+        let message = viewModel.makeTodaysRecordExistsAlertMessage(record: record)
+        
+        let alert = UIAlertController(title: Constants.Alert.TodaysRecordExists.title, message: message, preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Replace", style: .default) { _ in
             do {
                 try self.viewModel.updateTodaysRecord(isEarly: isEarly)
@@ -161,29 +163,47 @@ final class TimerViewController: BaseViewController {
         present(alert, animated: true)
     }
     
-    private func showAlertStartOrEndFastEarly() {
-        let alertTitle = viewModel.fastState.value == .fasting ? Constants.Alert.EndEarly.title : Constants.Alert.StartEarly.title
-        let alertMessage = viewModel.fastState.value == .fasting ? Constants.Alert.EndEarly.message : Constants.Alert.StartEarly.message
-        
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Yes", style: .default) { _ in
-            if self.viewModel.checkIsNewRecordToday() {
-                do {
-                    try self.viewModel.startOrEndFastEarly()
-                    self.viewModel.getStoredSetting()
-                    self.showAlert(title: Constants.Alert.SaveSucceed.title, message: nil)
-                } catch {
-                    self.showAlert(title: Constants.Alert.SaveError.title, message: Constants.Alert.SaveError.message)
-                }
-            } else {
-                self.showAlertTodaysRecordExists(isEarly: true)
-            }
+    private func showAlertFastControlButton() {
+        switch viewModel.fastState.value {
+        case .fasting, .fastingEarly:
+            configBreakFastAlert()
+            
+        case .fastingBreak:
+            configResumeFastinglert()
+            
+        case .eating:
+            configFastingEarlyAlert()
+            
+        case .idle:
+            break
         }
+    }
+    
+    private func showAlert(title: String, message: String, action: @escaping (UIAlertAction) -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "Yes", style: .default, handler: action)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         
         alert.addAction(confirm)
         alert.addAction(cancel)
         present(alert, animated: true)
+    }
+    
+    private func configBreakFastAlert() {
+        let title = Constants.Alert.BreakFast.title
+        let message = Constants.Alert.BreakFast.message
+        
+        showAlert(title: title, message: message) { _ in
+            self.viewModel.breakFasting()
+        }
+    }
+    
+    private func configResumeFastinglert() {
+        
+    }
+    
+    private func configFastingEarlyAlert() {
+        
     }
     
     private func setStartTimeViewTapGestures(isEditable: Bool) {
@@ -212,6 +232,7 @@ final class TimerViewController: BaseViewController {
             self.viewModel.configTimeViewEditable()
             self.viewModel.configTimerSetting()
             self.viewModel.configRecordCardTime()
+            print("bind", self.viewModel.recordCardTime.value.end)
         }
         
         viewModel.timeCounter.bind { time in

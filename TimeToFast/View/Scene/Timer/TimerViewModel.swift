@@ -73,7 +73,9 @@ final class TimerViewModel {
     func configRecordCardTime() {
         switch fastState.value {
         case .idle:
-            setIdleRecordCardTime()
+            if !userDefaults.isTimerRunning {
+                setIdleRecordCardTime()
+            }
         case .fasting, .fastingBreak, .fastingEarly:
             setFastingRecordCardTime()
         case .eating:
@@ -145,11 +147,11 @@ final class TimerViewModel {
     
     private func configRecordStatus() {
         guard let recordResults = recordResults else { return }
-        let recordCardDate = recordResults.first(where: {
-            $0.date.makeDateOnlyDate() == userDefaults.recordEndTime.makeDateOnlyDate() && $0.date.timeIntervalSince1970 > 0
+        let recordCardDateResult = recordResults.first(where: {
+            $0.date == userDefaults.recordEndTime && $0.date.timeIntervalSince1970 > 0
         })
         
-        recordStatus.value = recordCardDate == nil ? .notSaved : .saved
+        recordStatus.value = recordCardDateResult == nil ? .notSaved : .saved
     }
     
     func configTimerSetting() {
@@ -201,6 +203,8 @@ final class TimerViewModel {
             stopTimer()
             fastState.value = .idle
             userDefaults.isTimerRunning = false
+            userDefaults.isFastingBreak = false
+            userDefaults.isFastingEarly = false
             notification.removeNotification()
             
         case .eating:
@@ -235,11 +239,15 @@ final class TimerViewModel {
                 self?.configTimerSetting()
                 self?.configFastState()
                 
-                if self?.fastState.value == .fasting {
+                switch self?.fastState.value {
+                case .fasting, .fastingBreak, .fastingEarly:
                     self?.configFastingCounter()
                     
-                } else if self?.fastState.value == .eating {
+                case .eating:
                     self?.configEatingCounter()
+                    
+                default:
+                    break
                 }
             })
         }
@@ -352,42 +360,28 @@ final class TimerViewModel {
         return record
     }
     
-    func checkIsNewRecordToday() -> Bool {
-        guard let recordResults = recordResults else { return false }
-        if recordResults.contains(where: { $0.date.makeDateOnlyDate() == Date().makeDateOnlyDate() }) {
-            return false
+    func checkIsNewRecordToday() -> FastingRecordTable? {
+        if let record = recordResults?.first(where: { $0.date.makeDateOnlyDate() == Date().makeDateOnlyDate() }) {
+            return record
         } else {
-            return true
+            return nil
         }
     }
     
-    func startOrEndFastEarly() throws {
-        print(#function, fastState.value)
+    func makeTodaysRecordExistsAlertMessage(record: FastingRecordTable) -> String {
+        let recordExists = Constants.Alert.TodaysRecordExists.recordExistsMessage
+        let replace = Constants.Alert.TodaysRecordExists.replaceMessage
+        let startTime = record.fastingStartTime.dateToSetTimeString()
+        let endTime = record.fastingEndTime.dateToSetTimeString()
         
-        if fastState.value == .fasting {
-            print("end fasting early")
-            // TODO: - alert confirm 시
-            // 1. 기록 저장
-            userDefaults.recordEndTime = Date()
-            recordCardTime.value.end = Date().dateToSetTimeString()
-            
-            try saveNewFastingRecord()
-            
-            // 2. 타이머 eating으로 전환
-            
-            
-            
-            
-            // 3. 그 시점부터 eatingProgressPath 그려주기
-            
-        } else if fastState.value == .eating {
-            print("eating")
-            // TODO: - alert confirm 시
-            // 1. 버튼 누른 시점을 recordCardTie start & userDefault recordEndTime에 저장해두기
-            // 2. fasting으로 전환
-            // 3. 그 시점부터 fastingProgressPath 그려주기
-            
-            
-        }
+        return "\(recordExists)\nFrom \(startTime) to \(endTime)\n\(replace)"
+    }
+    
+    func breakFasting() {
+        userDefaults.recordEndTime = Date()
+        recordCardTime.value.end = Date().dateToSetTimeString()
+        
+        fastState.value = .fastingBreak
+        userDefaults.isFastingBreak = true
     }
 }
