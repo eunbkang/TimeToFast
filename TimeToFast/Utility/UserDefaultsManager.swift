@@ -32,6 +32,24 @@ final class UserDefaultsManager {
         }
     }
     
+    var isFastingBreak: Bool {
+        get {
+            return userDefaults.bool(forKey: Constants.Keys.isFastingBreak)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Constants.Keys.isFastingBreak)
+        }
+    }
+    
+    var isFastingEarly: Bool {
+        get {
+            return userDefaults.bool(forKey: Constants.Keys.isFastingEarly)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Constants.Keys.isFastingEarly)
+        }
+    }
+    
     var fastPlanType: FastingPlan {
         get {
             let fastingHour = userDefaults.integer(forKey: Constants.Keys.fastPlanType)

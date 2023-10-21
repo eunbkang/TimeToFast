@@ -138,7 +138,7 @@ class CircularTimerView: UIView {
             fastingProgressLayer.isHidden = true
             eatingProgressLayer.isHidden = true
             
-        case .fasting:
+        case .fasting, .fastingBreak, .fastingEarly:
             fastingProgressLayer.isHidden = false
             eatingProgressLayer.isHidden = true
             

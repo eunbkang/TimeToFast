@@ -39,12 +39,14 @@ class RecordTimeCardView: UIView {
     var isStartTimeEditable: Bool {
         didSet {
             showOrHideEditImage()
+            setRecordStatusToView()
         }
     }
     
     var isEndTimeEditable: Bool {
         didSet {
             showOrHideEditImage()
+            setRecordStatusToView()
         }
     }
     
@@ -148,7 +150,7 @@ class RecordTimeCardView: UIView {
         let idleColor: UIColor = .veryLightGray
         let runningColor: UIColor = .white.withAlphaComponent(0.5)
         
-        backgroundRectangle.backgroundColor = fastState == .idle ? idleColor : runningColor
+        backgroundRectangle.backgroundColor = fastState == .idle || fastState == .fastingBreak ? idleColor : runningColor
         
         headerView.type = fastState.recordTimeCardHeaderType
         
@@ -165,20 +167,21 @@ class RecordTimeCardView: UIView {
         saveButton.status = recordStatus
         saveButton.isEnabled = recordStatus == .notSaved ? true : false
         
-        if fastState == .eating {
-            saveButton.isHidden = false
+        configTimeViewEditable(for: leftTimeView, isEditable: isStartTimeEditable)
+        configTimeViewEditable(for: rightTimeView, isEditable: isEndTimeEditable)
+        
+        let isSaveShowable = fastState == .eating || fastState == .fastingBreak
+        saveButton.isHidden = isSaveShowable ? false : true
+    }
+    
+    private func configTimeViewEditable(for view: SetTimeView, isEditable: Bool) {
+        switch isEditable {
+        case true:
+            view.backgroundRectangle.layer.borderColor = UIColor.mainPurple.cgColor
+            view.backgroundRectangle.layer.borderWidth = recordStatus == .notSaved ? 1 : 0
             
-            [leftTimeView, rightTimeView].forEach { view in
-                view.backgroundRectangle.layer.borderColor = UIColor.mainPurple.cgColor
-                view.backgroundRectangle.layer.borderWidth = recordStatus == .notSaved ? 1 : 0
-            }
-
-        } else {
-            saveButton.isHidden = true
-            
-            [leftTimeView, rightTimeView].forEach { view in
-                view.backgroundRectangle.layer.borderWidth = 0
-            }
+        case false:
+            view.backgroundRectangle.layer.borderWidth = 0
         }
     }
     

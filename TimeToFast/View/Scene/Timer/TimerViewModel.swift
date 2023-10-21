@@ -56,14 +56,25 @@ final class TimerViewModel {
     
     private func fastingOrEating() -> FastState {
         let current = Date()
-        return current < timerSetting.value.fastEndTime ? .fasting : .eating
+        
+        if current < timerSetting.value.fastEndTime {
+            if userDefaults.isFastingBreak {
+                return .fastingBreak
+            } else  if userDefaults.isFastingEarly {
+                return .fastingEarly
+            } else {
+                return .fasting
+            }
+        } else {
+            return .eating
+        }
     }
     
     func configRecordCardTime() {
         switch fastState.value {
         case .idle:
             setIdleRecordCardTime()
-        case .fasting:
+        case .fasting, .fastingBreak, .fastingEarly:
             setFastingRecordCardTime()
         case .eating:
             setEatingRecordCardTime()
@@ -86,7 +97,13 @@ final class TimerViewModel {
         let startTimeFromUserDefaults = userDefaults.recordStartTime.dateToSetTimeString()
         
         recordCardTime.value.start = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
-        recordCardTime.value.end = timerSetting.value.fastEndTime.dateToSetTimeString()
+        
+        if fastState.value == .fasting || fastState.value == .fastingEarly {
+            recordCardTime.value.end = timerSetting.value.fastEndTime.dateToSetTimeString()
+            
+        } else if fastState.value == .fastingBreak {
+            recordCardTime.value.end = userDefaults.recordEndTime.dateToSetTimeString()
+        }
         
         if isStartTimeZero {
             userDefaults.recordStartTime = timerSetting.value.fastStartTime
@@ -128,8 +145,10 @@ final class TimerViewModel {
     
     private func configRecordStatus() {
         guard let recordResults = recordResults else { return }
-        let recordCardDate = recordResults.first(where: { $0.date.makeDateOnlyDate() == userDefaults.recordEndTime.makeDateOnlyDate() })
-
+        let recordCardDate = recordResults.first(where: {
+            $0.date.makeDateOnlyDate() == userDefaults.recordEndTime.makeDateOnlyDate() && $0.date.timeIntervalSince1970 > 0
+        })
+        
         recordStatus.value = recordCardDate == nil ? .notSaved : .saved
     }
     
@@ -178,7 +197,7 @@ final class TimerViewModel {
             userDefaults.isTimerRunning = true
             notification.setNotification()
             
-        case .fasting:
+        case .fasting, .fastingBreak, .fastingEarly:
             stopTimer()
             fastState.value = .idle
             userDefaults.isTimerRunning = false
@@ -268,6 +287,14 @@ final class TimerViewModel {
         case .eating:
             isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
             isEndTimeEditable.value = recordStatus.value == .notSaved ? true : false
+            
+        case .fastingBreak:
+            isStartTimeEditable.value = true
+            isEndTimeEditable.value = false
+            
+        case .fastingEarly:
+            isStartTimeEditable.value = false
+            isEndTimeEditable.value = false
         }
     }
     

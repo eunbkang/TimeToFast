@@ -31,10 +31,10 @@ class BackgroundGradientLayer: CAGradientLayer {
         self.endPoint = CGPoint(x: 0.5, y: 1.25)
         
         switch fastState {
-        case .idle:
+        case .idle, .fastingBreak:
             self.colors = [UIColor.white.cgColor]
             
-        case .fasting:
+        case .fasting, .fastingEarly:
             self.colors = [Constants.Color.lightPurple.withAlphaComponent(0.75).cgColor, Constants.Color.lightGreen.withAlphaComponent(0.75).cgColor]
             
         case .eating:

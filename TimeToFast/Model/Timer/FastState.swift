@@ -11,13 +11,17 @@ enum FastState {
     case idle
     case fasting
     case eating
+    case fastingBreak
+    case fastingEarly
     
     var fastControl: String {
         switch self {
         case .idle, .eating:
-            return Constants.FastControl.start
-        case .fasting:
-            return Constants.FastControl.end
+            return Constants.FastControl.startEarly
+        case .fasting, .fastingEarly:
+            return Constants.FastControl.breakFast
+        case .fastingBreak:
+            return Constants.FastControl.resumeFast
         }
     }
     
@@ -25,16 +29,18 @@ enum FastState {
         switch self {
         case .idle:
             return Constants.StateTitle.idle
-        case .fasting:
+        case .fasting, .fastingEarly:
             return Constants.StateTitle.fasting
         case .eating:
             return Constants.StateTitle.eating
+        case .fastingBreak:
+            return Constants.StateTitle.breakFast
         }
     }
     
     var timeStatus: String {
         switch self {
-        case .idle, .fasting:
+        case .idle, .fasting, .fastingEarly, .fastingBreak:
             return Constants.TimeStatus.base
         case .eating:
             return Constants.TimeStatus.eating
@@ -45,9 +51,9 @@ enum FastState {
         switch self {
         case .idle:
             return .fastingPlan
-        case .fasting:
+        case .fasting, .fastingEarly:
             return .fastingInProgress
-        case .eating:
+        case .eating, .fastingBreak:
             return .lastFasting
         }
     }
@@ -56,9 +62,9 @@ enum FastState {
         switch self {
         case .idle:
             return TimeCardTitle(left: "STARTS", right: "ENDS")
-        case .fasting:
+        case .fasting, .fastingEarly:
             return TimeCardTitle(left: "STARTED", right: "GOAL")
-        case .eating:
+        case .eating, .fastingBreak:
             return TimeCardTitle(left: "STARTED", right: "ENDED")
         }
     }

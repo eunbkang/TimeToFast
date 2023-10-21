@@ -43,7 +43,7 @@ class TimerControlButton: UIButton {
         config.cornerStyle = .capsule
         config.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 10, bottom: 4, trailing: 10)
         
-        if fastState == .idle {
+        if fastState == .idle || fastState == .fastingBreak {
             config.baseForegroundColor = .white
             config.background.backgroundColor = .black
 

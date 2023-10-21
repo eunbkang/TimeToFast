@@ -25,14 +25,16 @@ enum Constants {
     }
     
     enum FastControl {
-        static let start = "START FAST EARLY"
-        static let end = "END FAST EARLY"
+        static let startEarly = "START FAST EARLY"
+        static let breakFast = "BREAEK THE FAST"
+        static let resumeFast = "RESUME FASTING"
     }
     
     enum StateTitle {
         static let idle = "It's time to fast!"
         static let fasting = "You're fasting!"
         static let eating = "You're eating!"
+        static let breakFast = "You are on a break!"
     }
     
     enum TimeStatus {
@@ -75,6 +77,8 @@ enum Constants {
     enum Keys {
         static let isTimerRunning = "isTimerRunning"
         static let isPlanSetByUser = "isPlanSetByUser"
+        static let isFastingBreak = "isFastingBreak"
+        static let isFastingEarly = "isFastingEarly"
         
         static let fastPlanType = "fastPlanType"
         static let eatingStartHour = "eatingStartHour"

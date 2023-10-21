@@ -95,7 +95,7 @@ class SetTimeView: UIView {
     }
     
     private func configStateToView() {
-        backgroundRectangle.backgroundColor = fastState == .idle ? .white : .white.withAlphaComponent(0.75)
+        backgroundRectangle.backgroundColor = fastState == .idle || fastState == .fastingBreak ? .white : .white.withAlphaComponent(0.75)
     }
     
     private func configViewHierarchy() {

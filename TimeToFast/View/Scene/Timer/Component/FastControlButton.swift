@@ -35,11 +35,11 @@ class FastControlButton: UIButton {
         titleLabel?.font = .preferredFont(forTextStyle: .subheadline, weight: .semibold)
         
         switch fastState {
-        case .idle:
+        case .idle, .fastingBreak:
             isEnabled = false
             backgroundColor = Constants.Color.veryLightGray
             
-        case .fasting, .eating:
+        case .fasting, .eating, .fastingEarly:
             isEnabled = true
             backgroundColor = .white.withAlphaComponent(0.5)
         }
