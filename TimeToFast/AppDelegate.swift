@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { success, error in
             print(success, error)
         }
+        
+        FirebaseApp.configure()
         
         return true
     }
