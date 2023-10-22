@@ -30,7 +30,7 @@ final class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Settings"
+        title = Localizing.Title.settings
         
         settingTableView.delegate = self
         settingTableView.dataSource = self

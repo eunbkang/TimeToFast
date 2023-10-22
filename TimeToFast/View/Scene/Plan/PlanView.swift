@@ -23,7 +23,7 @@ final class PlanView: BaseView {
     
     let saveButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Save", for: .normal)
+        button.setTitle(Localizing.Button.save, for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black

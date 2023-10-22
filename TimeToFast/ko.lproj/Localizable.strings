@@ -1,0 +1,138 @@
+/* 
+  Localizable.strings
+  TimeToFast
+
+  Created by Eunbee Kang on 2023/10/22.
+  
+*/
+
+// MARK: - Title
+
+editPlan = "계획 수정";
+records = "지난 기록";
+settings = "설정";
+fastingPlanTitle = "단식 플랜";
+
+// MARK: - Plan
+
+planButtonTitle = "%d:%d 플랜";
+planDetail = "%d시간 단식 | %d시간 식사";
+
+// MARK: - Control
+
+playTimer = "타이머 시작";
+stopTimer = "정지";
+
+startFastEarly = "지금 단식 시작";
+breakFast = "단식 쉬기";
+resumeFast = "단식 재개";
+
+// MARK: - State
+
+idle = "단식할 시간입니다!";
+fasting = "지금은 단식 시간입니다!";
+eating = "지금은 식사 시간입니다!";
+breakingFast = "잠시 단식을 쉬고 있어요!";
+
+fastingStartsIn = "다음 단식까지";
+remainingTime = "남은 시간";
+
+// MARK: - Time
+
+starts = "시작";
+ends = "종료";
+started = "시작";
+goal = "목표";
+ended = "종료";
+
+from = "시작";
+to = "종료";
+
+// MARK: - Edit Time
+
+editStartedTime = "시작 시간 수정";
+editEndedTime = "종료 시간 수정";
+eatingFrom = "식사 시작 시간";
+
+// MARK: - Button
+
+save = "저장";
+saveUpper = "저장";
+savedUpper = "저장됨";
+
+// MARK: - Header
+
+weeklySchedule = "주간 계획";
+fastingPlan = "단식 플랜";
+eatingPeriod = "식사 시간";
+fastingInProgress = "단식 진행 중";
+lastFastingResult = "지난 단식 결과";
+thisWeek = "이번 주";
+pastRecords = "지난 기록";
+
+// MARK: - Days
+
+mon = "월";
+tue = "화";
+wed = "수";
+thu = "목";
+fri = "금";
+sat = "토";
+sun = "일";
+
+// MARK: - Setting
+
+notification = "단식시간 알림 설정";
+
+// MARK: - Alert
+
+yes = "네";
+cancel = "취소";
+replace = "교체";
+ok = "네";
+confirm = "확인";
+
+editPlanTitle = "계획 수정";
+editPlanMessage = "계획을 수정하면 타이머가 리셋됩니다. 저장되지 않은 단식 결과는 사라집니다.";
+
+saveRecordTitle = "저장";
+saveRecordMessage = "단식 결과를 저장할까요?";
+
+todayRecordExistsTitle = "오늘 저장한 기록 존재";
+todayRecordExistsMessage = "오늘 저장한 기록이 이미 있습니다.";
+todayRecordReplaceMessage = "새로운 기록으로 교체할까요?";
+existingRecord = "%@\n%@부터 %@까지\n%@";
+
+saveSucceedTitle = "저장되었습니다.";
+
+saveErrorTitle = "오류";
+saveErrorMessage = "기록 저장을 실패했습니다.";
+
+timerStartTitle= "타이머 시작";
+timerStartMessage = "이 플랜으로 단식 타이머를 시작할까요?";
+
+timerStopTitle = "타이머 정지";
+timerStopMessage = "정말 단식 타이머를 정지할까요?";
+
+startEarlyTitle = "지금 단식 시작";
+startEarlyMessage = "계획보다 빨리 단식을 시작합니다.\n'네'를 누르면 현재 시간이 오늘의 단식 시작 시간이 됩니다.\n목표 시간은 계획과 같이 유지됩니다.";
+
+breakFastTitle = "단식 쉬기";
+breakFastMessage = "정말 오늘의 단식을 지금 중단할까요?\n'네'를 누르면 현재 시간이 오늘의 단식 종료 시간이 됩니다.\n타이머는 플랜대로 계속 동작합니다.";
+
+resumeFastTitle = "단식 재개";
+resumeFastMessage = "오늘의 단식 쉬기를 중단하고 다시 단식으로 돌아갈까요?\n'네'를 누르면 단식으로 돌아갑니다. 저장되지 않은 단식 기록은 리셋됩니다.";
+
+// MARK: - Record
+
+noChartData = "이번 주 단식 기록이 없습니다.";
+noRecord = "기록 없음";
+goalAchieved = "목표 달성";
+hours = "시간";
+
+// MARK: - Notification
+
+fastingStartTitle = "단식할 시간입니다!";
+fastingStartBody = "단식 시간이 시작되었습니다. 건강한 단식을 응원합니다!";
+eatingStartTitle = "식사할 시간입니다!";
+eatingStartBody = "식사 시간이 시작되었습니다. 지난 단식 결과를 저장하고 건강한 음식으로 식사를 시작하세요!";

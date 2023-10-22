@@ -21,7 +21,7 @@ final class RecordViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Records"
+        title = Localizing.Title.records
         navigationItem.backButtonTitle = ""
         
         bindViewComponents()

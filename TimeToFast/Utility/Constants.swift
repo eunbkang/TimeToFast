@@ -17,34 +17,34 @@ enum Constants {
     }
     
     enum TimerControl {
-        static let playing = "STOP"
-        static let stopped = "START TIMER"
+        static let playing = Localizing.Control.stopTimer
+        static let stopped = Localizing.Control.playTimer
         
         static let playingImage = "stop.fill"
         static let stoppedImage = "play.fill"
     }
     
     enum FastControl {
-        static let startEarly = "START FAST EARLY"
-        static let breakFast = "BREAK THE FAST"
-        static let resumeFast = "RESUME FASTING"
+        static let startEarly = Localizing.Control.startFastEarly
+        static let breakFast = Localizing.Control.breakFast
+        static let resumeFast = Localizing.Control.resumeFast
     }
     
     enum StateTitle {
-        static let idle = "It's time to fast!"
-        static let fasting = "You're fasting!"
-        static let eating = "You're eating!"
-        static let breakFast = "You are on a break!"
+        static let idle = Localizing.State.idle
+        static let fasting = Localizing.State.fasting
+        static let eating = Localizing.State.eating
+        static let breakFast = Localizing.State.breakingFast
     }
     
     enum TimeStatus {
-        static let eating = "FASTING STARTS IN"
-        static let base = "REMAINING TIME"
+        static let eating = Localizing.State.fastingStartsIn
+        static let base = Localizing.State.remainingTime
     }
     
     enum SetTimeTitle {
-        static let started = "STARTED"
-        static let goal = "GOAL"
+        static let started = Localizing.Time.started
+        static let goal = Localizing.Time.goal
     }
     
     enum Size {
@@ -98,53 +98,53 @@ enum Constants {
     
     enum Alert {
         enum EditPlan {
-            static let title = "Edit Plan"
-            static let message = "Editing plan will reset the timer and any unsaved fasting results."
+            static let title = Localizing.Alert.editPlanTitle
+            static let message = Localizing.Alert.editPlanMessage
         }
         
         enum SaveRecord {
-            static let title = "Save"
-            static let message = "Do you want to save your last fasting result?"
+            static let title = Localizing.Alert.saveRecordTitle
+            static let message = Localizing.Alert.saveRecordMessage
         }
         
         enum TodaysRecordExists {
-            static let title = "Today's record exists"
-            static let recordExistsMessage = "You have saved today's fasting result already."
-            static let replaceMessage = "Do you want to replace it with the new data?"
+            static let title = Localizing.Alert.todayRecordExistsTitle
+            static let recordExistsMessage = Localizing.Alert.todayRecordExistsMessage
+            static let replaceMessage = Localizing.Alert.todayRecordReplaceMessage
         }
         
         enum SaveSucceed {
-            static let title = "Saved Successfully."
+            static let title = Localizing.Alert.saveSucceedTitle
         }
         
         enum SaveError {
-            static let title = "Error"
-            static let message = "Failed to save the record."
+            static let title = Localizing.Alert.saveErrorTitle
+            static let message = Localizing.Alert.saveErrorMessage
         }
         
         enum TimerStart {
-            static let title = "Start Timer"
-            static let message = "Do you want to start the fasting timer with this plan?"
+            static let title = Localizing.Alert.timerStartTitle
+            static let message = Localizing.Alert.timerStartMessage
         }
         
         enum TimerStop {
-            static let title = "Stop Timer"
-            static let message = "Do you really want to stop the fasting timer?"
+            static let title = Localizing.Alert.timerStopTitle
+            static let message = Localizing.Alert.timerStopMessage
         }
         
         enum StartEarly {
-            static let title = "Start fasting early"
-            static let message = "Do you want to start fasting now?\nPress 'Yes' to make the current time as today's fasting start time.\nThe goal time will be set as your planned eating start time."
+            static let title = Localizing.Alert.startEarlyTitle
+            static let message = Localizing.Alert.startEarlyMessage
         }
         
         enum BreakFast {
-            static let title = "Break your fast"
-            static let message = "Are you sure you want to break your fast now?\nPress 'Yes' to make the current time as the fasting end time.\nThe timer will continue counting down to keep up with your plan."
+            static let title = Localizing.Alert.breakFastTitle
+            static let message = Localizing.Alert.breakFastMessage
         }
         
         enum ResumeFast {
-            static let title = "Resume fasting"
-            static let message = "Do you want to cancel breaking the fast and resume?\nPress 'Yes' to resume fasting and reset the unsaved fasting record."
+            static let title = Localizing.Alert.resumeFastTitle
+            static let message = Localizing.Alert.resumeFastMessage
         }
     }
 }

@@ -45,15 +45,15 @@ final class EditStartedTimeViewController: BaseViewController {
         
         switch type {
         case .fastingStartedTime:
-            title = "Edit Started Time"
+            title = Localizing.EditTime.editStartedTime
             timePicker.datePickerMode = .dateAndTime
             
         case .fastingEndedTime:
-            title = "Edit Ended Time"
+            title = Localizing.EditTime.editEndedTime
             timePicker.datePickerMode = .dateAndTime
             
         case .planEatingFromTime:
-            title = "Eating From"
+            title = Localizing.EditTime.eatingFrom
             timePicker.datePickerMode = .time
         }
     }

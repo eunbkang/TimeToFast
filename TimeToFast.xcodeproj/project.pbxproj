@@ -26,6 +26,8 @@
 		7E46266B2AC4426300C45ED6 /* Foundation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */; };
 		7E46266D2AC481BB00C45ED6 /* TimerSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */; };
 		7E782E702AE2E52A003634C2 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E782E6F2AE2E529003634C2 /* TimerStatus.swift */; };
+		7E782E772AE46027003634C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E782E792AE46027003634C2 /* Localizable.strings */; };
+		7E782E7C2AE462BA003634C2 /* Localizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E782E7B2AE462BA003634C2 /* Localizing.swift */; };
 		7E9436482ADFF34B00BCF4EB /* CircularFastingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */; };
 		7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */; };
 		7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */; };
@@ -99,6 +101,9 @@
 		7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Extension.swift"; sourceTree = "<group>"; };
 		7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetting.swift; sourceTree = "<group>"; };
 		7E782E6F2AE2E529003634C2 /* TimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStatus.swift; sourceTree = "<group>"; };
+		7E782E782AE46027003634C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7E782E7A2AE46094003634C2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7E782E7B2AE462BA003634C2 /* Localizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizing.swift; sourceTree = "<group>"; };
 		7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularFastingHourView.swift; sourceTree = "<group>"; };
 		7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradientLayer.swift; sourceTree = "<group>"; };
 		7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
@@ -191,6 +196,7 @@
 				7E46263A2AC1656400C45ED6 /* Assets.xcassets */,
 				7E46263C2AC1656400C45ED6 /* LaunchScreen.storyboard */,
 				7E46263F2AC1656400C45ED6 /* Info.plist */,
+				7E782E792AE46027003634C2 /* Localizable.strings */,
 			);
 			path = TimeToFast;
 			sourceTree = "<group>";
@@ -235,6 +241,7 @@
 				7E3D3AB52ACC9D0000363F2E /* Observable.swift */,
 				7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */,
 				7EC3D4BB2AD7082C00C102FF /* NotificationManager.swift */,
+				7E782E7B2AE462BA003634C2 /* Localizing.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -476,6 +483,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 7E4626252AC1656300C45ED6;
 			packageReferences = (
@@ -499,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E46263E2AC1656400C45ED6 /* LaunchScreen.storyboard in Resources */,
+				7E782E772AE46027003634C2 /* Localizable.strings in Resources */,
 				7E46263B2AC1656400C45ED6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,6 +537,7 @@
 				7EC3D4982AD3CA2000C102FF /* EatingPeriodView.swift in Sources */,
 				7EC3D4BA2AD6FF6A00C102FF /* Notification.swift in Sources */,
 				7EC3D4B62AD52D3B00C102FF /* Setting.swift in Sources */,
+				7E782E7C2AE462BA003634C2 /* Localizing.swift in Sources */,
 				7E4626572AC1988300C45ED6 /* UIFont+Extension.swift in Sources */,
 				7E9436482ADFF34B00BCF4EB /* CircularFastingHourView.swift in Sources */,
 				7EC3D47F2ACE8B1400C102FF /* EditStartedTimeViewController.swift in Sources */,
@@ -586,6 +596,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		7E782E792AE46027003634C2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E782E782AE46027003634C2 /* en */,
+				7E782E7A2AE46094003634C2 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -593,6 +612,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -653,6 +673,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

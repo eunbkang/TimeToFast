@@ -23,11 +23,11 @@ enum FastingPlan: Int, CaseIterable {
     }
     
     var detail: String {
-        return "Fast for \(self.rawValue) hours | Eat for \(eatingHours) hours"
+        return "planDetail".localized(firstNumber: self.rawValue, secondNumber: eatingHours)
     }
     
     var planButtonTitle: String {
-        return "\(self.rawValue):\(eatingHours) FAST"
+        return "planButtonTitle".localized(firstNumber: self.rawValue, secondNumber: eatingHours)
     }
     
     var defaultEatingStartTime: Date {

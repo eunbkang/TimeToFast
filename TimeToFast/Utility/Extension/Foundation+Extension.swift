@@ -44,3 +44,17 @@ extension Date {
         return hours
     }
 }
+
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
+    
+    func localized(firstNumber: Int, secondNumber: Int) -> String {
+        return String(format: self.localized, firstNumber, secondNumber)
+    }
+    
+    func localized(first: String, second: String, third: String, fourth: String) -> String {
+        return String(format: self.localized, first, second, third, fourth)
+    }
+}

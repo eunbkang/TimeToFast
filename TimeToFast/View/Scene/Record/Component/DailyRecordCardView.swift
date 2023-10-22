@@ -60,7 +60,7 @@ class DailyRecordCardView: BaseView {
     
     private let noRecordLabel: UILabel = {
         let label = UILabel()
-        label.text = "No record"
+        label.text = Localizing.Record.noRecord
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.textColor = .systemGray2
         
@@ -78,7 +78,7 @@ class DailyRecordCardView: BaseView {
     
     private let goalLabel: UILabel = {
         let label = UILabel()
-        label.text = "GOAL ACHIEVED"
+        label.text = Localizing.Record.goalAchieved
         label.font = .preferredFont(forTextStyle: .footnote)
         label.textColor = .black
         
@@ -124,7 +124,7 @@ class DailyRecordCardView: BaseView {
     
     private let hoursLabel: UILabel = {
         let label = UILabel()
-        label.text = "hours"
+        label.text = Localizing.Record.hours
         label.font = .preferredFont(forTextStyle: .caption2)
         label.textColor = .black
         
@@ -143,7 +143,7 @@ class DailyRecordCardView: BaseView {
     
     private let startedLabel: UILabel = {
         let label = UILabel()
-        label.text = "STARTED"
+        label.text = Localizing.Time.started
         label.font = .preferredFont(forTextStyle: .footnote)
         label.textColor = .systemGray
         
@@ -170,7 +170,7 @@ class DailyRecordCardView: BaseView {
     
     private let endedLabel: UILabel = {
         let label = UILabel()
-        label.text = "ENDED"
+        label.text = Localizing.Time.ended
         label.font = .preferredFont(forTextStyle: .footnote)
         label.textColor = .systemGray
         

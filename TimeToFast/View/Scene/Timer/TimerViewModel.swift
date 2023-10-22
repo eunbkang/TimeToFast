@@ -417,7 +417,8 @@ final class TimerViewModel {
         let startTime = record.fastingStartTime.dateToSetTimeString()
         let endTime = record.fastingEndTime.dateToSetTimeString()
         
-        return "\(recordExists)\nFrom \(startTime) to \(endTime)\n\(replace)"
+//        return "\(recordExists)\nFrom \(startTime) to \(endTime)\n\(replace)"
+        return "existingRecord".localized(first: recordExists, second: startTime, third: endTime, fourth: replace)
     }
     
     // MARK: - Fasting Control

@@ -22,7 +22,7 @@ final class PlanViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Edit Plan"
+        title = Localizing.Title.editPlan
         navigationItem.backButtonTitle = ""
         
         bindViewComponents()

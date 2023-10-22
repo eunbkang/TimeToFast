@@ -97,10 +97,10 @@ class EatingPeriodTimeView: UIView {
             backgroundRectangle.layer.borderColor = UIColor.mainGreen.cgColor
             backgroundRectangle.layer.borderWidth = 1
             
-            fromToLabel.text = "From"
+            fromToLabel.text = Localizing.Time.from
             addSubview(editImageView)
         case .to:
-            fromToLabel.text = "To"
+            fromToLabel.text = Localizing.Time.to
         }
     }
     

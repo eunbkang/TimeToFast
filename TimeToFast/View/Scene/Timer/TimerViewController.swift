@@ -100,7 +100,7 @@ final class TimerViewController: BaseViewController {
     
     @objc func saveButtonTapped() {
         let alert = UIAlertController(title: Constants.Alert.SaveRecord.title, message: Constants.Alert.SaveRecord.message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Confirm", style: .default) { _ in
+        let confirm = UIAlertAction(title: Localizing.Alert.confirm, style: .default) { _ in
             if let existingRecord = self.viewModel.checkIsNewRecordToday() {
                 self.showAlertTodaysRecordExists(isEarly: false, record: existingRecord)
             } else {
@@ -113,7 +113,7 @@ final class TimerViewController: BaseViewController {
                 }
             }
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancel = UIAlertAction(title: Localizing.Alert.cancel, style: .cancel)
         
         alert.addAction(confirm)
         alert.addAction(cancel)
@@ -122,7 +122,7 @@ final class TimerViewController: BaseViewController {
     
     private func showAlert(title: String, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okay = UIAlertAction(title: "OK", style: .cancel)
+        let okay = UIAlertAction(title: Localizing.Alert.ok, style: .cancel)
         
         alert.addAction(okay)
         present(alert, animated: true)
@@ -132,7 +132,7 @@ final class TimerViewController: BaseViewController {
         let message = viewModel.makeTodaysRecordExistsAlertMessage(record: record)
         
         let alert = UIAlertController(title: Constants.Alert.TodaysRecordExists.title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Replace", style: .default) { _ in
+        let confirm = UIAlertAction(title: Localizing.Alert.replace, style: .default) { _ in
             do {
                 try self.viewModel.updateTodaysRecord(isEarly: isEarly)
                 self.viewModel.getStoredSetting()
@@ -141,7 +141,7 @@ final class TimerViewController: BaseViewController {
                 self.showAlert(title: Constants.Alert.SaveError.title, message: Constants.Alert.SaveError.message)
             }
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancel = UIAlertAction(title: Localizing.Alert.cancel, style: .cancel)
         
         alert.addAction(confirm)
         alert.addAction(cancel)
@@ -153,10 +153,10 @@ final class TimerViewController: BaseViewController {
         let alertMessage = viewModel.fastState.value == .idle ? viewModel.makeTimerStartAlertMessage() : Constants.Alert.TimerStop.message
         
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Yes", style: .default) { _ in
+        let confirm = UIAlertAction(title: Localizing.Alert.yes, style: .default) { _ in
             self.viewModel.controlTimer()
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancel = UIAlertAction(title: Localizing.Alert.cancel, style: .cancel)
         
         alert.addAction(confirm)
         alert.addAction(cancel)
@@ -181,8 +181,8 @@ final class TimerViewController: BaseViewController {
     
     private func showAlert(title: String, message: String, action: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Yes", style: .default, handler: action)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let confirm = UIAlertAction(title: Localizing.Alert.yes, style: .default, handler: action)
+        let cancel = UIAlertAction(title: Localizing.Alert.cancel, style: .cancel)
         
         alert.addAction(confirm)
         alert.addAction(cancel)

@@ -59,7 +59,7 @@ final class ThisWeekView: BaseView {
         chartView.highlightPerTapEnabled = false
         chartView.highlightPerDragEnabled = false
         
-        chartView.noDataText = "There are no fasting records this week."
+        chartView.noDataText = Localizing.Record.noChartData
         chartView.noDataFont = .preferredFont(forTextStyle: .subheadline)
         chartView.noDataTextColor = .systemGray2
         

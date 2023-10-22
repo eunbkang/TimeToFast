@@ -23,7 +23,7 @@ final class ChooseFastingPlanViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Fasting Plan"
+        title = Localizing.Title.fastingPlanTitle
         
         tableView.delegate = self
         tableView.dataSource = self

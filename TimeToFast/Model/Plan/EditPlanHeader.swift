@@ -26,19 +26,19 @@ enum EditPlanHeaderType: Int, CaseIterable {
     var header: EditPlanHeader {
         switch self {
         case .weeklySchedule:
-            return EditPlanHeader(image: "calendar", title: "WEEKLY SCHEDULE")
+            return EditPlanHeader(image: "calendar", title: Localizing.Header.weeklySchedule)
         case .fastingPlan:
-            return EditPlanHeader(image: "flame.fill", title: "FASTING PLAN")
+            return EditPlanHeader(image: "flame.fill", title: Localizing.Header.fastingPlan)
         case .eatingPeriod:
-            return EditPlanHeader(image: "fork.knife", title: "EATING PERIOD")
+            return EditPlanHeader(image: "fork.knife", title: Localizing.Header.eatingPeriod)
         case .fastingInProgress:
-            return EditPlanHeader(image: "flame.fill", title: "FASTING IN PROGRESS")
+            return EditPlanHeader(image: "flame.fill", title: Localizing.Header.fastingInProgress)
         case .lastFasting:
-            return EditPlanHeader(image: "flame.fill", title: "LAST FASTING RESULT")
+            return EditPlanHeader(image: "flame.fill", title: Localizing.Header.lastFastingResult)
         case .thisWeek:
-            return EditPlanHeader(image: "chart.bar.fill", title: "THIS WEEK")
+            return EditPlanHeader(image: "chart.bar.fill", title: Localizing.Header.thisWeek)
         case .pastRecords:
-            return EditPlanHeader(image: "calendar", title: "PAST RECORDS")
+            return EditPlanHeader(image: "calendar", title: Localizing.Header.pastRecords)
         }
     }
 }

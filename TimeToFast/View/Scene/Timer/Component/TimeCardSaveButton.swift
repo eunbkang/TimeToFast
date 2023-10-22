@@ -13,8 +13,8 @@ enum RecordStatus {
     
     var saveButtonTitle: String {
         switch self {
-        case .notSaved: return "SAVE"
-        case .saved: return "SAVED"
+        case .notSaved: return Localizing.Button.saveUpper
+        case .saved: return Localizing.Button.savedUpper
         }
     }
 }

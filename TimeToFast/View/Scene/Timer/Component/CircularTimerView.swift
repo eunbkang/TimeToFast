@@ -195,8 +195,6 @@ class CircularTimerView: UIView {
         let currentAngle = Date().dateToAngle()
         let timerEndAngle = timerSetting.fastEndAngle
         
-        print(currentAngle, timerEndAngle)
-        
         if fastState == .eating {
             return timerEndAngle
         } else {

@@ -20,7 +20,7 @@ enum Setting: CaseIterable {
     var title: String {
         switch self {
         case .notification:
-            return "Notification"
+            return Localizing.Setting.notification
         }
     }
 }

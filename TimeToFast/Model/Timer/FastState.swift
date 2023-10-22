@@ -61,11 +61,11 @@ enum FastState {
     var recordTimeCardsTitle: TimeCardTitle {
         switch self {
         case .idle:
-            return TimeCardTitle(left: "STARTS", right: "ENDS")
+            return TimeCardTitle(left: Localizing.Time.starts, right: Localizing.Time.ends)
         case .fasting, .fastingEarly:
-            return TimeCardTitle(left: "STARTED", right: "GOAL")
+            return TimeCardTitle(left: Localizing.Time.started, right: Localizing.Time.goal)
         case .eating, .fastingBreak:
-            return TimeCardTitle(left: "STARTED", right: "ENDED")
+            return TimeCardTitle(left: Localizing.Time.started, right: Localizing.Time.ended)
         }
     }
 }
