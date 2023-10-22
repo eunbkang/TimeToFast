@@ -67,7 +67,7 @@ class RecordTimeCardView: UIView {
     lazy var leftTimeView: SetTimeView = {
         let view = SetTimeView(
             title: fastState.recordTimeCardsTitle.left,
-            date: recordCardTime.start,
+            date: recordCardTime.startString(status: fastState),
             fastState: fastState
         )
         
@@ -77,7 +77,7 @@ class RecordTimeCardView: UIView {
     lazy var rightTimeView: SetTimeView = {
         let view = SetTimeView(
             title: fastState.recordTimeCardsTitle.right,
-            date: recordCardTime.end,
+            date: recordCardTime.endString(status: fastState),
             fastState: fastState
         )
         
@@ -156,11 +156,11 @@ class RecordTimeCardView: UIView {
         
         leftTimeView.fastState = fastState
         leftTimeView.title = fastState.recordTimeCardsTitle.left
-        leftTimeView.date = recordCardTime.start
+        leftTimeView.date = recordCardTime.startString(status: fastState)
         
         rightTimeView.fastState = fastState
         rightTimeView.title = fastState.recordTimeCardsTitle.right
-        rightTimeView.date = recordCardTime.end
+        rightTimeView.date = recordCardTime.endString(status: fastState)
     }
     
     private func setRecordStatusToView() {
@@ -186,8 +186,8 @@ class RecordTimeCardView: UIView {
     }
     
     private func setRecordCardTimeToView() {
-        leftTimeView.date = recordCardTime.start
-        rightTimeView.date = recordCardTime.end
+        leftTimeView.date = recordCardTime.startString(status: fastState)
+        rightTimeView.date = recordCardTime.endString(status: fastState)
     }
     
     private func showOrHideEditImage() {

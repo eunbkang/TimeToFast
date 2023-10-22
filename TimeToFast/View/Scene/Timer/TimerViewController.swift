@@ -77,7 +77,7 @@ final class TimerViewController: BaseViewController {
     @objc func leftTimeViewTapped() {
         let vc = EditStartedTimeViewController()
         vc.type = .fastingStartedTime
-        vc.timePicker.date = viewModel.timerSetting.value.fastStartTime
+        vc.timePicker.date = viewModel.recordCardTime.value.startTime
         vc.delegate = self
         
         let nav = UINavigationController(rootViewController: vc)
@@ -87,7 +87,7 @@ final class TimerViewController: BaseViewController {
     @objc func rightTimeViewTapped() {
         let vc = EditStartedTimeViewController()
         vc.type = .fastingEndedTime
-        vc.timePicker.date = viewModel.timerSetting.value.fastEndTime
+        vc.timePicker.date = viewModel.recordCardTime.value.endTime
         vc.delegate = self
         
         let nav = UINavigationController(rootViewController: vc)

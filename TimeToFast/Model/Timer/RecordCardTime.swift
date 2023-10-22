@@ -8,6 +8,24 @@
 import Foundation
 
 struct RecordCardTime {
-    var start: String
-    var end: String
+    var startTime: Date
+    var endTime: Date
+    
+    func startString(status: FastState) -> String {
+        if status == .idle {
+            return startTime.dateToTimeOnlyString()
+            
+        } else {
+            return startTime.dateToSetTimeString()
+        }
+    }
+    
+    func endString(status: FastState) -> String {
+        if status == .idle {
+            return endTime.dateToTimeOnlyString()
+            
+        } else {
+            return endTime.dateToSetTimeString()
+        }
+    }
 }

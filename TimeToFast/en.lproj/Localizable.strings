@@ -101,7 +101,7 @@ saveRecordMessage = "Do you want to save your last fasting result?";
 todayRecordExistsTitle = "Today's record exists";
 todayRecordExistsMessage = "You have saved today's fasting result already.";
 todayRecordReplaceMessage = "Do you want to replace it with the new data?";
-existingRecord = "%@\nFrom %@ to %@\n%@";
+existingRecord = "%@\n(From %@ to %@)\n%@";
 
 saveSucceedTitle = "Saved Successfully.";
 

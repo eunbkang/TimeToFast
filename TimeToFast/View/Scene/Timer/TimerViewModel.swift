@@ -14,8 +14,8 @@ final class TimerViewModel {
     
     var fastState = Observable(FastState.idle)
     lazy var recordCardTime = Observable(RecordCardTime(
-        start: timerSetting.value.fastStartTime.dateToTimeOnlyString(),
-        end: timerSetting.value.fastEndTime.dateToTimeOnlyString()
+        startTime: timerSetting.value.fastStartTime,
+        endTime: timerSetting.value.fastEndTime
     ))
     
     var recordStatus = Observable(RecordStatus.notSaved)
@@ -39,12 +39,11 @@ final class TimerViewModel {
     // MARK: - methods
     
     func getStoredSetting() {
+        fetchFastingRecord()
         configTimerSetting()
         configFastState()
         configRecordCardTime()
         configTimeViewEditable()
-        fetchFastingRecord()
-        configRecordStatus()
         
         if fastState.value != .idle {
             startTimer()
@@ -57,10 +56,6 @@ final class TimerViewModel {
     
     private func fastingOrEating() -> FastState {
         let current = Date()
-//        if isPlusOneDayRequired() {
-//            userDefaults.isFastingEarly = false
-//            userDefaults.isFastingBreak = false
-//        }
         
         if current < timerSetting.value.fastEndTime {
             if userDefaults.isFastingBreak {
@@ -78,9 +73,7 @@ final class TimerViewModel {
     func configRecordCardTime() {
         switch fastState.value {
         case .idle:
-            if !userDefaults.isTimerRunning {
-                setIdleRecordCardTime()
-            }
+            setIdleRecordCardTime()
         case .fasting, .fastingBreak, .fastingEarly:
             setFastingRecordCardTime()
         case .eating:
@@ -92,24 +85,22 @@ final class TimerViewModel {
         let startTimeFromTimer = timerSetting.value.fastStartTime
         let endTimeFromTimer = timerSetting.value.fastEndTime
         
-        recordCardTime.value.start = startTimeFromTimer.dateToTimeOnlyString()
-        recordCardTime.value.end = endTimeFromTimer.dateToTimeOnlyString()
-        userDefaults.recordStartTime = startTimeFromTimer
-        userDefaults.recordEndTime = endTimeFromTimer
+        recordCardTime.value.startTime = startTimeFromTimer
+        recordCardTime.value.endTime = endTimeFromTimer
     }
     
     private func setFastingRecordCardTime() {
         let isStartTimeZero = userDefaults.recordStartTime.timeIntervalSince1970 == 0
-        let startTimeFromTimer = timerSetting.value.fastStartTime.dateToSetTimeString()
-        let startTimeFromUserDefaults = userDefaults.recordStartTime.dateToSetTimeString()
+        let startTimeFromTimer = timerSetting.value.fastStartTime
+        let startTimeFromUserDefaults = userDefaults.recordStartTime
         
-        recordCardTime.value.start = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
+        recordCardTime.value.startTime = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
         
         if fastState.value == .fasting || fastState.value == .fastingEarly {
-            recordCardTime.value.end = timerSetting.value.fastEndTime.dateToSetTimeString()
+            recordCardTime.value.endTime = timerSetting.value.fastEndTime
             
         } else if fastState.value == .fastingBreak {
-            recordCardTime.value.end = userDefaults.recordEndTime.dateToSetTimeString()
+            recordCardTime.value.endTime = userDefaults.recordEndTime
         }
         
         if isStartTimeZero {
@@ -118,74 +109,51 @@ final class TimerViewModel {
     }
     
     private func setEatingRecordCardTime() {
-        let isStartTimeZero = userDefaults.recordStartTime.timeIntervalSince1970 == 0
-        let isEndTimeZero = userDefaults.recordEndTime.timeIntervalSince1970 == 0
+        let startTimeFromTimer = timerSetting.value.fastStartTime
+        let endTimeFromTimer = timerSetting.value.fastEndTime
         
-        userDefaults.recordStartTime = recordStatus.value == .notSaved ? timerSetting.value.fastStartTime : findLastFastingSavedRecord().start
-        userDefaults.recordEndTime = recordStatus.value == .notSaved ? timerSetting.value.fastEndTime : findLastFastingSavedRecord().end
+        let startTimeFromUserDefaults = userDefaults.recordStartTime
+        let endTimeFromUserDefaults = userDefaults.recordEndTime
+        let isStartTimeZero = startTimeFromUserDefaults.timeIntervalSince1970 == 0
+        let isEndTimeZero = endTimeFromUserDefaults.timeIntervalSince1970 == 0
         
-        let startTimeFromTimer = timerSetting.value.fastStartTime.dateToSetTimeString()
-        let startTimeFromUserDefaults = userDefaults.recordStartTime.dateToSetTimeString()
+        let savedRecord = checkAndFindSavedRecord(with: endTimeFromUserDefaults)
         
-        let endTimeFromTimer = timerSetting.value.fastEndTime.dateToSetTimeString()
-        let endTimeFromUserDefaults = userDefaults.recordEndTime.dateToSetTimeString()
-        
-        if recordStatus.value == .notSaved {
-            recordCardTime.value.start = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
-            recordCardTime.value.end = isEndTimeZero ? endTimeFromTimer : endTimeFromUserDefaults
-        } else {
-            recordCardTime.value.start = startTimeFromUserDefaults
-            recordCardTime.value.end = endTimeFromUserDefaults
-        }
-    }
-    
-    private func findLastFastingSavedRecord() -> (start: Date, end: Date) {
-        guard let recordResults = recordResults else { return (Date(), Date()) }
-        
-        if let record = recordResults.first(where: { $0.fastingEndTime == userDefaults.recordEndTime }) {
-            return (record.fastingStartTime, record.fastingEndTime)
+        if let savedRecord {
+            recordStatus.value = .saved
+            recordCardTime.value.startTime = savedRecord.start
+            recordCardTime.value.endTime = savedRecord.end
             
         } else {
-            return (Date(), Date())
+            recordStatus.value = .notSaved
+            recordCardTime.value.startTime = isStartTimeZero ? startTimeFromTimer : startTimeFromUserDefaults
+            recordCardTime.value.endTime = isEndTimeZero ? endTimeFromTimer : endTimeFromUserDefaults
+            
+            if isStartTimeZero {
+                userDefaults.recordStartTime = startTimeFromTimer
+            }
+            if isEndTimeZero {
+                userDefaults.recordEndTime = endTimeFromTimer
+            }
         }
     }
     
-    private func configRecordStatus() {
-        guard let recordResults = recordResults else { return }
-        let recordCardDateResult = recordResults.first(where: {
-            $0.fastingEndTime == userDefaults.recordEndTime && $0.date.timeIntervalSince1970 > 0
-        })
+    private func checkAndFindSavedRecord(with date: Date) -> (start: Date, end: Date)? {
+        guard let recordResults = recordResults else { return nil }
         
-        recordStatus.value = recordCardDateResult == nil ? .notSaved : .saved
+        if let record = recordResults.first(where: { $0.fastingEndTime == date }) {
+            return (record.fastingStartTime, record.fastingEndTime)
+        } else {
+            return nil
+        }
     }
-    
-//    func configTimerSetting() {
-//        let isFastingEarly = userDefaults.isFastingEarly
-//
-//        switch userDefaults.isPlanSetByUser {
-//        case true:
-//            let eatingStart = setEatingStartTimeWithDay()
-//            timerSetting.value.plan = userDefaults.fastPlanType
-//            timerSetting.value.fastStartTime = isFastingEarly ? userDefaults.recordStartTime : calculateFastStartTime(with: eatingStart)
-//            timerSetting.value.fastEndTime = eatingStart
-//
-//        case false:
-//            let eatingStart = timerSetting.value.plan.defaultEatingStartTime
-//            timerSetting.value.plan = .sixteen
-//            timerSetting.value.fastStartTime = isFastingEarly ? userDefaults.recordStartTime : calculateFastStartTime(with: eatingStart)
-//            timerSetting.value.fastEndTime = eatingStart
-//            userDefaults.fastPlanType = .sixteen
-//            userDefaults.eatingStartTime = timerSetting.value.plan.defaultEatingStartTime
-//        }
-//        plusOneDayToFastStartTime()
-//    }
     
     func configTimerSetting() {
-        switch userDefaults.eatingStartTime.timeIntervalSince1970 == 0 {
-        case true:
+        switch userDefaults.isPlanSetByUser {
+        case false:
             configInitialTimerTimes()
             
-        case false:
+        case true:
             let timerTimes = configTimerTimes()
             timerSetting.value.fastStartTime = timerTimes.fastStart
             timerSetting.value.fastEndTime = timerTimes.eatingStart
@@ -196,8 +164,8 @@ final class TimerViewModel {
     }
     
     private func configInitialTimerTimes() {
-        let defaultEatingStart = timerSetting.value.plan.defaultEatingStartTime
         timerSetting.value.plan = .sixteen
+        let defaultEatingStart = timerSetting.value.plan.defaultEatingStartTime
         timerSetting.value.fastStartTime = calculateFastStartTime(with: defaultEatingStart)
         timerSetting.value.fastEndTime = defaultEatingStart
         timerSetting.value.eatingStartTime = defaultEatingStart
@@ -270,17 +238,6 @@ final class TimerViewModel {
 
         return Calendar.current.date(byAdding: .hour, value: eatingHour, to: eatingStartTime)!
     }
-    
-//    private func isPlusOneDayRequired() -> Bool {
-//        return Date() > userDefaults.eatingEndTime
-//    }
-//
-//    private func plusOneDayToFastStartTime() {
-//        if isPlusOneDayRequired() {
-//            let fastingStartTime = timerSetting.value.fastStartTime
-//            timerSetting.value.fastStartTime = fastingStartTime.addOneDay()
-//        }
-//    }
     
     // MARK: - Timer
     
@@ -373,11 +330,11 @@ final class TimerViewModel {
     func saveEditedTimeToUserDefaults(type: EditTimeType, time: Date) {
         if type == .fastingStartedTime {
             userDefaults.recordStartTime = time
-            recordCardTime.value.start = time.dateToSetTimeString()
+            recordCardTime.value.startTime = time
             
         } else if type == .fastingEndedTime {
             userDefaults.recordEndTime = time
-            recordCardTime.value.end = time.dateToSetTimeString()
+            recordCardTime.value.endTime = time
         }
     }
     
@@ -432,7 +389,7 @@ final class TimerViewModel {
         guard let todayRecord = recordResults?.first(where: { $0.date.makeDateOnlyDate() == Date().makeDateOnlyDate() }) else { return }
         if isEarly {
             userDefaults.recordEndTime = Date()
-            recordCardTime.value.end = Date().dateToSetTimeString()
+            recordCardTime.value.endTime = Date()
         }
         
         let newRecord = makeFastingRecordTable()
@@ -471,7 +428,6 @@ final class TimerViewModel {
         let startTime = record.fastingStartTime.dateToSetTimeString()
         let endTime = record.fastingEndTime.dateToSetTimeString()
         
-//        return "\(recordExists)\nFrom \(startTime) to \(endTime)\n\(replace)"
         return "existingRecord".localized(first: recordExists, second: startTime, third: endTime, fourth: replace)
     }
     
@@ -480,7 +436,7 @@ final class TimerViewModel {
     func breakFasting() {
         let endTime = Date()
         userDefaults.recordEndTime = endTime
-        recordCardTime.value.end = endTime.dateToSetTimeString()
+        recordCardTime.value.endTime = endTime
         
         fastState.value = .fastingBreak
         userDefaults.isFastingBreak = true
@@ -489,7 +445,7 @@ final class TimerViewModel {
     func resumeFasting() {
         let endTime = timerSetting.value.fastEndTime
         userDefaults.recordEndTime = endTime
-        recordCardTime.value.end = endTime.dateToSetTimeString()
+        recordCardTime.value.endTime = endTime
         
         fastState.value = .fasting
         userDefaults.isFastingBreak = false
@@ -498,7 +454,7 @@ final class TimerViewModel {
     func startFastingEarly() {
         let startTime = Date()
         userDefaults.recordStartTime = startTime
-        recordCardTime.value.start = startTime.dateToSetTimeString()
+        recordCardTime.value.startTime = startTime
         
         fastState.value = .fastingEarly
         userDefaults.isFastingEarly = true

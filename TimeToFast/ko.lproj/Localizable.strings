@@ -101,7 +101,7 @@ saveRecordMessage = "단식 결과를 저장할까요?";
 todayRecordExistsTitle = "오늘 저장한 기록 존재";
 todayRecordExistsMessage = "오늘 저장한 기록이 이미 있습니다.";
 todayRecordReplaceMessage = "새로운 기록으로 교체할까요?";
-existingRecord = "%@\n%@부터 %@까지\n%@";
+existingRecord = "%@\n(%@부터 %@까지)\n%@";
 
 saveSucceedTitle = "저장되었습니다.";
 

@@ -59,8 +59,6 @@ extension ChooseFastingPlanViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FastingPlanTableViewCell.description()) as? FastingPlanTableViewCell else { return }
-        
         let selectedPlan = FastingPlan.allCases[indexPath.row]
         delegate?.didSelectedFastingPlan(plan: selectedPlan)
         planSetting?.plan = selectedPlan
