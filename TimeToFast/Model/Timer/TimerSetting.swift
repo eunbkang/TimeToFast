@@ -23,4 +23,15 @@ struct TimerSetting {
     var fastEndAngle: CGFloat {
         return fastEndTime.dateToAngle()
     }
+    
+    var eatingStartTime: Date
+    var eatingEndTime: Date
+    
+    var eatingStartAngle: CGFloat {
+        return eatingStartTime.dateToAngle()
+    }
+    
+    var eatingEndAngle: CGFloat {
+        return eatingEndTime.dateToAngle()
+    }
 } 

@@ -152,7 +152,7 @@ class CircularTimerView: UIView {
     private func configTimerSettingToView() {
         let center = CGPoint(x: timerSize / 2, y: timerSize / 2)
         let radius = timerSize * .timerRadius
-        let lineWidth = .timerRadius * timerSize * 0.15 - 8
+//        let lineWidth = .timerRadius * timerSize * 0.15 - 8
         
         let fastingTrackPath = UIBezierPath(
             arcCenter: center,
@@ -165,20 +165,20 @@ class CircularTimerView: UIView {
             arcCenter: center,
             radius: radius,
             startAngle: timerSetting.fastStartAngle,
-            endAngle: configFastingProgressEndAngle(),
+            endAngle: Date().dateToAngle(),
             clockwise: true
         )
         let eatingTrackPath = UIBezierPath(
             arcCenter: center,
             radius: radius,
-            startAngle: timerSetting.fastEndAngle,
-            endAngle: timerSetting.fastStartAngle,
+            startAngle: timerSetting.eatingStartAngle,
+            endAngle: timerSetting.eatingEndAngle,
             clockwise: true
         )
         let eatingProgressPath = UIBezierPath(
             arcCenter: center,
             radius: radius,
-            startAngle: timerSetting.fastEndAngle,
+            startAngle: timerSetting.eatingStartAngle,
             endAngle: Date().dateToAngle(),
             clockwise: true
         )
@@ -191,20 +191,20 @@ class CircularTimerView: UIView {
         configSymbolImage()
     }
     
-    private func configFastingProgressEndAngle() -> CGFloat {
-        let currentAngle = Date().dateToAngle()
-        let timerEndAngle = timerSetting.fastEndAngle
-        
-        if fastState == .eating {
-            return timerEndAngle
-        } else {
-            if currentAngle < timerEndAngle {
-                return currentAngle
-            } else {
-                return timerEndAngle
-            }
-        }
-    }
+//    private func configFastingProgressEndAngle() -> CGFloat {
+//        let currentAngle = Date().dateToAngle()
+//        let timerEndAngle = timerSetting.fastEndAngle
+//
+//        if fastState == .eating {
+//            return timerEndAngle
+//        } else {
+//            if currentAngle < timerEndAngle {
+//                return currentAngle
+//            } else {
+//                return timerEndAngle
+//            }
+//        }
+//    }
     
     private func configClock() {
         addSubview(clockImageView)

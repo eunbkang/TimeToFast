@@ -30,7 +30,7 @@ class NotificationManager {
     }
     
     private func sendFastingNotification() {
-        let message = notificationMessage.fastingStart
+        let message = notificationMessage.fastingStartMessage
         
         let content = UNMutableNotificationContent()
         content.title = message.title
@@ -43,7 +43,7 @@ class NotificationManager {
     }
     
     private func sendEatingNotification() {
-        let message = notificationMessage.eatingStart
+        let message = notificationMessage.eatingStartMessage
         
         let content = UNMutableNotificationContent()
         content.title = message.title

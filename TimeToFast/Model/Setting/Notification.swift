@@ -13,6 +13,6 @@ struct LocalNotification {
 }
 
 struct NotificationMessage {
-    var fastingStart = LocalNotification(title: Localizing.Notification.fastingStartTitle, body: Localizing.Notification.fastingStartBody)
-    var eatingStart = LocalNotification(title: Localizing.Notification.eatingStartTitle, body: Localizing.Notification.eatingStartBody)
+    var fastingStartMessage = LocalNotification(title: Localizing.Notification.fastingStartTitle, body: Localizing.Notification.fastingStartBody)
+    var eatingStartMessage = LocalNotification(title: Localizing.Notification.eatingStartTitle, body: Localizing.Notification.eatingStartBody)
 }
