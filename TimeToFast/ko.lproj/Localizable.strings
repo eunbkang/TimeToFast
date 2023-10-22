@@ -115,7 +115,7 @@ timerStopTitle = "타이머 정지";
 timerStopMessage = "정말 단식 타이머를 정지할까요?";
 
 startEarlyTitle = "지금 단식 시작";
-startEarlyMessage = "계획보다 빨리 단식을 시작합니다.\n'네'를 누르면 현재 시간이 오늘의 단식 시작 시간이 됩니다.\n목표 시간은 계획과 같이 유지됩니다.";
+startEarlyMessage = "계획보다 빨리 단식을 시작합니다.\n'네'를 누르면 현재 시간이 이번 단식 시작 시간이 됩니다.\n목표 시간은 계획과 같이 유지됩니다.";
 
 breakFastTitle = "단식 쉬기";
 breakFastMessage = "정말 오늘의 단식을 지금 중단할까요?\n'네'를 누르면 현재 시간이 오늘의 단식 종료 시간이 됩니다.\n타이머는 플랜대로 계속 동작합니다.";

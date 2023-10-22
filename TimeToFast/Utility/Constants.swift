@@ -89,6 +89,8 @@ enum Constants {
         
         static let recordStartTime = "recordStartTime"
         static let recordEndTime = "recordEndTime"
+        
+        static let eatingStartWhenFastedEarly = "eatingStartWhenFastedEarly"
     }
     
     enum Notification {

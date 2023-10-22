@@ -66,6 +66,8 @@ final class TimerViewModel {
                 return .fasting
             }
         } else {
+            userDefaults.isFastingBreak = false
+            userDefaults.isFastingEarly = false
             return .eating
         }
     }
@@ -183,49 +185,32 @@ final class TimerViewModel {
         
         let current = Date()
         
-        if current > eatingEnd {
-            eatingStart = eatingStart.addOneDay()
-            eatingEnd = eatingEnd.addOneDay()
-            fastStart = fastStart.addOneDay()
+        if userDefaults.isFastingEarly {
+            if current > eatingStart {
+                fastStart = userDefaults.recordStartTime
+                eatingStart = eatingStart.addOneDay()
+                eatingEnd = eatingEnd.addOneDay()
+                
+            } else {
+                fastStart = userDefaults.recordStartTime
+            }
+            
+        } else {
+            if current > eatingEnd {
+                eatingStart = eatingStart.addOneDay()
+                eatingEnd = eatingEnd.addOneDay()
+                fastStart = fastStart.addOneDay()
+            }
+            
+            if current < fastStart {
+                eatingStart = eatingStart.minusOneDay()
+                eatingEnd = eatingEnd.minusOneDay()
+                fastStart = fastStart.minusOneDay()
+            }
         }
-        
-        if current < fastStart {
-            eatingStart = eatingStart.minusOneDay()
-            eatingEnd = eatingEnd.minusOneDay()
-            fastStart = fastStart.minusOneDay()
-        }
-        
-//        if userDefaults.isFastingEarly && current < eatingStart {
-//
-//        }
         
         return (eatingStart: eatingStart, eatingEnd: eatingEnd, fastStart: fastStart)
     }
-    
-//    private func setTimeForFastingEarly() {
-//        if userDefaults.isFastingEarly {
-//            timerSetting.value.fastStartTime = userDefaults.recordStartTime
-//        }
-//    }
-    
-//    private func setEatingStartTimeWithDay() -> Date {
-//        let fastStartTime = calculateFastStartTime(with: userDefaults.eatingStartTime)
-//        let eatingStartTime = userDefaults.eatingStartTime
-//
-//        if userDefaults.isFastingEarly {
-//            if Date() < eatingStartTime {
-//                return eatingStartTime
-//            } else {
-//                return Calendar.current.date(byAdding: .day, value: 1, to: eatingStartTime)!
-//            }
-//        } else {
-//            if Date() < fastStartTime {
-//                return Calendar.current.date(byAdding: .day, value: -1, to: eatingStartTime)!
-//            } else {
-//                return eatingStartTime
-//            }
-//        }
-//    }
     
     private func calculateFastStartTime(with eatingStartTime: Date) -> Date {
         let fastingHours = timerSetting.value.plan.rawValue
@@ -247,16 +232,12 @@ final class TimerViewModel {
             startTimer()
             fastState.value = .fasting
             userDefaults.isTimerRunning = true
-            userDefaults.isFastingBreak = false
-            userDefaults.isFastingEarly = false
             notification.setNotification()
             
         case .fasting, .fastingBreak, .fastingEarly:
             stopTimer()
             fastState.value = .idle
             userDefaults.isTimerRunning = false
-            userDefaults.isFastingBreak = false
-            userDefaults.isFastingEarly = false
             notification.removeNotification()
             configTimerSetting()
             configRecordCardTime()
@@ -269,6 +250,8 @@ final class TimerViewModel {
             configTimerSetting()
             configRecordCardTime()
         }
+        userDefaults.isFastingBreak = false
+        userDefaults.isFastingEarly = false
     }
     
     private func configFastingCounter() {

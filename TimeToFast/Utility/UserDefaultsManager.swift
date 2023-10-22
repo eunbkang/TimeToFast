@@ -123,5 +123,4 @@ final class UserDefaultsManager {
             userDefaults.set(newValue.timeIntervalSince1970, forKey: Constants.Keys.recordEndTime)
         }
     }
-
 }

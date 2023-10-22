@@ -127,7 +127,7 @@ class CircularTimerView: UIView {
     }
     
     private func configLayer() {
-        [fastingTrackLayer, eatingTrackLayer, fastingProgressLayer, eatingProgressLayer].forEach { circularLayer in
+        [eatingTrackLayer, fastingTrackLayer, fastingProgressLayer, eatingProgressLayer].forEach { circularLayer in
             layer.addSublayer(circularLayer)
         }
         configStateToView()
@@ -152,7 +152,6 @@ class CircularTimerView: UIView {
     private func configTimerSettingToView() {
         let center = CGPoint(x: timerSize / 2, y: timerSize / 2)
         let radius = timerSize * .timerRadius
-//        let lineWidth = .timerRadius * timerSize * 0.15 - 8
         
         let fastingTrackPath = UIBezierPath(
             arcCenter: center,
