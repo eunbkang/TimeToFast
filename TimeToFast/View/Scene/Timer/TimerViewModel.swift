@@ -351,7 +351,7 @@ final class TimerViewModel {
         let eatingEnd = userDefaults.eatingEndTime.dateToTimeOnlyString()
         let message = Constants.Alert.TimerStart.message
         
-        return "\(message)\n\(plan)\nEat from \(eatingStart) to \(eatingEnd)"
+        return "timerStartMessageCombined".localized(first: message, second: plan, third: eatingStart, fourth: eatingEnd)
     }
     
     // MARK: - Realm

@@ -110,6 +110,7 @@ saveErrorMessage = "기록 저장을 실패했습니다.";
 
 timerStartTitle= "타이머 시작";
 timerStartMessage = "이 플랜으로 단식 타이머를 시작할까요?";
+timerStartMessageCombined = "%@\n%@\n식사시간: %@부터 %@까지";
 
 timerStopTitle = "타이머 정지";
 timerStopMessage = "정말 단식 타이머를 정지할까요?";

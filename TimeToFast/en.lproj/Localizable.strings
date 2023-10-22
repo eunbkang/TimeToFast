@@ -110,6 +110,7 @@ saveErrorMessage = "Failed to save the record.";
 
 timerStartTitle= "Start Timer";
 timerStartMessage = "Do you want to start the fasting timer with this plan?";
+timerStartMessageCombined = "%@\n%@\nEat from %@ to %@";
 
 timerStopTitle = "Stop Timer";
 timerStopMessage = "Do you really want to stop the fasting timer?";
