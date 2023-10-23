@@ -123,4 +123,13 @@ final class UserDefaultsManager {
             userDefaults.set(newValue.timeIntervalSince1970, forKey: Constants.Keys.recordEndTime)
         }
     }
+    
+    var lastEatingEndTime: Date {
+        get {
+            return Date(timeIntervalSince1970: userDefaults.double(forKey: Constants.Keys.lastEatingEndTime))
+        }
+        set {
+            userDefaults.set(newValue.timeIntervalSince1970, forKey: Constants.Keys.lastEatingEndTime)
+        }
+    }
 }

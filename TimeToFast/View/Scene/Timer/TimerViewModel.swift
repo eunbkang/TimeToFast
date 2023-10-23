@@ -151,18 +151,14 @@ final class TimerViewModel {
     }
     
     func configTimerSetting() {
-        switch userDefaults.isPlanSetByUser {
-        case false:
+        if !userDefaults.isPlanSetByUser {
             configInitialTimerTimes()
-            
-        case true:
-            let timerTimes = configTimerTimes()
-            timerSetting.value.fastStartTime = timerTimes.fastStart
-            timerSetting.value.fastEndTime = timerTimes.eatingStart
-            timerSetting.value.eatingStartTime = timerTimes.eatingStart
-            timerSetting.value.eatingEndTime = timerTimes.eatingEnd
-
         }
+        let timerTimes = configTimerTimes()
+        timerSetting.value.fastStartTime = timerTimes.fastStart
+        timerSetting.value.fastEndTime = timerTimes.eatingStart
+        timerSetting.value.eatingStartTime = timerTimes.eatingStart
+        timerSetting.value.eatingEndTime = timerTimes.eatingEnd
     }
     
     private func configInitialTimerTimes() {
@@ -184,6 +180,10 @@ final class TimerViewModel {
         var fastStart = calculateFastStartTime(with: eatingStart)
         
         let current = Date()
+        
+        if current > userDefaults.lastEatingEndTime {
+            resetUserDefaultsRecordTimeAndState()
+        }
         
         if userDefaults.isFastingEarly {
             if current > eatingStart {
@@ -208,8 +208,16 @@ final class TimerViewModel {
                 fastStart = fastStart.minusOneDay()
             }
         }
+        userDefaults.lastEatingEndTime = eatingEnd
         
         return (eatingStart: eatingStart, eatingEnd: eatingEnd, fastStart: fastStart)
+    }
+    
+    private func resetUserDefaultsRecordTimeAndState() {
+        userDefaults.recordStartTime = Date(timeIntervalSince1970: 0)
+        userDefaults.recordEndTime = Date(timeIntervalSince1970: 0)
+        userDefaults.isFastingBreak = false
+        userDefaults.isFastingEarly = false
     }
     
     private func calculateFastStartTime(with eatingStartTime: Date) -> Date {
@@ -227,6 +235,7 @@ final class TimerViewModel {
     // MARK: - Timer
     
     func controlTimer() {
+        resetUserDefaultsRecordTimeAndState()
         switch fastState.value {
         case .idle:
             startTimer()
@@ -250,8 +259,6 @@ final class TimerViewModel {
             configTimerSetting()
             configRecordCardTime()
         }
-        userDefaults.isFastingBreak = false
-        userDefaults.isFastingEarly = false
     }
     
     private func configFastingCounter() {
@@ -336,7 +343,7 @@ final class TimerViewModel {
             isEndTimeEditable.value = recordStatus.value == .notSaved ? true : false
             
         case .fastingBreak:
-            isStartTimeEditable.value = true
+            isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
             isEndTimeEditable.value = false
             
         case .fastingEarly:
