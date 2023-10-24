@@ -28,8 +28,8 @@ final class TimerViewController: BaseViewController {
         viewModel.getStoredSetting()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         timerView.backgroundLayer.frame = view.bounds
         view.layer.insertSublayer(timerView.backgroundLayer, at: 0)

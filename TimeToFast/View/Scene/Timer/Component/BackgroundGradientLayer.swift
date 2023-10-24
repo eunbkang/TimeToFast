@@ -18,6 +18,10 @@ class BackgroundGradientLayer: CAGradientLayer {
     override init(layer: Any) {
         super.init(layer: layer)
         
+        self.locations = [0.25]
+        self.startPoint = CGPoint(x: 0, y: 0)
+        self.endPoint = CGPoint(x: 0.5, y: 1.25)
+        
         configView()
     }
     
@@ -26,13 +30,9 @@ class BackgroundGradientLayer: CAGradientLayer {
     }
     
     func configView() {
-        self.locations = [0.25]
-        self.startPoint = CGPoint(x: 0, y: 0)
-        self.endPoint = CGPoint(x: 0.5, y: 1.25)
-        
         switch fastState {
         case .idle, .fastingBreak:
-            self.colors = [UIColor.white.cgColor]
+            self.colors = [UIColor.white.cgColor, UIColor.white.cgColor]
             
         case .fasting, .fastingEarly:
             self.colors = [Constants.Color.lightPurple.withAlphaComponent(0.75).cgColor, Constants.Color.lightGreen.withAlphaComponent(0.75).cgColor]

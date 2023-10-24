@@ -31,7 +31,7 @@
 		7E782E7F2AE5BBBD003634C2 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 7E782E7E2AE5BBBD003634C2 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		7E782E812AE5BBBD003634C2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7E782E802AE5BBBD003634C2 /* FirebaseCrashlytics */; };
 		7E782E832AE5BBE3003634C2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7E782E822AE5BBE3003634C2 /* .gitignore */; };
-		7E782E852AE5BC9C003634C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E782E842AE5BC9C003634C2 /* GoogleService-Info.plist */; };
+		7E7E51F02AE7505B009157D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E7E51EF2AE7505B009157D8 /* GoogleService-Info.plist */; };
 		7E9436482ADFF34B00BCF4EB /* CircularFastingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */; };
 		7EC3D4752ACDE0D100C102FF /* BackgroundGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */; };
 		7EC3D4772ACDF24F00C102FF /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */; };
@@ -109,7 +109,7 @@
 		7E782E7A2AE46094003634C2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7E782E7B2AE462BA003634C2 /* Localizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizing.swift; sourceTree = "<group>"; };
 		7E782E822AE5BBE3003634C2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		7E782E842AE5BC9C003634C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7E7E51EF2AE7505B009157D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularFastingHourView.swift; sourceTree = "<group>"; };
 		7EC3D4742ACDE0D100C102FF /* BackgroundGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradientLayer.swift; sourceTree = "<group>"; };
 		7EC3D4762ACDF24F00C102FF /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 				7E46263A2AC1656400C45ED6 /* Assets.xcassets */,
 				7E46263C2AC1656400C45ED6 /* LaunchScreen.storyboard */,
 				7E46263F2AC1656400C45ED6 /* Info.plist */,
-				7E782E842AE5BC9C003634C2 /* GoogleService-Info.plist */,
+				7E7E51EF2AE7505B009157D8 /* GoogleService-Info.plist */,
 				7E782E792AE46027003634C2 /* Localizable.strings */,
 				7E782E822AE5BBE3003634C2 /* .gitignore */,
 			);
@@ -522,7 +522,7 @@
 			files = (
 				7E782E832AE5BBE3003634C2 /* .gitignore in Resources */,
 				7E46263E2AC1656400C45ED6 /* LaunchScreen.storyboard in Resources */,
-				7E782E852AE5BC9C003634C2 /* GoogleService-Info.plist in Resources */,
+				7E7E51F02AE7505B009157D8 /* GoogleService-Info.plist in Resources */,
 				7E782E772AE46027003634C2 /* Localizable.strings in Resources */,
 				7E46263B2AC1656400C45ED6 /* Assets.xcassets in Resources */,
 			);
