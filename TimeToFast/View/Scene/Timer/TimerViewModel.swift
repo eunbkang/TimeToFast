@@ -57,7 +57,10 @@ final class TimerViewModel {
     private func fastingOrEating() -> FastState {
         let current = Date()
         
-        if current < timerSetting.value.fastEndTime {
+        let fastStartTime = timerSetting.value.fastStartTime
+        let fastEndTime = timerSetting.value.fastEndTime
+        
+        if fastStartTime < current && current < fastEndTime {
             if userDefaults.isFastingBreak {
                 return .fastingBreak
             } else if userDefaults.isFastingEarly {
@@ -239,7 +242,6 @@ final class TimerViewModel {
         switch fastState.value {
         case .idle:
             startTimer()
-            fastState.value = .fasting
             userDefaults.isTimerRunning = true
             notification.setNotification()
             
