@@ -1,0 +1,139 @@
+/* 
+  Localizable.strings
+  TimeToFast
+
+  Created by Eunbee Kang on 2023/10/22.
+  
+*/
+
+// MARK: - Title
+
+editPlan = "Edit Plan";
+records = "Records";
+settings = "Settings";
+fastingPlanTitle = "Fasting Plan";
+
+// MARK: - Plan
+
+planButtonTitle = "%d:%d FAST";
+planDetail = "Fast for %d hours | Eat for %d hours";
+
+// MARK: - Control
+
+playTimer = "START TIMER";
+stopTimer = "STOP";
+
+startFastEarly = "START FAST EARLY";
+breakFast = "BREAK THE FAST";
+resumeFast = "RESUME FASTING";
+
+// MARK: - State
+
+idle = "It's time to fast!";
+fasting = "You're fasting!";
+eating = "You're eating!";
+breakingFast = "You are on a break!";
+
+fastingStartsIn = "FASTING STARTS IN";
+remainingTime = "REMAINING TIME";
+
+// MARK: - Time
+
+starts = "STARTS";
+ends = "ENDS";
+started = "STARTED";
+goal = "GOAL";
+ended = "ENDED";
+
+from = "From";
+to = "To";
+
+// MARK: - Edit Time
+
+editStartedTime = "Edit Started Time";
+editEndedTime = "Edit Ended Time";
+eatingFrom = "Eating From";
+
+// MARK: - Button
+
+save = "Save";
+saveUpper = "SAVE";
+savedUpper = "SAVED";
+
+// MARK: - Header
+
+weeklySchedule = "WEEKLY SCHEDULE";
+fastingPlan = "FASTING PLAN";
+eatingPeriod = "EATING PERIOD";
+fastingInProgress = "FASTING IN PROGRESS";
+lastFastingResult = "LAST FASTING RESULT";
+thisWeek = "THIS WEEK";
+pastRecords = "PAST RECORDS";
+
+// MARK: - Days
+
+mon = "MON";
+tue = "TUE";
+wed = "WED";
+thu = "THU";
+fri = "FRI";
+sat = "SAT";
+sun = "SUN";
+
+// MARK: - Setting
+
+notification = "Notification";
+
+// MARK: - Alert
+
+yes = "Yes";
+cancel = "Cancel";
+replace = "Replace";
+ok = "OK";
+confirm = "Confirm";
+
+editPlanTitle = "Edit Plan";
+editPlanMessage = "Editing plan will reset the timer and any unsaved fasting results.";
+
+saveRecordTitle = "Save";
+saveRecordMessage = "Do you want to save your last fasting result?";
+
+todayRecordExistsTitle = "Today's record exists";
+todayRecordExistsMessage = "You have saved today's fasting result already.";
+todayRecordReplaceMessage = "Do you want to replace it with the new data?";
+existingRecord = "%@\n(From %@ to %@)\n%@";
+
+saveSucceedTitle = "Saved Successfully.";
+
+saveErrorTitle = "Error";
+saveErrorMessage = "Failed to save the record.";
+
+timerStartTitle= "Start Timer";
+timerStartMessage = "Do you want to start the fasting timer with this plan?";
+timerStartMessageCombined = "%@\n%@\nEat from %@ to %@";
+
+timerStopTitle = "Stop Timer";
+timerStopMessage = "Do you really want to stop the fasting timer?";
+
+startEarlyTitle = "Start fasting early";
+startEarlyMessage = "Do you want to start fasting now?\nPress 'Yes' to make the current time as today's fasting start time.\nThe goal time will be set as your planned eating start time.";
+
+breakFastTitle = "Break your fast";
+breakFastMessage = "Are you sure you want to break your fast now?\nPress 'Yes' to make the current time as the fasting end time.\nThe timer will continue counting down to keep up with your plan.";
+
+resumeFastTitle = "Resume fasting";
+resumeFastMessage = "Do you want to cancel breaking the fast and resume?\nPress 'Yes' to resume fasting and reset the unsaved fasting record.";
+
+// MARK: - Record
+
+noChartData = "There are no fasting records this week.";
+noRecord = "No record";
+goalAchieved = "GOAL ACHIEVED";
+hours = "hours";
+
+// MARK: - Notification
+
+fastingStartTitle = "Time to fast!";
+fastingStartBody = "Fasting time has started. Stay committed!";
+eatingStartTitle = "Time to eat!";
+eatingStartBody = "It's time to eat! Save your fasting result and break your fast with a healthy meal.";
