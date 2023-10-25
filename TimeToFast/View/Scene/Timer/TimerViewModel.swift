@@ -36,7 +36,7 @@ final class TimerViewModel {
     
     var recordList: Observable<[FastingRecordTable]> = Observable([])
     
-    // MARK: - methods
+    // MARK: - Initiate
     
     func getStoredSetting() {
         fetchFastingRecord()
@@ -49,6 +49,85 @@ final class TimerViewModel {
             startTimer()
         }
     }
+    
+    // MARK: - TimerSetting
+    
+    func configTimerSetting() {
+        if !userDefaults.isPlanSetByUser {
+            configInitialTimerTimes()
+        }
+        let timerTimes = configTimerTimes()
+        timerSetting.value.fastStartTime = timerTimes.fastStart
+        timerSetting.value.fastEndTime = timerTimes.eatingStart
+        timerSetting.value.eatingStartTime = timerTimes.eatingStart
+        timerSetting.value.eatingEndTime = timerTimes.eatingEnd
+    }
+    
+    private func configInitialTimerTimes() {
+        timerSetting.value.plan = .sixteen
+        let defaultEatingStart = timerSetting.value.plan.defaultEatingStartTime
+        timerSetting.value.fastStartTime = calculateFastStartTime(with: defaultEatingStart)
+        timerSetting.value.fastEndTime = defaultEatingStart
+        timerSetting.value.eatingStartTime = defaultEatingStart
+        timerSetting.value.eatingEndTime = calculateEatingEndTime(with: defaultEatingStart)
+        userDefaults.fastPlanType = .sixteen
+        userDefaults.eatingStartTime = defaultEatingStart
+    }
+    
+    private func configTimerTimes() -> (eatingStart: Date, eatingEnd: Date, fastStart: Date) {
+        timerSetting.value.plan = userDefaults.fastPlanType
+        
+        var eatingStart = userDefaults.eatingStartTime
+        var eatingEnd = userDefaults.eatingEndTime
+        var fastStart = calculateFastStartTime(with: eatingStart)
+        
+        let current = Date()
+        
+        if current > userDefaults.lastEatingEndTime {
+            resetUserDefaultsRecordTimeAndState()
+        }
+        
+        if userDefaults.isFastingEarly {
+            if current > eatingStart {
+                fastStart = userDefaults.recordStartTime
+                eatingStart = eatingStart.addOneDay()
+                eatingEnd = eatingEnd.addOneDay()
+                
+            } else {
+                fastStart = userDefaults.recordStartTime
+            }
+            
+        } else {
+            if current > eatingEnd {
+                eatingStart = eatingStart.addOneDay()
+                eatingEnd = eatingEnd.addOneDay()
+                fastStart = fastStart.addOneDay()
+            }
+            
+            if current < fastStart {
+                eatingStart = eatingStart.minusOneDay()
+                eatingEnd = eatingEnd.minusOneDay()
+                fastStart = fastStart.minusOneDay()
+            }
+        }
+        userDefaults.lastEatingEndTime = eatingEnd
+        
+        return (eatingStart: eatingStart, eatingEnd: eatingEnd, fastStart: fastStart)
+    }
+    
+    private func calculateFastStartTime(with eatingStartTime: Date) -> Date {
+        let fastingHours = timerSetting.value.plan.rawValue
+        
+        return Calendar.current.date(byAdding: .hour, value: -fastingHours, to: eatingStartTime)!
+    }
+    
+    private func calculateEatingEndTime(with eatingStartTime: Date) -> Date {
+        let eatingHour = 24 - timerSetting.value.plan.rawValue
+
+        return Calendar.current.date(byAdding: .hour, value: eatingHour, to: eatingStartTime)!
+    }
+    
+    // MARK: - FastState
     
     private func configFastState() {
         fastState.value = userDefaults.isTimerRunning ? fastingOrEating() : .idle
@@ -74,6 +153,8 @@ final class TimerViewModel {
             return .eating
         }
     }
+    
+    // MARK: - RecordCardTime
     
     func configRecordCardTime() {
         switch fastState.value {
@@ -153,86 +234,28 @@ final class TimerViewModel {
         }
     }
     
-    func configTimerSetting() {
-        if !userDefaults.isPlanSetByUser {
-            configInitialTimerTimes()
-        }
-        let timerTimes = configTimerTimes()
-        timerSetting.value.fastStartTime = timerTimes.fastStart
-        timerSetting.value.fastEndTime = timerTimes.eatingStart
-        timerSetting.value.eatingStartTime = timerTimes.eatingStart
-        timerSetting.value.eatingEndTime = timerTimes.eatingEnd
-    }
-    
-    private func configInitialTimerTimes() {
-        timerSetting.value.plan = .sixteen
-        let defaultEatingStart = timerSetting.value.plan.defaultEatingStartTime
-        timerSetting.value.fastStartTime = calculateFastStartTime(with: defaultEatingStart)
-        timerSetting.value.fastEndTime = defaultEatingStart
-        timerSetting.value.eatingStartTime = defaultEatingStart
-        timerSetting.value.eatingEndTime = calculateEatingEndTime(with: defaultEatingStart)
-        userDefaults.fastPlanType = .sixteen
-        userDefaults.eatingStartTime = defaultEatingStart
-    }
-    
-    private func configTimerTimes() -> (eatingStart: Date, eatingEnd: Date, fastStart: Date) {
-        timerSetting.value.plan = userDefaults.fastPlanType
-        
-        var eatingStart = userDefaults.eatingStartTime
-        var eatingEnd = userDefaults.eatingEndTime
-        var fastStart = calculateFastStartTime(with: eatingStart)
-        
-        let current = Date()
-        
-        if current > userDefaults.lastEatingEndTime {
-            resetUserDefaultsRecordTimeAndState()
-        }
-        
-        if userDefaults.isFastingEarly {
-            if current > eatingStart {
-                fastStart = userDefaults.recordStartTime
-                eatingStart = eatingStart.addOneDay()
-                eatingEnd = eatingEnd.addOneDay()
-                
-            } else {
-                fastStart = userDefaults.recordStartTime
-            }
+    func configTimeViewEditable() {
+        switch fastState.value {
+        case .idle:
+            isStartTimeEditable.value = false
+            isEndTimeEditable.value = false
             
-        } else {
-            if current > eatingEnd {
-                eatingStart = eatingStart.addOneDay()
-                eatingEnd = eatingEnd.addOneDay()
-                fastStart = fastStart.addOneDay()
-            }
+        case .fasting:
+            isStartTimeEditable.value = true
+            isEndTimeEditable.value = false
             
-            if current < fastStart {
-                eatingStart = eatingStart.minusOneDay()
-                eatingEnd = eatingEnd.minusOneDay()
-                fastStart = fastStart.minusOneDay()
-            }
+        case .eating:
+            isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
+            isEndTimeEditable.value = recordStatus.value == .notSaved ? true : false
+            
+        case .fastingBreak:
+            isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
+            isEndTimeEditable.value = false
+            
+        case .fastingEarly:
+            isStartTimeEditable.value = false
+            isEndTimeEditable.value = false
         }
-        userDefaults.lastEatingEndTime = eatingEnd
-        
-        return (eatingStart: eatingStart, eatingEnd: eatingEnd, fastStart: fastStart)
-    }
-    
-    private func resetUserDefaultsRecordTimeAndState() {
-        userDefaults.recordStartTime = Date(timeIntervalSince1970: 0)
-        userDefaults.recordEndTime = Date(timeIntervalSince1970: 0)
-        userDefaults.isFastingBreak = false
-        userDefaults.isFastingEarly = false
-    }
-    
-    private func calculateFastStartTime(with eatingStartTime: Date) -> Date {
-        let fastingHours = timerSetting.value.plan.rawValue
-        
-        return Calendar.current.date(byAdding: .hour, value: -fastingHours, to: eatingStartTime)!
-    }
-    
-    private func calculateEatingEndTime(with eatingStartTime: Date) -> Date {
-        let eatingHour = 24 - timerSetting.value.plan.rawValue
-
-        return Calendar.current.date(byAdding: .hour, value: eatingHour, to: eatingStartTime)!
     }
     
     // MARK: - Timer
@@ -317,6 +340,15 @@ final class TimerViewModel {
         timeCounter.value = String(format: "%02d:%02d:%02d", hour, minute, second)
     }
     
+    func makeTimerStartAlertMessage() -> String {
+        let plan = userDefaults.fastPlanType.planButtonTitle
+        let eatingStart = userDefaults.eatingStartTime.dateToTimeOnlyString()
+        let eatingEnd = userDefaults.eatingEndTime.dateToTimeOnlyString()
+        let message = Constants.Alert.TimerStart.message
+        
+        return "timerStartMessageCombined".localized(first: message, second: plan, third: eatingStart, fourth: eatingEnd)
+    }
+    
     // MARK: - UserDefaults
     
     func saveEditedTimeToUserDefaults(type: EditTimeType, time: Date) {
@@ -330,37 +362,13 @@ final class TimerViewModel {
         }
     }
     
-    func configTimeViewEditable() {
-        switch fastState.value {
-        case .idle:
-            isStartTimeEditable.value = false
-            isEndTimeEditable.value = false
-            
-        case .fasting:
-            isStartTimeEditable.value = true
-            isEndTimeEditable.value = false
-            
-        case .eating:
-            isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
-            isEndTimeEditable.value = recordStatus.value == .notSaved ? true : false
-            
-        case .fastingBreak:
-            isStartTimeEditable.value = recordStatus.value == .notSaved ? true : false
-            isEndTimeEditable.value = false
-            
-        case .fastingEarly:
-            isStartTimeEditable.value = false
-            isEndTimeEditable.value = false
-        }
-    }
+
     
-    func makeTimerStartAlertMessage() -> String {
-        let plan = userDefaults.fastPlanType.planButtonTitle
-        let eatingStart = userDefaults.eatingStartTime.dateToTimeOnlyString()
-        let eatingEnd = userDefaults.eatingEndTime.dateToTimeOnlyString()
-        let message = Constants.Alert.TimerStart.message
-        
-        return "timerStartMessageCombined".localized(first: message, second: plan, third: eatingStart, fourth: eatingEnd)
+    private func resetUserDefaultsRecordTimeAndState() {
+        userDefaults.recordStartTime = Date(timeIntervalSince1970: 0)
+        userDefaults.recordEndTime = Date(timeIntervalSince1970: 0)
+        userDefaults.isFastingBreak = false
+        userDefaults.isFastingEarly = false
     }
     
     // MARK: - Realm

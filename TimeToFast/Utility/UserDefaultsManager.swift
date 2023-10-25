@@ -14,14 +14,7 @@ final class UserDefaultsManager {
     
     let userDefaults = UserDefaults.standard
     
-    var isPlanSetByUser: Bool {
-        get {
-            return userDefaults.bool(forKey: Constants.Keys.isPlanSetByUser)
-        }
-        set {
-            userDefaults.set(newValue, forKey: Constants.Keys.isPlanSetByUser)
-        }
-    }
+    // MARK: - States
     
     var isTimerRunning: Bool {
         get {
@@ -47,6 +40,17 @@ final class UserDefaultsManager {
         }
         set {
             userDefaults.set(newValue, forKey: Constants.Keys.isFastingEarly)
+        }
+    }
+    
+    // MARK: - Plan
+    
+    var isPlanSetByUser: Bool {
+        get {
+            return userDefaults.bool(forKey: Constants.Keys.isPlanSetByUser)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Constants.Keys.isPlanSetByUser)
         }
     }
     
@@ -97,14 +101,7 @@ final class UserDefaultsManager {
         }
     }
     
-    var isNotificationOn: Bool {
-        get {
-            return userDefaults.bool(forKey: Constants.Keys.isNotificationOn)
-        }
-        set {
-            userDefaults.set(newValue, forKey: Constants.Keys.isNotificationOn)
-        }
-    }
+    // MARK: - RecordCardTime
     
     var recordStartTime: Date {
         get {
@@ -130,6 +127,17 @@ final class UserDefaultsManager {
         }
         set {
             userDefaults.set(newValue.timeIntervalSince1970, forKey: Constants.Keys.lastEatingEndTime)
+        }
+    }
+    
+    // MARK: - Setting
+    
+    var isNotificationOn: Bool {
+        get {
+            return userDefaults.bool(forKey: Constants.Keys.isNotificationOn)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Constants.Keys.isNotificationOn)
         }
     }
 }
