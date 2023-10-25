@@ -21,7 +21,6 @@ final class EditStartedTimeViewController: BaseViewController {
     
     var timePicker: UIDatePicker = {
         let picker = UIDatePicker()
-        picker.minuteInterval = 5
         picker.frame.size = CGSize(width: 0, height: 300)
         picker.preferredDatePickerStyle = .wheels
         
@@ -43,19 +42,7 @@ final class EditStartedTimeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        switch type {
-        case .fastingStartedTime:
-            title = Localizing.EditTime.editStartedTime
-            timePicker.datePickerMode = .dateAndTime
-            
-        case .fastingEndedTime:
-            title = Localizing.EditTime.editEndedTime
-            timePicker.datePickerMode = .dateAndTime
-            
-        case .planEatingFromTime:
-            title = Localizing.EditTime.eatingFrom
-            timePicker.datePickerMode = .time
-        }
+        configPickerSettingPerType()
     }
     
     override func configViewHierarchy() {
@@ -80,5 +67,31 @@ final class EditStartedTimeViewController: BaseViewController {
         delegate?.didReceiveEditedTime(type: type, time: timePicker.date)
         
         dismiss(animated: true)
+    }
+    
+    private func configPickerSettingPerType() {
+        let current = Date()
+        let minDate = Calendar.autoupdatingCurrent.date(byAdding: .day, value: -1, to: current)
+        
+        switch type {
+        case .fastingStartedTime:
+            title = Localizing.EditTime.editStartedTime
+            timePicker.datePickerMode = .dateAndTime
+            timePicker.minuteInterval = 1
+            timePicker.maximumDate = current
+            timePicker.minimumDate = minDate
+            
+        case .fastingEndedTime:
+            title = Localizing.EditTime.editEndedTime
+            timePicker.datePickerMode = .dateAndTime
+            timePicker.minuteInterval = 1
+            timePicker.maximumDate = current
+            timePicker.minimumDate = minDate
+            
+        case .planEatingFromTime:
+            title = Localizing.EditTime.eatingFrom
+            timePicker.datePickerMode = .time
+            timePicker.minuteInterval = 5
+        }
     }
 }
