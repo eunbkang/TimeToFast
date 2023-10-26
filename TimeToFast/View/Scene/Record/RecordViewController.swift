@@ -14,6 +14,8 @@ final class RecordViewController: BaseViewController {
     private let recordView = RecordView(fastingRecord: FastingRecordTable(date: Date(), fastingPlan: "16", fastingStartTime: Date()-3600*(9+17), fastingEndTime: Date()-3600*9, fastingDuration: 16.8, isGoalAchieved: true), isRecordSaved: false)
     private let viewModel = RecordViewModel()
     
+    lazy var currentPage = recordView.pastRecordsView.calendarView.currentPage
+    
     override func loadView() {
         view = recordView
     }
@@ -31,9 +33,14 @@ final class RecordViewController: BaseViewController {
         recordView.pastRecordsView.calendarView.dataSource = self
         
         configBarChart()
+        addActionToMonthControlButtons()
         
         viewModel.makeSelectedDateData(for: Date())
 
+    }
+    
+    @objc func monthControlButtonTapped(_ sender: UIButton) {
+        moveMonthPage(isNext: sender == recordView.pastRecordsView.nextMonthButton)
     }
     
     private func bindViewComponents() {
@@ -52,6 +59,17 @@ final class RecordViewController: BaseViewController {
         
         recordView.thisWeekView.chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: viewModel.makeThisWeekDay())
         recordView.thisWeekView.chartView.xAxis.setLabelCount(viewModel.thisWeekData.count, force: false)
+    }
+    
+    private func moveMonthPage(isNext: Bool) {
+        let amount = isNext ? 1 : -1
+        currentPage = Calendar.current.date(byAdding: .month, value: amount, to: currentPage)!
+        recordView.pastRecordsView.calendarView.setCurrentPage(currentPage, animated: true)
+    }
+    
+    private func addActionToMonthControlButtons() {
+        recordView.pastRecordsView.previousMonthButton.addTarget(self, action: #selector(monthControlButtonTapped), for: .touchUpInside)
+        recordView.pastRecordsView.nextMonthButton.addTarget(self, action: #selector(monthControlButtonTapped), for: .touchUpInside)
     }
 }
 

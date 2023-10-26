@@ -35,6 +35,36 @@ final class PastRecordsView: BaseView {
         return view
     }()
     
+    let nextMonthButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "chevron.forward", withConfiguration: UIImage.SymbolConfiguration(font: .preferredFont(forTextStyle: .headline)))
+        button.setImage(image, for: .normal)
+        button.tintColor = .darkPurple
+        button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        
+        return button
+    }()
+    
+    let previousMonthButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "chevron.backward", withConfiguration: UIImage.SymbolConfiguration(font: .preferredFont(forTextStyle: .headline)))
+        button.setImage(image, for: .normal)
+        button.tintColor = .darkPurple
+        button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        
+        return button
+    }()
+    
+    private lazy var buttonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [previousMonthButton, nextMonthButton])
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 8
+        
+        return stackView
+    }()
+    
     lazy var headerLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -52,6 +82,7 @@ final class PastRecordsView: BaseView {
         backgroundRect.addSubview(calendarBackView)
         calendarBackView.addSubview(calendarView)
         calendarBackView.addSubview(headerLabel)
+        calendarBackView.addSubview(buttonStackView)
     }
     
     override func configLayoutConstraints() {
@@ -77,6 +108,11 @@ final class PastRecordsView: BaseView {
         headerLabel.snp.makeConstraints { make in
             make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY)
             make.leading.equalTo(calendarView.collectionView).offset(8)
+        }
+        
+        buttonStackView.snp.makeConstraints { make in
+            make.centerY.equalTo(headerLabel.snp.centerY)
+            make.trailing.equalTo(calendarView.collectionView).inset(8)
         }
     }
     
