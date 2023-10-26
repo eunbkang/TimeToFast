@@ -383,6 +383,7 @@ final class TimerViewModel {
     func saveNewFastingRecord() throws {
         let record = makeFastingRecordTable()
         try repository?.create(record)
+        setEatingRecordCardTime()
     }
     
     func updateTodaysRecord(isEarly: Bool) throws {
@@ -395,6 +396,7 @@ final class TimerViewModel {
         let newRecord = makeFastingRecordTable()
         
         try repository?.updateRecord(id: todayRecord._id, record: newRecord)
+        setEatingRecordCardTime()
     }
     
     private func makeFastingRecordTable() -> FastingRecordTable {
