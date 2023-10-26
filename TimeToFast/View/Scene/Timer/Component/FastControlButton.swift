@@ -42,6 +42,7 @@ class FastControlButton: UIButton {
             backgroundColor = .white.withAlphaComponent(0.5)
         }
         
-        isEnabled = fastState == .idle ? false : true
+//        isEnabled = fastState == .idle ? false : true
+        isEnabled = fastState == .fasting ? true : false
     }
 }

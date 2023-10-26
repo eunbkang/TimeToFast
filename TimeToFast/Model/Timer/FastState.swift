@@ -17,7 +17,8 @@ enum FastState {
     var fastControl: String {
         switch self {
         case .idle, .eating:
-            return Constants.FastControl.startEarly
+//            return Constants.FastControl.startEarly
+            return Constants.FastControl.breakFast
         case .fasting, .fastingEarly:
             return Constants.FastControl.breakFast
         case .fastingBreak:
