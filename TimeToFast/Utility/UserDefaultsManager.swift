@@ -13,33 +13,34 @@ final class UserDefaultsManager {
     private init() { }
     
     let userDefaults = UserDefaults.standard
+    let sharedUserDefaults = UserDefaults.shared
     
     // MARK: - States
     
     var isTimerRunning: Bool {
         get {
-            return userDefaults.bool(forKey: Constants.Keys.isTimerRunning)
+            return sharedUserDefaults.bool(forKey: Constants.Keys.isTimerRunning)
         }
         set {
-            userDefaults.set(newValue, forKey: Constants.Keys.isTimerRunning)
+            sharedUserDefaults.set(newValue, forKey: Constants.Keys.isTimerRunning)
         }
     }
     
     var isFastingBreak: Bool {
         get {
-            return userDefaults.bool(forKey: Constants.Keys.isFastingBreak)
+            return sharedUserDefaults.bool(forKey: Constants.Keys.isFastingBreak)
         }
         set {
-            userDefaults.set(newValue, forKey: Constants.Keys.isFastingBreak)
+            sharedUserDefaults.set(newValue, forKey: Constants.Keys.isFastingBreak)
         }
     }
     
     var isFastingEarly: Bool {
         get {
-            return userDefaults.bool(forKey: Constants.Keys.isFastingEarly)
+            return sharedUserDefaults.bool(forKey: Constants.Keys.isFastingEarly)
         }
         set {
-            userDefaults.set(newValue, forKey: Constants.Keys.isFastingEarly)
+            sharedUserDefaults.set(newValue, forKey: Constants.Keys.isFastingEarly)
         }
     }
     
@@ -47,21 +48,21 @@ final class UserDefaultsManager {
     
     var isPlanSetByUser: Bool {
         get {
-            return userDefaults.bool(forKey: Constants.Keys.isPlanSetByUser)
+            return sharedUserDefaults.bool(forKey: Constants.Keys.isPlanSetByUser)
         }
         set {
-            userDefaults.set(newValue, forKey: Constants.Keys.isPlanSetByUser)
+            sharedUserDefaults.set(newValue, forKey: Constants.Keys.isPlanSetByUser)
         }
     }
     
     var fastPlanType: FastingPlan {
         get {
-            let fastingHour = userDefaults.integer(forKey: Constants.Keys.fastPlanType)
+            let fastingHour = sharedUserDefaults.integer(forKey: Constants.Keys.fastPlanType)
             let type = FastingPlan.allCases.first(where: { $0.rawValue == fastingHour }) ?? .sixteen
             return type
         }
         set {
-            userDefaults.set(newValue.rawValue, forKey: Constants.Keys.fastPlanType)
+            sharedUserDefaults.set(newValue.rawValue, forKey: Constants.Keys.fastPlanType)
         }
     }
     
@@ -85,19 +86,19 @@ final class UserDefaultsManager {
     
     private var eatingStartHour: Int {
         get {
-            return userDefaults.integer(forKey: Constants.Keys.eatingStartHour)
+            return sharedUserDefaults.integer(forKey: Constants.Keys.eatingStartHour)
         }
         set {
-            userDefaults.set(newValue, forKey: Constants.Keys.eatingStartHour)
+            sharedUserDefaults.set(newValue, forKey: Constants.Keys.eatingStartHour)
         }
     }
     
     private var eatingStartMinute: Int {
         get {
-            return userDefaults.integer(forKey: Constants.Keys.eatingStartMinute)
+            return sharedUserDefaults.integer(forKey: Constants.Keys.eatingStartMinute)
         }
         set {
-            userDefaults.set(newValue, forKey: Constants.Keys.eatingStartMinute)
+            sharedUserDefaults.set(newValue, forKey: Constants.Keys.eatingStartMinute)
         }
     }
     

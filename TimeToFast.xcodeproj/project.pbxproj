@@ -32,6 +32,14 @@
 		7E782E812AE5BBBD003634C2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7E782E802AE5BBBD003634C2 /* FirebaseCrashlytics */; };
 		7E782E832AE5BBE3003634C2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7E782E822AE5BBE3003634C2 /* .gitignore */; };
 		7E9031F72AEDE8C800C9AA03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E782E792AE46027003634C2 /* Localizable.strings */; };
+		7E9031F92AEDF15600C9AA03 /* TimerWidgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9031F82AEDF15600C9AA03 /* TimerWidgetModel.swift */; };
+		7E9031FA2AEDF15600C9AA03 /* TimerWidgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9031F82AEDF15600C9AA03 /* TimerWidgetModel.swift */; };
+		7E9031FE2AEDF29A00C9AA03 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9031FD2AEDF29A00C9AA03 /* UserDefaults+Extension.swift */; };
+		7E9031FF2AEDF29A00C9AA03 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9031FD2AEDF29A00C9AA03 /* UserDefaults+Extension.swift */; };
+		7E9032012AEE4DF000C9AA03 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4A72AD42E8E00C102FF /* UserDefaultsManager.swift */; };
+		7E9032022AEE4F1800C9AA03 /* FastingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */; };
+		7E9032032AEE573200C9AA03 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4782ACDFB7A00C102FF /* Date+Extension.swift */; };
+		7E9032042AEE598800C9AA03 /* TimerSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */; };
 		7E9436482ADFF34B00BCF4EB /* CircularFastingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */; };
 		7EA025AE2AE97A5100842B1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA025AD2AE97A5100842B1B /* GoogleService-Info.plist */; };
 		7EAF12DB2AEC2CFC007B956B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAF12DA2AEC2CFC007B956B /* WidgetKit.framework */; };
@@ -154,6 +162,10 @@
 		7E782E7A2AE46094003634C2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7E782E7B2AE462BA003634C2 /* Localizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizing.swift; sourceTree = "<group>"; };
 		7E782E822AE5BBE3003634C2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7E9031F82AEDF15600C9AA03 /* TimerWidgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetModel.swift; sourceTree = "<group>"; };
+		7E9031FB2AEDF20B00C9AA03 /* TimeToFast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeToFast.entitlements; sourceTree = "<group>"; };
+		7E9031FC2AEDF26800C9AA03 /* TimeToFastWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeToFastWidgetExtension.entitlements; sourceTree = "<group>"; };
+		7E9031FD2AEDF29A00C9AA03 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularFastingHourView.swift; sourceTree = "<group>"; };
 		7EA025AD2AE97A5100842B1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7EAF12D82AEC2CFC007B956B /* TimeToFastWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimeToFastWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,6 +256,7 @@
 		7E4626252AC1656300C45ED6 = {
 			isa = PBXGroup;
 			children = (
+				7E9031FC2AEDF26800C9AA03 /* TimeToFastWidgetExtension.entitlements */,
 				7E4626302AC1656300C45ED6 /* TimeToFast */,
 				7EAF12DE2AEC2CFC007B956B /* TimeToFastWidget */,
 				7EAF12D92AEC2CFC007B956B /* Frameworks */,
@@ -263,6 +276,7 @@
 		7E4626302AC1656300C45ED6 /* TimeToFast */ = {
 			isa = PBXGroup;
 			children = (
+				7E9031FB2AEDF20B00C9AA03 /* TimeToFast.entitlements */,
 				7EC3D4C22AD733CC00C102FF /* Realm */,
 				7E4626542AC1986E00C45ED6 /* Utility */,
 				7E4626652AC4126600C45ED6 /* Model */,
@@ -331,6 +345,7 @@
 				7E4626582AC19AFD00C45ED6 /* UIColor+Extension.swift */,
 				7E46266A2AC4426300C45ED6 /* Foundation+Extension.swift */,
 				7EC3D4782ACDFB7A00C102FF /* Date+Extension.swift */,
+				7E9031FD2AEDF29A00C9AA03 /* UserDefaults+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -437,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				7EAF12F62AEDC4BC007B956B /* TimerWidgetData.swift */,
+				7E9031F82AEDF15600C9AA03 /* TimerWidgetModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -759,7 +775,9 @@
 				7EC3D4A62AD410EE00C102FF /* ChooseFastingPlanViewController.swift in Sources */,
 				7E46265B2AC19B3500C45ED6 /* Constants.swift in Sources */,
 				7EC3D4792ACDFB7A00C102FF /* Date+Extension.swift in Sources */,
+				7E9031F92AEDF15600C9AA03 /* TimerWidgetModel.swift in Sources */,
 				7EC3D48C2AD3105000C102FF /* PlanHeaderView.swift in Sources */,
+				7E9031FE2AEDF29A00C9AA03 /* UserDefaults+Extension.swift in Sources */,
 				7EC3D4FA2ADE727F00C102FF /* DailyRecordCardView.swift in Sources */,
 				7EAF12F72AEDC4BC007B956B /* TimerWidgetData.swift in Sources */,
 				7EC3D48E2AD3115100C102FF /* EditPlanHeader.swift in Sources */,
@@ -777,12 +795,18 @@
 				7EAF12F32AEC305F007B956B /* TimerWidgetView.swift in Sources */,
 				7EC9B3692AEDD1EB00145019 /* Foundation+Extension.swift in Sources */,
 				7EAF12F92AEDC746007B956B /* FastState.swift in Sources */,
+				7E9032022AEE4F1800C9AA03 /* FastingPlan.swift in Sources */,
 				7EAF12E02AEC2CFC007B956B /* TimeToFastWidgetBundle.swift in Sources */,
 				7EAF12E22AEC2CFC007B956B /* TimeToFastWidget.swift in Sources */,
 				7EAF12E72AEC2CFD007B956B /* TimeToFastWidget.intentdefinition in Sources */,
+				7E9031FF2AEDF29A00C9AA03 /* UserDefaults+Extension.swift in Sources */,
 				7EC9B3652AEDD17B00145019 /* EditPlanHeader.swift in Sources */,
+				7E9032032AEE573200C9AA03 /* Date+Extension.swift in Sources */,
+				7E9031FA2AEDF15600C9AA03 /* TimerWidgetModel.swift in Sources */,
 				7EC9B36E2AEDD24F00145019 /* TimeCardTitle.swift in Sources */,
+				7E9032042AEE598800C9AA03 /* TimerSetting.swift in Sources */,
 				7EAF12F82AEDC4D6007B956B /* TimerWidgetData.swift in Sources */,
+				7E9032012AEE4DF000C9AA03 /* UserDefaultsManager.swift in Sources */,
 				7EC9B3662AEDD18000145019 /* Localizing.swift in Sources */,
 				7EC9B3672AEDD18E00145019 /* Constants.swift in Sources */,
 				7EC9B3682AEDD19900145019 /* UIColor+Extension.swift in Sources */,
@@ -942,6 +966,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TimeToFast/TimeToFast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -977,6 +1002,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TimeToFast/TimeToFast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44Q9HUN6LA;
@@ -1010,6 +1036,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TimeToFastWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44Q9HUN6LA;
@@ -1038,6 +1065,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TimeToFastWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44Q9HUN6LA;

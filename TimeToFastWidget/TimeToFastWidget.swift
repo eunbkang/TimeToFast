@@ -10,41 +10,46 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+    
+    typealias Entry = TimerWidgetEntry
+    
+    func placeholder(in context: Context) -> Entry {
+        TimerWidgetEntry(date: Date(), configuration: ConfigurationIntent(), model: .previewData, viewModel: TimerWidgetModel())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
+    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Entry) -> ()) {
+        let entry = TimerWidgetEntry(date: Date(), configuration: configuration, model: .previewData, viewModel: TimerWidgetModel())
         completion(entry)
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        var entries: [TimerWidgetEntry] = []
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+        let viewModel = TimerWidgetModel()
+        
+        let entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
+        let entry = TimerWidgetEntry(date: entryDate, configuration: configuration, model: .previewData, viewModel: viewModel)
             entries.append(entry)
-        }
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct TimerWidgetEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    
+    let model: TimerWidgetData
+    let viewModel: TimerWidgetModel
 }
 
 struct TimeToFastWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        TimerWidgetView(data: .previewData)
+        TimerWidgetView(viewModel: entry.viewModel, data: entry.model)
+            .environmentObject(entry.viewModel)
     }
 }
 
@@ -55,14 +60,15 @@ struct TimeToFastWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             TimeToFastWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Fasting Timer")
+        .description("Keep track of your fasting state with timer.")
+        .supportedFamilies([.systemSmall])
     }
 }
 
 struct TimeToFastWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TimeToFastWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        TimeToFastWidgetEntryView(entry: TimerWidgetEntry(date: Date(), configuration: ConfigurationIntent(), model: .previewData, viewModel: TimerWidgetModel()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

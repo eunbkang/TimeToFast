@@ -9,6 +9,8 @@ import SwiftUI
 import WidgetKit
 
 struct TimerWidgetView: View {
+    var viewModel: TimerWidgetModel
+    
     let data: TimerWidgetData
     
     var body: some View {
@@ -52,17 +54,34 @@ struct TimerWidgetView: View {
                 .padding(9)
                 
                 VStack(alignment: .center, spacing: 4) {
-                    Text(data.state.widgetTitle)
+                    Text(viewModel.fastState.widgetTitle)
                         .font(.footnote)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
                     
                     VStack(alignment: .center) {
-                        Text(data.targetDate, style: .timer)
-                            .font(.title3)
-                            .fontWeight(.heavy)
-                            .foregroundColor(.black)
-                            .multilineTextAlignment(.center)
+                        switch viewModel.fastState {
+                        case .idle:
+                            Text(viewModel.timeCounter)
+                                .font(.title3)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(.center)
+                            
+                        case .fasting, .fastingBreak, .fastingEarly:
+                            Text(viewModel.timerSetting.fastEndTime, style: .timer)
+                                .font(.title3)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(.center)
+                            
+                        case .eating:
+                            Text(viewModel.timerSetting.eatingEndTime, style: .timer)
+                                .font(.title3)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(.center)
+                        }
                         
                         Text(Localizing.State.widgetRemaining)
                             .font(.caption2)
@@ -78,14 +97,14 @@ struct TimerWidgetView: View {
 struct TimerWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TimerWidgetView(data: .previewData)
+            TimerWidgetView(viewModel: TimerWidgetModel(), data: .previewData)
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
             
-            TimerWidgetView(data: .previewData)
+            TimerWidgetView(viewModel: TimerWidgetModel(), data: .previewData)
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, .dark)
             
-            TimerWidgetView(data: .previewData)
+            TimerWidgetView(viewModel: TimerWidgetModel(), data: .previewData)
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.sizeCategory, .extraExtraExtraLarge)
         }
