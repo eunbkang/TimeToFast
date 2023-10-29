@@ -34,8 +34,15 @@ fasting = "You're fasting!";
 eating = "You're eating!";
 breakingFast = "You are on a break!";
 
+widgetIdle = "Time to fast!";
+widgetFasting = "Fasting Time!";
+widgetEating = "Eating Time!";
+widgetFastingBreak = "On a break!";
+
 fastingStartsIn = "FASTING STARTS IN";
 remainingTime = "REMAINING TIME";
+
+widgetRemaining = "REMAINING";
 
 // MARK: - Time
 

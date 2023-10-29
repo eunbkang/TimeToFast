@@ -35,8 +35,15 @@ struct Localizing {
         static let eating = "eating".localized
         static let breakingFast = "breakingFast".localized
         
+        static let widgetIdle = "widgetIdle".localized
+        static let widgetFasting = "widgetFasting".localized
+        static let widgetEating = "widgetEating".localized
+        static let widgetFastingBreak = "widgetFastingBreak".localized
+        
         static let fastingStartsIn = "fastingStartsIn".localized
         static let remainingTime = "remainingTime".localized
+        
+        static let widgetRemaining = "widgetRemaining".localized
     }
     
     struct Time {

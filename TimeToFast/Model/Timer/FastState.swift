@@ -75,13 +75,13 @@ enum FastState {
     var widgetTitle: String {
         switch self {
         case .idle:
-            return "Time to fast!"
+            return Localizing.State.widgetIdle
         case .fasting, .fastingEarly:
-            return "Fasting"
+            return Localizing.State.widgetFasting
         case .eating:
-            return "Eating"
+            return Localizing.State.widgetEating
         case .fastingBreak:
-            return "On a break"
+            return Localizing.State.widgetFastingBreak
         }
     }
     

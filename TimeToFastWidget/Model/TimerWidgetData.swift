@@ -22,3 +22,7 @@ struct TimerWidgetData {
 extension TimerWidgetData {
     static let previewData = TimerWidgetData(state: .fasting, timeCounter: "00:00", targetDate: Date()+3600*2, fastingTrim: 0.7, fastingRotation: -155.0, eatingTrim: 0.32, eatingRotation: 90)
 }
+
+struct WidgetTimer {
+    
+}

@@ -30,6 +30,12 @@ struct TimerWidgetView: View {
                         .stroke(style: StrokeStyle(lineWidth: 9, lineCap: .butt))
                         .foregroundColor(Color("lightGreen"))
                         .rotationEffect(Angle(degrees: data.eatingRotation))
+                    
+                    Circle()
+                        .trim(from: 0.0, to: data.fastingTrim)
+                        .stroke(style: StrokeStyle(lineWidth: 13, lineCap: .round))
+                        .foregroundColor(Color("mainPurple"))
+                        .rotationEffect(Angle(degrees: data.fastingRotation))
                 }
                 
                 VStack {
@@ -58,7 +64,7 @@ struct TimerWidgetView: View {
                             .foregroundColor(.black)
                             .multilineTextAlignment(.center)
                         
-                        Text("REMAINING")
+                        Text(Localizing.State.widgetRemaining)
                             .font(.caption2)
                             .foregroundColor(.gray)
                     }

@@ -34,8 +34,15 @@ fasting = "지금은 단식 시간입니다!";
 eating = "지금은 식사 시간입니다!";
 breakingFast = "잠시 단식을 쉬고 있어요!";
 
+widgetIdle = "단식할 시간!";
+widgetFasting = "단식 중!";
+widgetEating = "식사 중!";
+widgetFastingBreak = "단식 쉬는 중!";
+
 fastingStartsIn = "다음 단식까지";
 remainingTime = "남은 시간";
+
+widgetRemaining = "남은 시간";
 
 // MARK: - Time
 

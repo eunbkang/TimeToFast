@@ -31,6 +31,7 @@
 		7E782E7F2AE5BBBD003634C2 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 7E782E7E2AE5BBBD003634C2 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		7E782E812AE5BBBD003634C2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7E782E802AE5BBBD003634C2 /* FirebaseCrashlytics */; };
 		7E782E832AE5BBE3003634C2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7E782E822AE5BBE3003634C2 /* .gitignore */; };
+		7E9031F72AEDE8C800C9AA03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E782E792AE46027003634C2 /* Localizable.strings */; };
 		7E9436482ADFF34B00BCF4EB /* CircularFastingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */; };
 		7EA025AE2AE97A5100842B1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA025AD2AE97A5100842B1B /* GoogleService-Info.plist */; };
 		7EAF12DB2AEC2CFC007B956B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAF12DA2AEC2CFC007B956B /* WidgetKit.framework */; };
@@ -663,6 +664,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EAF12E52AEC2CFD007B956B /* Assets.xcassets in Resources */,
+				7E9031F72AEDE8C800C9AA03 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
