@@ -17,7 +17,7 @@ enum FastState {
     var fastControl: String {
         switch self {
         case .idle, .eating:
-//            return Constants.FastControl.startEarly
+            //            return Constants.FastControl.startEarly
             return Constants.FastControl.breakFast
         case .fasting, .fastingEarly:
             return Constants.FastControl.breakFast
@@ -67,6 +67,32 @@ enum FastState {
             return TimeCardTitle(left: Localizing.Time.started, right: Localizing.Time.goal)
         case .eating, .fastingBreak:
             return TimeCardTitle(left: Localizing.Time.started, right: Localizing.Time.ended)
+        }
+    }
+    
+    // MARK: - Widget
+    
+    var widgetTitle: String {
+        switch self {
+        case .idle:
+            return "Time to fast!"
+        case .fasting, .fastingEarly:
+            return "Fasting"
+        case .eating:
+            return "Eating"
+        case .fastingBreak:
+            return "On a break"
+        }
+    }
+    
+    var widgetBackgroundColor: (start: String, end: String) {
+        switch self {
+        case .idle, .fastingBreak:
+            return ("white", "white")
+        case .fasting, .fastingEarly:
+            return ("lightPurple", "lightGreen")
+        case .eating:
+            return ("lightGreen", "lightPurple")
         }
     }
 }

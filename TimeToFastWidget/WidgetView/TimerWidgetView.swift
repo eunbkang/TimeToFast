@@ -8,38 +8,28 @@
 import SwiftUI
 import WidgetKit
 
-struct TimerWidgetData {
-    var stateTitle: String
-    var timeCounter: String
-//    var startAngle: Double
-//    var endAngle: Double
-}
-
-extension TimerWidgetData {
-    static let previewData = TimerWidgetData(stateTitle: "Time to fast!", timeCounter: "00:00")
-}
-
 struct TimerWidgetView: View {
     let data: TimerWidgetData
     
     var body: some View {
         ZStack {
             Color(.white)
-            LinearGradient(colors: [Color("lightPurple"), Color("lightGreen")], startPoint: .topLeading, endPoint: UnitPoint(x: 1, y: 1.5))
+            LinearGradient(colors: [Color(data.state.widgetBackgroundColor.start), Color(data.state.widgetBackgroundColor.end)], startPoint: .top, endPoint: UnitPoint(x: 1, y: 1.25))
+                .opacity(0.75)
             
             ZStack {
                 ZStack {
                     Circle()
-                        .trim(from: 0.0, to: 0.7)
+                        .trim(from: 0.0, to: data.fastingTrim)
                         .stroke(style: StrokeStyle(lineWidth: 9, lineCap: .butt))
                         .foregroundColor(Color("lightPurple"))
-                        .rotationEffect(Angle(degrees: -155.0))
+                        .rotationEffect(Angle(degrees: data.fastingRotation))
                     
                     Circle()
-                        .trim(from: 0.0, to: 0.32)
+                        .trim(from: 0.0, to: data.eatingTrim)
                         .stroke(style: StrokeStyle(lineWidth: 9, lineCap: .butt))
                         .foregroundColor(Color("lightGreen"))
-                        .rotationEffect(Angle(degrees: 90))
+                        .rotationEffect(Angle(degrees: data.eatingRotation))
                 }
                 
                 VStack {
@@ -55,15 +45,18 @@ struct TimerWidgetView: View {
                 }
                 .padding(9)
                 
-                VStack(spacing: 4) {
-                    Text(data.stateTitle)
+                VStack(alignment: .center, spacing: 4) {
+                    Text(data.state.widgetTitle)
                         .font(.footnote)
                         .fontWeight(.semibold)
+                        .foregroundColor(.black)
                     
-                    VStack {
-                        Text(data.timeCounter)
+                    VStack(alignment: .center) {
+                        Text(data.targetDate, style: .timer)
                             .font(.title3)
                             .fontWeight(.heavy)
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.center)
                         
                         Text("REMAINING")
                             .font(.caption2)
@@ -78,7 +71,17 @@ struct TimerWidgetView: View {
 
 struct TimerWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerWidgetView(data: .previewData)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        Group {
+            TimerWidgetView(data: .previewData)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+            
+            TimerWidgetView(data: .previewData)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.colorScheme, .dark)
+            
+            TimerWidgetView(data: .previewData)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.sizeCategory, .extraExtraExtraLarge)
+        }
     }
 }

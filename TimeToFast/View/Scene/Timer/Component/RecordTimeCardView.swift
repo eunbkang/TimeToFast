@@ -7,11 +7,6 @@
 
 import UIKit
 
-struct TimeCardTitle {
-    let left: String
-    let right: String
-}
-
 class RecordTimeCardView: UIView {
     
     var fastState: FastState {
