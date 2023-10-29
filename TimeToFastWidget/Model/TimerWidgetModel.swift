@@ -18,8 +18,6 @@ final class TimerWidgetModel: ObservableObject {
     @Published var eatingTrim: CGFloat = 0
     @Published var eatingRotation: CGFloat = 0
     
-    private let userDefaults = UserDefaultsManager.shared
-    
     @Published var timerSetting: TimerSetting = TimerSetting(
         plan: .sixteen,
         fastStartTime: .setTimeForToday(hour: 12, minute: 0)-3600*16,
@@ -27,6 +25,8 @@ final class TimerWidgetModel: ObservableObject {
         eatingStartTime: .setTimeForToday(hour: 12, minute: 0),
         eatingEndTime: .setTimeForToday(hour: 12, minute: 0)+3600*8
     )
+    
+    private let userDefaults = UserDefaultsManager.shared
     
     init() {
         fetchDataFromApp()
@@ -126,4 +126,6 @@ final class TimerWidgetModel: ObservableObject {
     }
     
     // MARK: - TimerGauge
+    
+    
 }

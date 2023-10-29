@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WidgetKit
 
 final class PlanViewModel {
     
@@ -25,6 +26,7 @@ final class PlanViewModel {
         userDefaults.isFastingEarly = false
         
         notification.setNotification()
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     func getStoredSetting() {

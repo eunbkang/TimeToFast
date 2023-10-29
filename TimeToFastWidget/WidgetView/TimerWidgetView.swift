@@ -16,7 +16,7 @@ struct TimerWidgetView: View {
     var body: some View {
         ZStack {
             Color(.white)
-            LinearGradient(colors: [Color(data.state.widgetBackgroundColor.start), Color(data.state.widgetBackgroundColor.end)], startPoint: .top, endPoint: UnitPoint(x: 1, y: 1.25))
+            LinearGradient(colors: [Color(viewModel.fastState.widgetBackgroundColor.start), Color(viewModel.fastState.widgetBackgroundColor.end)], startPoint: .top, endPoint: UnitPoint(x: 1, y: 1.25))
                 .opacity(0.75)
             
             ZStack {

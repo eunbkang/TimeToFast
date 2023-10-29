@@ -27,9 +27,14 @@ struct Provider: IntentTimelineProvider {
         let currentDate = Date()
         let viewModel = TimerWidgetModel()
         
-        let entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
-        let entry = TimerWidgetEntry(date: entryDate, configuration: configuration, model: .previewData, viewModel: viewModel)
-            entries.append(entry)
+//        let entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
+        let entryDateFastingEnd = viewModel.timerSetting.eatingEndTime
+        let entryFastingEnd = TimerWidgetEntry(date: entryDateFastingEnd, configuration: configuration, model: .previewData, viewModel: viewModel)
+            entries.append(entryFastingEnd)
+        
+        let entryDateEatingEnd = viewModel.timerSetting.fastEndTime
+        let entryEatingEnd = TimerWidgetEntry(date: entryDateEatingEnd, configuration: configuration, model: .previewData, viewModel: viewModel)
+            entries.append(entryEatingEnd)
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)

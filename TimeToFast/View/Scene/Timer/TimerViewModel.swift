@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import WidgetKit
 
 final class TimerViewModel {
     var timeCounter = Observable("00:00:00")
@@ -284,6 +285,8 @@ final class TimerViewModel {
             configTimerSetting()
             configRecordCardTime()
         }
+        
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     private func configFastingCounter() {
