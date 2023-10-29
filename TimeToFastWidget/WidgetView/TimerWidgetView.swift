@@ -9,9 +9,7 @@ import SwiftUI
 import WidgetKit
 
 struct TimerWidgetView: View {
-    var viewModel: TimerWidgetModel
-    
-    let data: TimerWidgetData
+    @EnvironmentObject var viewModel: TimerWidgetModel
     
     var body: some View {
         ZStack {
@@ -22,22 +20,32 @@ struct TimerWidgetView: View {
             ZStack {
                 ZStack {
                     Circle()
-                        .trim(from: 0.0, to: data.fastingTrim)
+                        .trim(from: 0.0, to: viewModel.fastingTrackTrim)
                         .stroke(style: StrokeStyle(lineWidth: 9, lineCap: .butt))
                         .foregroundColor(Color("lightPurple"))
-                        .rotationEffect(Angle(degrees: data.fastingRotation))
+                        .rotationEffect(Angle(degrees: viewModel.fastingTrackRotation))
                     
                     Circle()
-                        .trim(from: 0.0, to: data.eatingTrim)
+                        .trim(from: 0.0, to: viewModel.eatingTrackTrim)
                         .stroke(style: StrokeStyle(lineWidth: 9, lineCap: .butt))
                         .foregroundColor(Color("lightGreen"))
-                        .rotationEffect(Angle(degrees: data.eatingRotation))
+                        .rotationEffect(Angle(degrees: viewModel.eatingTrackRotation))
                     
-                    Circle()
-                        .trim(from: 0.0, to: data.fastingTrim)
-                        .stroke(style: StrokeStyle(lineWidth: 13, lineCap: .round))
-                        .foregroundColor(Color("mainPurple"))
-                        .rotationEffect(Angle(degrees: data.fastingRotation))
+                    if viewModel.isFastingProgressVisible {
+                        Circle()
+                            .trim(from: 0.0, to: viewModel.fastingProgressTrim)
+                            .stroke(style: StrokeStyle(lineWidth: 13, lineCap: .round))
+                            .foregroundColor(Color("mainPurple"))
+                            .rotationEffect(Angle(degrees: viewModel.fastingProgressRotation))
+                    }
+                    
+                    if viewModel.isEatingProgressVisible {
+                        Circle()
+                            .trim(from: 0.0, to: viewModel.eatingProgressTrim)
+                            .stroke(style: StrokeStyle(lineWidth: 13, lineCap: .round))
+                            .foregroundColor(Color("mainGreen"))
+                            .rotationEffect(Angle(degrees: viewModel.eatingProgressRotation))
+                    }
                 }
                 
                 VStack {
@@ -97,16 +105,19 @@ struct TimerWidgetView: View {
 struct TimerWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TimerWidgetView(viewModel: TimerWidgetModel(), data: .previewData)
+            TimerWidgetView()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environmentObject(TimerWidgetModel())
             
-            TimerWidgetView(viewModel: TimerWidgetModel(), data: .previewData)
+            TimerWidgetView()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, .dark)
+                .environmentObject(TimerWidgetModel())
             
-            TimerWidgetView(viewModel: TimerWidgetModel(), data: .previewData)
+            TimerWidgetView()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.sizeCategory, .extraExtraExtraLarge)
+                .environmentObject(TimerWidgetModel())
         }
     }
 }

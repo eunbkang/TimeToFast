@@ -16,6 +16,14 @@ extension Date {
         return angle.degreeToRadian - .pi/2
     }
     
+    func dateToAngleDegree() -> CGFloat {
+        let hours = CGFloat(self.hours)
+        let minutes = CGFloat(self.minutes)
+        let angle = (hours + minutes/60) * 360/24
+        
+        return angle - 90
+    }
+    
     func dateToSetTimeString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium

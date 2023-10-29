@@ -10,13 +10,6 @@ import Foundation
 final class TimerWidgetModel: ObservableObject {
     @Published var fastState: FastState = .idle
     @Published var timeCounter: String = "00:00:00"
-    @Published var targetDate: Date = Date()+3600*3
-    
-    @Published var fastingTrim: CGFloat = 0
-    @Published var fastingRotation: CGFloat = 0
-    
-    @Published var eatingTrim: CGFloat = 0
-    @Published var eatingRotation: CGFloat = 0
     
     @Published var timerSetting: TimerSetting = TimerSetting(
         plan: .sixteen,
@@ -26,7 +19,30 @@ final class TimerWidgetModel: ObservableObject {
         eatingEndTime: .setTimeForToday(hour: 12, minute: 0)+3600*8
     )
     
+    @Published var fastingTrackTrim: CGFloat = 0.7
+    @Published var fastingTrackRotation: CGFloat = -155.0
+    
+    @Published var eatingTrackTrim: CGFloat = 0.32
+    @Published var eatingTrackRotation: CGFloat = 90
+    
+    @Published var fastingProgressTrim: CGFloat = 0.4
+    @Published var fastingProgressRotation: CGFloat = -155.0
+    
+    @Published var eatingProgressTrim: CGFloat = 0.2
+    @Published var eatingProgressRotation: CGFloat = 90
+    
+    @Published var isFastingProgressVisible: Bool = false
+    @Published var isEatingProgressVisible: Bool = false
+    
     private let userDefaults = UserDefaultsManager.shared
+    
+    private var timer: Timer?
+    
+    var configDate: Date = Date() {
+        didSet {
+            fetchDataFromApp()
+        }
+    }
     
     init() {
         fetchDataFromApp()
@@ -35,7 +51,9 @@ final class TimerWidgetModel: ObservableObject {
     func fetchDataFromApp() {
         configTimerSetting()
         configFastState()
-        configTargetDate()
+        setTimerGaugeAngle()
+        configProgressGaugeVisible()
+//        controlTimer()
     }
     
     // MARK: - TimerSetting
@@ -65,7 +83,7 @@ final class TimerWidgetModel: ObservableObject {
         var eatingEnd = userDefaults.eatingEndTime
         var fastStart = calculateFastStartTime(with: eatingStart)
         
-        let current = Date()
+        let current = configDate
         
         if current > eatingEnd {
             eatingStart = eatingStart.addOneDay()
@@ -101,7 +119,7 @@ final class TimerWidgetModel: ObservableObject {
     }
     
     private func fastingOrEating() -> FastState {
-        let current = Date()
+        let current = configDate
         
         let fastStartTime = timerSetting.fastStartTime
         let fastEndTime = timerSetting.fastEndTime
@@ -121,11 +139,60 @@ final class TimerWidgetModel: ObservableObject {
         }
     }
     
-    private func configTargetDate() {
-        
-    }
-    
     // MARK: - TimerGauge
     
+    func setTimerGaugeAngle() {
+        let fastAngle = calculateAngle(start: timerSetting.fastStartTime, end: timerSetting.fastEndTime)
+        fastingTrackTrim = fastAngle.trim
+        fastingTrackRotation = fastAngle.rotation
+        
+        let eatingAngle = calculateAngle(start: timerSetting.eatingStartTime, end: timerSetting.eatingEndTime)
+        eatingTrackTrim = eatingAngle.trim
+        eatingTrackRotation = eatingAngle.rotation
+        
+        fastingProgressTrim = calculateAngle(start: timerSetting.fastStartTime, end: configDate).trim
+        fastingProgressRotation = fastAngle.rotation
+        
+        eatingProgressTrim = calculateAngle(start: timerSetting.eatingStartTime, end: configDate).trim
+        eatingProgressRotation = eatingAngle.rotation
+    }
     
+    private func calculateAngle(start: Date, end: Date) -> (trim: CGFloat, rotation: CGFloat) {
+        let timeInterval = end.timeIntervalSince(start)
+        let perTenMinutes: CGFloat = 1 / (6*24)
+        let trim = perTenMinutes * timeInterval / (10*60)
+        
+        let rotation = start.dateToAngleDegree()
+        
+        return (trim, rotation)
+    }
+    
+    private func configProgressGaugeVisible() {
+        switch fastState {
+        case .idle:
+            isFastingProgressVisible = false
+            isEatingProgressVisible = false
+        case .fasting, .fastingBreak, .fastingEarly:
+            isFastingProgressVisible = true
+            isEatingProgressVisible = false
+        case .eating:
+            isFastingProgressVisible = true
+            isEatingProgressVisible = true
+        }
+    }
+    
+    private func controlTimer() {
+        if fastState == .idle {
+            if timer != nil {
+                timer?.invalidate()
+                timer = nil
+            }
+        } else {
+            if timer == nil {
+                timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] timer in
+                    self?.setTimerGaugeAngle()
+                })
+            }
+        }
+    }
 }
