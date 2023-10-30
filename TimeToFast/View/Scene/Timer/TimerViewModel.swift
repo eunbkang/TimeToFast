@@ -187,7 +187,18 @@ final class TimerViewModel {
             recordCardTime.value.endTime = timerSetting.value.fastEndTime
             
         } else if fastState.value == .fastingBreak {
-            recordCardTime.value.endTime = userDefaults.recordEndTime
+            let endTimeFromUserDefaults = userDefaults.recordEndTime
+            recordCardTime.value.endTime = endTimeFromUserDefaults
+            
+            let savedRecord = checkAndFindSavedRecord(with: endTimeFromUserDefaults)
+            if let savedRecord {
+                recordStatus.value = .saved
+                recordCardTime.value.startTime = savedRecord.start
+                recordCardTime.value.endTime = savedRecord.end
+                
+            } else {
+                recordStatus.value = .notSaved
+            }
         }
         
         if isStartTimeZero {
@@ -386,7 +397,12 @@ final class TimerViewModel {
     func saveNewFastingRecord() throws {
         let record = makeFastingRecordTable()
         try repository?.create(record)
-        setEatingRecordCardTime()
+        
+        if fastState.value == .eating {
+            setEatingRecordCardTime()
+        } else if fastState.value == .fastingBreak {
+            setFastingRecordCardTime()
+        }
     }
     
     func updateTodaysRecord(isEarly: Bool) throws {
