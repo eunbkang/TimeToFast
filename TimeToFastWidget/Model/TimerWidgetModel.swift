@@ -38,13 +38,14 @@ final class TimerWidgetModel: ObservableObject {
     
     private var timer: Timer?
     
-    var configDate: Date = Date() {
+    var configDate: Date {
         didSet {
             fetchDataFromApp()
         }
     }
     
-    init() {
+    init(configDate: Date) {
+        self.configDate = configDate
         fetchDataFromApp()
     }
     

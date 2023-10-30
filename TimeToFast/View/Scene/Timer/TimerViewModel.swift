@@ -445,6 +445,8 @@ final class TimerViewModel {
         
         fastState.value = .fastingBreak
         userDefaults.isFastingBreak = true
+        
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     func resumeFasting() {
@@ -454,6 +456,8 @@ final class TimerViewModel {
         
         fastState.value = .fasting
         userDefaults.isFastingBreak = false
+        
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     func startFastingEarly() {
@@ -463,5 +467,7 @@ final class TimerViewModel {
         
         fastState.value = .fastingEarly
         userDefaults.isFastingEarly = true
+        
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

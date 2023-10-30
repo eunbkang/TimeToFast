@@ -14,29 +14,42 @@ struct Provider: IntentTimelineProvider {
     typealias Entry = TimerWidgetEntry
     
     func placeholder(in context: Context) -> Entry {
-        TimerWidgetEntry(date: Date(), configuration: ConfigurationIntent(), viewModel: TimerWidgetModel())
+        TimerWidgetEntry(date: Date(), configuration: ConfigurationIntent(), viewModel: TimerWidgetModel(configDate: Date()))
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Entry) -> ()) {
-        let entry = TimerWidgetEntry(date: Date(), configuration: configuration, viewModel: TimerWidgetModel())
+        let entry = TimerWidgetEntry(date: Date(), configuration: configuration, viewModel: TimerWidgetModel(configDate: Date()))
         completion(entry)
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [TimerWidgetEntry] = []
-        let viewModel = TimerWidgetModel()
-        let current = Date()
+        let fiveMinute: TimeInterval = 60*5
+        var current = Date()
+        var viewModel = TimerWidgetModel(configDate: current)
         
-        let entryDateFastingEnd = viewModel.timerSetting.fastEndTime
-        let entryFastingEnd = TimerWidgetEntry(date: entryDateFastingEnd, configuration: configuration, viewModel: viewModel)
-            entries.append(entryFastingEnd)
-        
-        let entryDateEatingEnd = viewModel.timerSetting.eatingEndTime
-        let entryEatingEnd = TimerWidgetEntry(date: entryDateEatingEnd, configuration: configuration, viewModel: viewModel)
-            entries.append(entryEatingEnd)
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        if viewModel.fastState == .fasting || viewModel.fastState == .fastingBreak {
+            while current < viewModel.timerSetting.fastEndTime {
+                let entry = TimerWidgetEntry(date: current, configuration: configuration, viewModel: TimerWidgetModel(configDate: current))
+                current += fiveMinute
+                entries.append(entry)
+            }
+            let timeline = Timeline(entries: entries, policy: .after(viewModel.timerSetting.fastEndTime))
+            completion(timeline)
+            
+        } else if viewModel.fastState == .eating {
+            while current < viewModel.timerSetting.eatingEndTime {
+                let entry = TimerWidgetEntry(date: current, configuration: configuration, viewModel: TimerWidgetModel(configDate: current))
+                current += fiveMinute
+                entries.append(entry)
+            }
+            let timeline = Timeline(entries: entries, policy: .after(viewModel.timerSetting.eatingEndTime))
+            completion(timeline)
+            
+        } else {
+            let timeline = Timeline(entries: entries, policy: .never)
+            completion(timeline)
+        }
     }
 }
 
@@ -71,7 +84,7 @@ struct TimeToFastWidget: Widget {
 
 struct TimeToFastWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TimeToFastWidgetEntryView(entry: TimerWidgetEntry(date: Date(), configuration: ConfigurationIntent(), viewModel: TimerWidgetModel()))
+        TimeToFastWidgetEntryView(entry: TimerWidgetEntry(date: Date(), configuration: ConfigurationIntent(), viewModel: TimerWidgetModel(configDate: Date())))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

@@ -107,17 +107,17 @@ struct TimerWidgetView_Previews: PreviewProvider {
         Group {
             TimerWidgetView()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .environmentObject(TimerWidgetModel())
+                .environmentObject(TimerWidgetModel(configDate: Date()))
             
             TimerWidgetView()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, .dark)
-                .environmentObject(TimerWidgetModel())
+                .environmentObject(TimerWidgetModel(configDate: Date()))
             
             TimerWidgetView()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.sizeCategory, .extraExtraExtraLarge)
-                .environmentObject(TimerWidgetModel())
+                .environmentObject(TimerWidgetModel(configDate: Date()))
         }
     }
 }

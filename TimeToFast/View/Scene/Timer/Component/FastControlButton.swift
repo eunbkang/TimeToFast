@@ -43,6 +43,11 @@ class FastControlButton: UIButton {
         }
         
 //        isEnabled = fastState == .idle ? false : true
-        isEnabled = fastState == .fasting ? true : false
+        switch fastState {
+        case .fasting, .fastingBreak, .fastingEarly:
+            isEnabled = true
+        default:
+            isEnabled = false
+        }
     }
 }
