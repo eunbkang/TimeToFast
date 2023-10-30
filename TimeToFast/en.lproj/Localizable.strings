@@ -144,3 +144,8 @@ fastingStartTitle = "Time to fast!";
 fastingStartBody = "Fasting time has started. Stay committed!";
 eatingStartTitle = "Time to eat!";
 eatingStartBody = "It's time to eat! Save your fasting result and break your fast with a healthy meal.";
+
+// MARK: - Widget
+
+timerDisplayName = "Fasting Timer";
+timerDescription = "Keep track of your fasting state with timer.";

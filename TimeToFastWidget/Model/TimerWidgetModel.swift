@@ -54,7 +54,6 @@ final class TimerWidgetModel: ObservableObject {
         configFastState()
         setTimerGaugeAngle()
         configProgressGaugeVisible()
-//        controlTimer()
     }
     
     // MARK: - TimerSetting
@@ -179,21 +178,6 @@ final class TimerWidgetModel: ObservableObject {
         case .eating:
             isFastingProgressVisible = true
             isEatingProgressVisible = true
-        }
-    }
-    
-    private func controlTimer() {
-        if fastState == .idle {
-            if timer != nil {
-                timer?.invalidate()
-                timer = nil
-            }
-        } else {
-            if timer == nil {
-                timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] timer in
-                    self?.setTimerGaugeAngle()
-                })
-            }
         }
     }
 }

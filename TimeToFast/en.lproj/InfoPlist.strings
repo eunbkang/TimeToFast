@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  TimeToFast
+
+  Created by Eunbee Kang on 2023/10/30.
+  
+*/
+
+CFBundleDisplayName = "Time to fast!";

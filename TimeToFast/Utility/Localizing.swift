@@ -146,4 +146,13 @@ struct Localizing {
         static let eatingStartTitle = "eatingStartTitle".localized
         static let eatingStartBody = "eatingStartBody".localized
     }
+    
+    struct InfoPlist {
+        static let displayName = "CFBundleDisplayName".localized
+    }
+    
+    struct Widget {
+        static let timerDisplayName = "timerDisplayName".localized
+        static let timerDescription = "timerDescription".localized
+    }
 }

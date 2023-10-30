@@ -70,14 +70,14 @@ struct TimeToFastWidgetEntryView : View {
 }
 
 struct TimeToFastWidget: Widget {
-    let kind: String = "TimeToFastWidget"
+    let kind: String = Localizing.InfoPlist.displayName
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             TimeToFastWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Fasting Timer")
-        .description("Keep track of your fasting state with timer.")
+        .configurationDisplayName(Localizing.Widget.timerDisplayName)
+        .description(Localizing.Widget.timerDescription)
         .supportedFamilies([.systemSmall])
     }
 }

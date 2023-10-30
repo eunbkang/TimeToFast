@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  TimeToFast
+
+  Created by Eunbee Kang on 2023/10/30.
+  
+*/
+
+CFBundleDisplayName = "단식할 시간!";

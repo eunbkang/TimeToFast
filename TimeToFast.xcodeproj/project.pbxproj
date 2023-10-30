@@ -40,6 +40,8 @@
 		7E9032022AEE4F1800C9AA03 /* FastingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D49E2AD3DD6300C102FF /* FastingPlan.swift */; };
 		7E9032032AEE573200C9AA03 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3D4782ACDFB7A00C102FF /* Date+Extension.swift */; };
 		7E9032042AEE598800C9AA03 /* TimerSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E46266C2AC481BB00C45ED6 /* TimerSetting.swift */; };
+		7E9032092AEF3AFD00C9AA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E90320B2AEF3AFD00C9AA03 /* InfoPlist.strings */; };
+		7E90320D2AEF3B0600C9AA03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E90320B2AEF3AFD00C9AA03 /* InfoPlist.strings */; };
 		7E9436482ADFF34B00BCF4EB /* CircularFastingHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */; };
 		7EA025AE2AE97A5100842B1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA025AD2AE97A5100842B1B /* GoogleService-Info.plist */; };
 		7EAF12DB2AEC2CFC007B956B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAF12DA2AEC2CFC007B956B /* WidgetKit.framework */; };
@@ -164,6 +166,8 @@
 		7E9031FB2AEDF20B00C9AA03 /* TimeToFast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeToFast.entitlements; sourceTree = "<group>"; };
 		7E9031FC2AEDF26800C9AA03 /* TimeToFastWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeToFastWidgetExtension.entitlements; sourceTree = "<group>"; };
 		7E9031FD2AEDF29A00C9AA03 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		7E90320A2AEF3AFD00C9AA03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7E90320C2AEF3B0100C9AA03 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7E9436472ADFF34B00BCF4EB /* CircularFastingHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularFastingHourView.swift; sourceTree = "<group>"; };
 		7EA025AD2AE97A5100842B1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7EAF12D82AEC2CFC007B956B /* TimeToFastWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimeToFastWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +287,7 @@
 				7E46263A2AC1656400C45ED6 /* Assets.xcassets */,
 				7E46263C2AC1656400C45ED6 /* LaunchScreen.storyboard */,
 				7E46263F2AC1656400C45ED6 /* Info.plist */,
+				7E90320B2AEF3AFD00C9AA03 /* InfoPlist.strings */,
 				7EA025AD2AE97A5100842B1B /* GoogleService-Info.plist */,
 				7E782E792AE46027003634C2 /* Localizable.strings */,
 				7E782E822AE5BBE3003634C2 /* .gitignore */,
@@ -664,6 +669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E782E832AE5BBE3003634C2 /* .gitignore in Resources */,
+				7E9032092AEF3AFD00C9AA03 /* InfoPlist.strings in Resources */,
 				7E46263E2AC1656400C45ED6 /* LaunchScreen.storyboard in Resources */,
 				7EA025AE2AE97A5100842B1B /* GoogleService-Info.plist in Resources */,
 				7E782E772AE46027003634C2 /* Localizable.strings in Resources */,
@@ -676,6 +682,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EAF12E52AEC2CFD007B956B /* Assets.xcassets in Resources */,
+				7E90320D2AEF3B0600C9AA03 /* InfoPlist.strings in Resources */,
 				7E9031F72AEDE8C800C9AA03 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,6 +842,15 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		7E90320B2AEF3AFD00C9AA03 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E90320A2AEF3AFD00C9AA03 /* en */,
+				7E90320C2AEF3B0100C9AA03 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -978,7 +994,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.devRain.TimeToFast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1013,7 +1029,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.devRain.TimeToFast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
