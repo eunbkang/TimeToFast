@@ -579,8 +579,8 @@
 				7E46262A2AC1656300C45ED6 /* Sources */,
 				7E46262B2AC1656300C45ED6 /* Frameworks */,
 				7E46262C2AC1656300C45ED6 /* Resources */,
-				7E782E862AE5BE32003634C2 /* ShellScript */,
 				7EAF12EC2AEC2CFD007B956B /* Embed Foundation Extensions */,
+				7E782E862AE5BE32003634C2 /* ShellScript */,
 			);
 			buildRules = (
 			);

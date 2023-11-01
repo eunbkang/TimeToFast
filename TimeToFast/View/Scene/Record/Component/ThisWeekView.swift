@@ -77,6 +77,11 @@ final class ThisWeekView: BaseView {
         chartView.xAxis.labelFont = .preferredFont(forTextStyle: .caption1)
         chartView.xAxis.labelTextColor = .systemGray
         
+        chartView.leftAxis.axisMinimum = 0
+        chartView.leftAxis.axisMaximum = 24
+        chartView.rightAxis.axisMinimum = 0
+        chartView.rightAxis.axisMaximum = 24
+        
         chartView.animate(yAxisDuration: 0.5)
     }
 }
