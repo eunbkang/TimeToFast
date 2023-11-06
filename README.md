@@ -1,7 +1,7 @@
 # TimeToFast!
-<img src="https://github.com/eunbkang/TimeToFast/assets/103012157/b8109f40-74cd-4b48-b834-6d594b8bf60d">
-  
-[<img width="160" src="https://github.com/eunbkang/TimeToFast/assets/103012157/eab3b46b-54ad-43e6-a003-b6f4f041988a">](https://apps.apple.com/kr/app/단식할-시간-공복시간-타이머/id6470159635)
+<img src="https://github.com/eunbkang/TimeToFast/assets/103012157/61409942-0a15-437d-a175-b8a4b6895661">
+
+[<img width="160" src="https://github.com/eunbkang/TimeToFast/assets/103012157/42dbcd0c-141d-42c7-af86-5f66877236ff">](https://apps.apple.com/kr/app/단식할-시간-공복시간-타이머/id6470159635)
 
 ## Features
 공복시간, 식사시간을 알려주는 타이머로 간헐적 단식 스케줄을 쉽게 파악하세요. 현재 상태와 남은 시간이 하루 시간표에 맞게 표시돼요. 
@@ -17,7 +17,7 @@
 - 단식시간 알림을 설정하면 단식 시작/종료 알림을 받을 수 있어요.
 
 ## Screenshots
-<img alt="Screenshot 2023-11-06 at 3 45 20 PM" src="https://github.com/eunbkang/TimeToFast/assets/103012157/1320ca10-78b0-477c-b96b-09990e1cd9d8">
+<img alt="Screenshot 2023-11-06 at 9 29 43 PM" src="https://github.com/eunbkang/TimeToFast/assets/103012157/e45040cd-5826-47ec-9eb0-ffb34b7ba1e5">
 
 ## 개발 기간
 2023.9.25 - 2023.10.25
